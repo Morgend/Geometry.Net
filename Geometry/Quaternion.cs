@@ -2,6 +2,7 @@
 
 /*
  * Author: Andrey Pokidov
+ * Date: 1 Feb 2019
  */
 
 namespace MathKit.Geometry
@@ -10,12 +11,11 @@ namespace MathKit.Geometry
     {
         public const double DEFAULT_TURN_VALUE = 1.0;
         public const double DEFAULT_COORDINATE_VALUE = 0.0;
-        public const double EPSYLON = 0.00000001;
 
-        private double x;
-        private double y;
-        private double z;
-        private double w;
+        public double x;
+        public double y;
+        public double z;
+        public double w;
 
         public Quaternion(double x, double y, double z, double w)
         {
@@ -23,27 +23,6 @@ namespace MathKit.Geometry
             this.y = y;
             this.z = z;
             this.w = w;
-            this.normalize();
-        }
-
-        public Quaternion(double angle, Vector3 vector)
-        {
-            this.x = DEFAULT_COORDINATE_VALUE;
-            this.y = DEFAULT_COORDINATE_VALUE;
-            this.z = DEFAULT_COORDINATE_VALUE;
-            this.w = DEFAULT_TURN_VALUE;
-
-            this.setValue(angle, vector);
-        }
-
-        public Quaternion(Angle angle, Vector3 vector)
-        {
-            this.x = DEFAULT_COORDINATE_VALUE;
-            this.y = DEFAULT_COORDINATE_VALUE;
-            this.z = DEFAULT_COORDINATE_VALUE;
-            this.w = DEFAULT_TURN_VALUE;
-
-            this.setValue(angle.radians, vector);
         }
 
         public void setValue(double x, double y, double z, double w)
@@ -52,7 +31,6 @@ namespace MathKit.Geometry
             this.y = y;
             this.z = z;
             this.w = w;
-            this.normalize();
         }
 
         public void setValue(Quaternion q)
@@ -63,67 +41,12 @@ namespace MathKit.Geometry
             this.w = q.w;
         }
 
-        public void setValue(double angle, Vector3 vector)
-        {
-            double module = vector.module();
-
-            if (module < EPSYLON)
-            {
-                this.reset();
-                return;
-            }
-
-            double k = Math.Sin(angle * 0.5) / module;
-
-            this.x = vector.x * k;
-            this.y = vector.y * k;
-            this.z = vector.z * k;
-            this.w = Math.Cos(angle * 0.5);
-        }
-
-        public void setValue(Angle angle, Vector3 vector)
-        {
-            this.setValue(angle.radians, vector);
-        }
-
         public void reset()
         {
-            this.w = DEFAULT_TURN_VALUE;
             this.x = DEFAULT_COORDINATE_VALUE;
             this.y = DEFAULT_COORDINATE_VALUE;
             this.z = DEFAULT_COORDINATE_VALUE;
-        }
-
-        public double X
-        {
-            get
-            {
-                return this.x;
-            }
-        }
-
-        public double Y
-        {
-            get
-            {
-                return this.y;
-            }
-        }
-
-        public double Z
-        {
-            get
-            {
-                return this.z;
-            }
-        }
-
-        public double W
-        {
-            get
-            {
-                return this.w;
-            }
+            this.w = DEFAULT_TURN_VALUE;
         }
 
         public void invert()
@@ -147,7 +70,7 @@ namespace MathKit.Geometry
         {
             double module = this.module();
 
-            if (module < EPSYLON)
+            if (module < MathConst.EPSYLON)
             {
                 this.reset();
                 return;
@@ -179,23 +102,50 @@ namespace MathKit.Geometry
             );
         }
 
-        public Vector3 turn(Vector3 vector)
+        public Quaternion multiply(double value)
         {
-            double mw = this.x * vector.x + this.y * vector.y + this.z * vector.z;
-            double vx = this.w * vector.x + this.y * vector.z - this.z * vector.y;
-            double vy = this.w * vector.y + this.z * vector.x - this.x * vector.z;
-            double vz = this.w * vector.z + this.x * vector.y - this.y * vector.x;
+            return new Quaternion(this.x * value, this.y * value, this.z * value, this.w * value);
+        }
 
-            return new Vector3(
-                this.w * vx + mw * this.x - vy * this.z + vz * this.y,
-                this.w * vy + mw * this.y - vz * this.x + vx * this.z,
-                this.w * vz + mw * this.z - vx * this.y + vy * this.x
-            );
+        public void multiplyAt(double value)
+        {
+            this.x *= value;
+            this.y *= value;
+            this.z *= value;
+            this.w *= value;
+        }
+
+        public Quaternion divide(double value)
+        {
+            return new Quaternion(this.x / value, this.y / value, this.z / value, this.w / value);
+        }
+
+        public void divideAt(double value)
+        {
+            this.x /= value;
+            this.y /= value;
+            this.z /= value;
+            this.w /= value;
         }
 
         public static Quaternion operator *(Quaternion q1, Quaternion q2)
         {
             return q1.multiply(q2);
+        }
+
+        public static Quaternion operator *(Quaternion quaternion, double value)
+        {
+            return quaternion.multiply(value);
+        }
+
+        public static Quaternion operator *(double value, Quaternion quaternion)
+        {
+            return quaternion.multiply(value);
+        }
+
+        public static Quaternion operator /(Quaternion quaternion, double value)
+        {
+            return quaternion.divide(value);
         }
 
         public static Quaternion operator -(Quaternion q)

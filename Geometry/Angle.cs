@@ -2,6 +2,7 @@
 
 /*
  * Author: Andrey Pokidov
+ * Date: 1 Feb 2019
  */
 
 namespace MathKit.Geometry
@@ -84,6 +85,28 @@ namespace MathKit.Geometry
                 this.radians = value / GRADS_IN_RADIAN;
             }
         }
+
+
+        public void setRadians(double radians)
+        {
+            this.radians = radians;
+        }
+
+        public void setDegrees(double degrees)
+        {
+            this.radians = degreesToRadians(degrees);
+        }
+
+        public void setGrads(double grads)
+        {
+            this.radians = gradsToRadians(degrees);
+        }
+
+        public void set(Angle angle)
+        {
+            this.radians = angle.radians;
+        }
+            
 
         public void normalize()
         {

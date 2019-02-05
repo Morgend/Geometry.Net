@@ -2,8 +2,8 @@
 
 /*
  * Author: Andrey Pokidov
+ * Date: 1 Feb 2019
  */
-
 
 namespace MathKit.Geometry
 {
@@ -46,7 +46,7 @@ namespace MathKit.Geometry
 
         public double scalar(Vector2 v)
         {
-            return Math.Sqrt(this.x * v.x + this.y * v.y);
+            return this.x * v.x + this.y * v.y;
         }
 
         public double module()
@@ -58,7 +58,7 @@ namespace MathKit.Geometry
         {
             double module = this.module();
 
-            if (module < Quaternion.EPSYLON)
+            if (module < MathConst.EPSYLON)
             {
                 this.zero();
                 return;
@@ -100,6 +100,11 @@ namespace MathKit.Geometry
         public static Vector2 operator -(Vector2 v1, Vector2 v2)
         {
             return new Vector2(v1.x - v2.x, v1.y - v2.y);
+        }
+
+        public static double operator *(Vector2 v1, Vector2 v2)
+        {
+            return v1.scalar(v2);
         }
 
         public static Vector2 operator *(Vector2 vector, double value)

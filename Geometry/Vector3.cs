@@ -2,6 +2,7 @@
 
 /*
  * Author: Andrey Pokidov
+ * Date: 1 Feb 2019
  */
 
 namespace MathKit.Geometry
@@ -51,7 +52,7 @@ namespace MathKit.Geometry
 
         public double scalar(Vector3 v)
         {
-            return Math.Sqrt(this.x * v.x + this.y * v.y + this.z * v.z);
+            return this.x * v.x + this.y * v.y + this.z * v.z;
         }
 
         public Vector3 vector(Vector3 v)
@@ -72,7 +73,7 @@ namespace MathKit.Geometry
         {
             double module = this.module();
 
-            if (module < Quaternion.EPSYLON)
+            if (module < MathConst.EPSYLON)
             {
                 this.zero();
                 return;

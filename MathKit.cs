@@ -2,6 +2,7 @@
 
 /*
  * Author: Andrey Pokidov
+ * Date: 1 Feb 2019
  */
 
 namespace MathKit
