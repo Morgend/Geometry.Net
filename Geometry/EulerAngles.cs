@@ -83,5 +83,10 @@ namespace MathKit.Geometry
 
             this.bank.normalize();
         }
+
+        public override string ToString()
+        {
+            return String.Format("EulerAngles(heading = {0} deg, elevation = {1} deg, bank = {2} deg)", this.heading.degrees, this.elevation.degrees, this.bank.degrees);
+        }
     }
 }

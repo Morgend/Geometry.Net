@@ -9,17 +9,17 @@ namespace MathKit.Geometry
 {
     public class Turn
     {
-        public static readonly Angle DEFAULT_ANGLE = new Angle(0.0);
-        public static readonly Vector3 DEFAULT_DIRECTION = new Vector3(0.0, 0.0, 1.0);
         public static readonly EulerAngles DEFAULT_ANGLES = new EulerAngles(0.0, 0.0, 0.0);
         public static readonly Quaternion DEFAULT_QUATERNION = new Quaternion(0.0, 0.0, 0.0, 1.0);
 
         private Quaternion q;
-        //private 
+
+        private EulerAngles angles;
+        private bool anglesAreActual;
 
         public Turn()
         {
-            q = DEFAULT_QUATERNION;
+            this.reset();
         }
 
         public Turn(Vector3 axis, Angle angle)
@@ -59,13 +59,8 @@ namespace MathKit.Geometry
         {
             get
             {
-                EulerAngles angles = new EulerAngles(
-                    this.calculateHeading(),
-                    this.calculateElevation(),
-                    this.calculateBank()
-                );
-                angles.normalize();
-                return angles;
+                this.calculateAngles();
+                return this.angles;
             }
         }
 
@@ -73,18 +68,36 @@ namespace MathKit.Geometry
         {
             get
             {
-                return q;
+                return this.q;
             }
         }
 
         public void reset()
         {
-            q = DEFAULT_QUATERNION;
+            this.q = DEFAULT_QUATERNION;
+            this.angles = DEFAULT_ANGLES;
+            this.anglesAreActual = true;
+        }
+
+        private void calculateAngles()
+        {
+            if (this.anglesAreActual)
+            {
+                return;
+            }
+
+            this.angles.setAngles(
+                this.calculateHeading(),
+                this.calculateElevation(),
+                this.calculateBank()
+            );
+
+            this.anglesAreActual = true;
         }
 
         private double calculateHeading()
         {
-            return Math.Atan2(2.0 * (q.w * q.x + q.y * q.z), 1.0 - 2.0 * (q.x * q.x + q.y * q.y));
+            return Math.Atan2(2.0 * (q.w * q.z + q.x * q.y), 1.0 - 2.0 * (q.y * q.y + q.z * q.z));
         }
 
         private double calculateElevation()
@@ -94,7 +107,7 @@ namespace MathKit.Geometry
 
         private double calculateBank()
         {
-            return 2.0 * Math.Atan2(2.0 * (q.w * q.z + q.x * q.y), 1.0 - 2.0 * (q.y * q.y + q.z * q.z));
+            return Math.Atan2(2.0 * (q.w * q.x + q.y * q.z), 1.0 - 2.0 * (q.x * q.x + q.y * q.y));
         }
 
         public void setTurn(Vector3 axis, Angle angle)
@@ -113,18 +126,22 @@ namespace MathKit.Geometry
             q.y = axis.y * k;
             q.z = axis.z * k;
             q.w = Math.Cos(angle.radians * 0.5);
+
+            this.anglesAreActual = false;
         }
 
         public void setTurn(Quaternion quaternion)
         {
             q = quaternion;
             this.normalizeQuaternion();
+            this.anglesAreActual = false;
         }
 
         public void setTurn(double x, double y, double z, double w)
         {
             q.setValue(x, y, z, w);
             this.normalizeQuaternion();
+            this.anglesAreActual = false;
         }
 
         private void normalizeQuaternion()

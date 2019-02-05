@@ -49,14 +49,14 @@ namespace MathKit.Geometry
             this.w = DEFAULT_TURN_VALUE;
         }
 
-        public void invert()
+        public void conjugate()
         {
             this.x = -this.x;
             this.y = -this.y;
             this.z = -this.z;
         }
 
-        public Quaternion getInverted()
+        public Quaternion getConjugated()
         {
             return new Quaternion(-this.x, -this.y, -this.z, this.w);
         }
@@ -150,7 +150,7 @@ namespace MathKit.Geometry
 
         public static Quaternion operator -(Quaternion q)
         {
-            return q.getInverted();
+            return q.getConjugated();
         }
     }
 }
