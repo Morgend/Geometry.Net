@@ -9,17 +9,18 @@ namespace MathKit.Geometry
 {
     public class Turn
     {
-        public static readonly EulerAngles DEFAULT_ANGLES = new EulerAngles(0.0, 0.0, 0.0);
         public static readonly Quaternion DEFAULT_QUATERNION = new Quaternion(0.0, 0.0, 0.0, 1.0);
 
         private Quaternion q;
 
-        private EulerAngles angles;
-        private bool anglesAreActual;
-
         public Turn()
         {
             this.reset();
+        }
+
+        public Turn(Turn turn)
+        {
+            this.copyOf(turn);
         }
 
         public Turn(Vector3 axis, Angle angle)
@@ -35,6 +36,14 @@ namespace MathKit.Geometry
         public Turn(double x, double y, double z, double w)
         {
             this.setTurn(x, y, z, w);
+        }
+
+        public static void checkTurn(Turn turn)
+        {
+            if (turn == null)
+            {
+                throw new NullReferenceException("An instance of Turn was expected but NULL was got");
+            }
         }
 
         public Angle Angle
@@ -59,8 +68,11 @@ namespace MathKit.Geometry
         {
             get
             {
-                this.calculateAngles();
-                return this.angles;
+                return new EulerAngles(
+                    this.calculateHeading(),
+                    this.calculateElevation(),
+                    this.calculateBank()
+                );
             }
         }
 
@@ -72,27 +84,28 @@ namespace MathKit.Geometry
             }
         }
 
+        public Matrix3x3 buildRotationMatrix()
+        {
+            Matrix3x3 matrix = new Matrix3x3();
+
+            matrix.a_1_1 = 1.0 - 2.0 * (q.y * q.y + q.z * q.z);
+            matrix.a_1_2 = 2.0 * (q.x * q.y - q.w * q.z);
+            matrix.a_1_3 = 2.0 * (q.w * q.y + q.x * q.z);
+
+            matrix.a_2_1 = 2.0 * (q.x * q.y + q.w * q.z);
+            matrix.a_2_2 = 1.0 - 2.0 * (q.x * q.x + q.z * q.z);
+            matrix.a_2_3 = 2.0 * (q.y * q.z - q.w * q.x);
+
+            matrix.a_3_1 = 2.0 * (q.x * q.z - q.w * q.y);
+            matrix.a_3_2 = 2.0 * (q.w * q.x + q.y * q.z);
+            matrix.a_3_3 = 1.0 - 2.0 * (q.x * q.x + q.y * q.y);
+
+            return matrix;
+        }
+
         public void reset()
         {
             this.q = DEFAULT_QUATERNION;
-            this.angles = DEFAULT_ANGLES;
-            this.anglesAreActual = true;
-        }
-
-        private void calculateAngles()
-        {
-            if (this.anglesAreActual)
-            {
-                return;
-            }
-
-            this.angles.setAngles(
-                this.calculateHeading(),
-                this.calculateElevation(),
-                this.calculateBank()
-            );
-
-            this.anglesAreActual = true;
         }
 
         private double calculateHeading()
@@ -126,22 +139,18 @@ namespace MathKit.Geometry
             q.y = axis.y * k;
             q.z = axis.z * k;
             q.w = Math.Cos(angle.radians * 0.5);
-
-            this.anglesAreActual = false;
         }
 
         public void setTurn(Quaternion quaternion)
         {
             q = quaternion;
             this.normalizeQuaternion();
-            this.anglesAreActual = false;
         }
 
         public void setTurn(double x, double y, double z, double w)
         {
             q.setValue(x, y, z, w);
             this.normalizeQuaternion();
-            this.anglesAreActual = false;
         }
 
         private void normalizeQuaternion()
@@ -155,6 +164,12 @@ namespace MathKit.Geometry
             }
 
             q /= module;
+        }
+
+        public void copyOf(Turn turn)
+        {
+            checkTurn(turn);
+            this.q = turn.q;
         }
 
         public Vector3 turn(Vector3 vector)

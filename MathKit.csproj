@@ -36,6 +36,8 @@
   <ItemGroup>
     <Compile Include="Geometry\Angle.cs" />
     <Compile Include="Geometry\EulerAngles.cs" />
+    <Compile Include="Geometry\Matrix3x3.cs" />
+    <Compile Include="Geometry\Position.cs" />
     <Compile Include="Geometry\Quaternion.cs" />
     <Compile Include="Geometry\Turn.cs" />
     <Compile Include="Geometry\Vector2.cs" />
