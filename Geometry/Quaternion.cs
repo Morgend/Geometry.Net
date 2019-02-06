@@ -9,7 +9,6 @@ namespace MathKit.Geometry
 {
     public struct Quaternion
     {
-        public const double DEFAULT_TURN_VALUE = 1.0;
         public const double DEFAULT_COORDINATE_VALUE = 0.0;
 
         public double x;
@@ -46,7 +45,7 @@ namespace MathKit.Geometry
             this.x = DEFAULT_COORDINATE_VALUE;
             this.y = DEFAULT_COORDINATE_VALUE;
             this.z = DEFAULT_COORDINATE_VALUE;
-            this.w = DEFAULT_TURN_VALUE;
+            this.w = DEFAULT_COORDINATE_VALUE;
         }
 
         public void conjugate()
