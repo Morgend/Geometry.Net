@@ -11,9 +11,9 @@ namespace MathKit.Geometry
     {
         public const double DEFAULT_VALUE = 0.0;
 
-        public const double PI = 3.14159265358979324;
-        public const double PIx2 = 6.28318530717958648;
-        public const double PId2 = 1.57079632679489662;
+        public const double PI = MathConst.PI;
+        public const double PIx2 = MathConst.PIx2;
+        public const double PId2 = MathConst.PId2;
 
         public const double DEGREES_IN_RADIAN = 57.2957795130823209;
         public const double GRADS_IN_RADIAN = 63.6619772367581343;
@@ -110,17 +110,17 @@ namespace MathKit.Geometry
 
         public void normalize()
         {
-            this.degrees -= PIx2 * Math.Floor(this.degrees / PIx2);
+            this.radians -= PIx2 * Math.Floor(this.radians / PIx2);
 
-            if (this.degrees < 0)
+            if (this.radians < 0)
             {
-                this.degrees += PIx2;
+                this.radians += PIx2;
             }
         }
 
         public void zero()
         {
-            this.degrees = DEFAULT_VALUE;
+            this.radians = DEFAULT_VALUE;
         }
 
         public double sin()

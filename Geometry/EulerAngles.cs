@@ -74,11 +74,18 @@ namespace MathKit.Geometry
             this.heading.normalize();
             this.elevation.normalize();
 
-            if (MathConst.PId2 < this.elevation.radians && this.elevation.radians < MathConst.PIx3d2) {
+            if (MathConst.PId2 < this.elevation.radians && this.elevation.radians < MathConst.PIx3d2)
+            {
+                this.elevation.radians = MathConst.PI - this.elevation.radians;
+
                 this.heading.addRadians(MathConst.PI);
                 this.heading.normalize();
 
                 this.bank.addRadians(MathConst.PI);
+            }
+            else if (this.elevation.radians >= MathConst.PI)
+            {
+                this.elevation.radians -= MathConst.PIx2;
             }
 
             this.bank.normalize();

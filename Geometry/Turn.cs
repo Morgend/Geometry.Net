@@ -38,6 +38,21 @@ namespace MathKit.Geometry
             this.setTurn(x, y, z, w);
         }
 
+        public Turn(EulerAngles angles)
+        {
+            this.setTurn(angles.heading.radians, angles.elevation.radians, angles.bank.radians);
+        }
+
+        public Turn(Angle heading, Angle elevation, Angle bank)
+        {
+            this.setTurn(heading.radians, elevation.radians, bank.radians);
+        }
+
+        public Turn(double heading, double elevation, double bank)
+        {
+            this.setTurn(heading, elevation, bank);
+        }
+
         public static void checkTurn(Turn turn)
         {
             if (turn == null)
@@ -68,11 +83,15 @@ namespace MathKit.Geometry
         {
             get
             {
-                return new EulerAngles(
+                EulerAngles result = new EulerAngles(
                     this.calculateHeading(),
                     this.calculateElevation(),
                     this.calculateBank()
                 );
+
+                result.normalize();
+
+                return result;
             }
         }
 
@@ -151,6 +170,40 @@ namespace MathKit.Geometry
         {
             q.setValue(x, y, z, w);
             this.normalizeQuaternion();
+        }
+
+        public void setTurn(EulerAngles angles)
+        {
+            this.setTurn(angles.heading.radians, angles.elevation.radians, angles.bank.radians);
+        }
+
+        public void setTurn(Angle heading, Angle elevation, Angle bank)
+        {
+            this.setTurn(heading.radians, elevation.radians, bank.radians);
+        }
+
+        public void setTurn(double heading, double elevation, double bank)
+        {
+            double cosHeading = Math.Cos(0.5 * heading);
+            double sinHeading = Math.Sin(0.5 * heading);
+
+            double cosElevation = Math.Cos(0.5 * elevation);
+            double sinElevation = Math.Sin(0.5 * elevation);
+
+            double cosBank = Math.Cos(0.5 * bank);
+            double sinBank = Math.Sin(0.5 * bank);
+
+            q.w = cosHeading * cosElevation * cosBank + sinHeading * sinElevation * sinBank;
+            q.x = cosHeading * cosElevation * sinBank - sinHeading * sinElevation * cosBank;
+            q.y = sinHeading * cosElevation * sinBank + cosHeading * sinElevation * cosBank;
+            q.z = sinHeading * cosElevation * cosBank - cosHeading * sinElevation * sinBank;
+
+            this.normalizeQuaternion();
+        }
+
+        public void setTurnDegrees(double heading, double elevation, double bank)
+        {
+            this.setTurn(Angle.degreesToRadians(heading), Angle.degreesToRadians(elevation), Angle.degreesToRadians(bank));
         }
 
         private void normalizeQuaternion()
