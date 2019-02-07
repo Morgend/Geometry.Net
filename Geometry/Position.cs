@@ -21,6 +21,7 @@ namespace MathKit.Geometry
 
         public Position (Position first, Position second)
         {
+            this.turn = new Turn();
             this.setCombinationOf(first, second);
         }
 
