@@ -81,6 +81,23 @@ namespace MathKit.Geometry
             return new Vector3();
         }
 
+        public void transpose()
+        {
+            double value;
+
+            value = a_1_2;
+            a_1_2 = a_2_1;
+            a_2_1 = value;
+
+            value = a_1_3;
+            a_1_3 = a_3_1;
+            a_3_1 = value;
+
+            value = a_2_3;
+            a_2_3 = a_3_2;
+            a_3_2 = value;
+        }
+
         public Matrix3x3 multiply(Matrix3x3 rightMatrix)
         {
             Matrix3x3 result = new Matrix3x3();
