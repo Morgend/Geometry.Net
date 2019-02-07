@@ -84,20 +84,30 @@ namespace MathKit.Geometry
         public Quaternion multiply(Quaternion q)
         {
             return new Quaternion(
-                this.w * q.w - this.x * q.x - this.y * q.y - this.z * q.z,
                 this.y * q.z - this.z * q.y + this.w * q.x + this.x * q.w,
                 this.x * q.z - this.z * q.x + this.w * q.y + this.y * q.w,
-                this.x * q.y - this.y * q.x + this.w * q.z + this.z * q.w
+                this.x * q.y - this.y * q.x + this.w * q.z + this.z * q.w,
+                this.w * q.w - this.x * q.x - this.y * q.y - this.z * q.z
             );
         }
 
         public void multiplyAt(Quaternion q)
         {
             this.setValue(
-                this.w * q.w - this.x * q.x - this.y * q.y - this.z * q.z,
                 this.y * q.z - this.z * q.y + this.w * q.x + this.x * q.w,
                 this.x * q.z - this.z * q.x + this.w * q.y + this.y * q.w,
-                this.x * q.y - this.y * q.x + this.w * q.z + this.z * q.w
+                this.x * q.y - this.y * q.x + this.w * q.z + this.z * q.w,
+                this.w * q.w - this.x * q.x - this.y * q.y - this.z * q.z
+            );
+        }
+
+        public void setMultiplicationOf(Quaternion q1, Quaternion q2)
+        {
+            this.setValue(
+                q1.y * q2.z - q1.z * q2.y + q1.w * q2.x + q1.x * q2.w,
+                q1.x * q2.z - q1.z * q2.x + q1.w * q2.y + q1.y * q2.w,
+                q2.x * q2.y - q1.y * q2.x + q1.w * q2.z + q1.z * q2.w,
+                q1.w * q2.w - q1.x * q2.x - q1.y * q2.y - q1.z * q2.z
             );
         }
 
@@ -150,6 +160,11 @@ namespace MathKit.Geometry
         public static Quaternion operator -(Quaternion q)
         {
             return q.getConjugated();
+        }
+
+        public override string ToString()
+        {
+            return String.Format("Quaternion(w: {0}, x: {1}, y: {2}, z: {3})", this.w, this.x, this.y, this.z);
         }
     }
 }

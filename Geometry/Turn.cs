@@ -23,6 +23,17 @@ namespace MathKit.Geometry
             this.copyOf(turn);
         }
 
+        public Turn(Turn firstTurn, Turn secondTurn)
+        {
+            this.setCombinationOf(firstTurn, secondTurn);
+        }
+
+        public Turn(Turn firstTurn, Turn secondTurn, Turn thirdTurn)
+        {
+            this.setCombinationOf(firstTurn, secondTurn);
+            this.setCombinationOf(this, thirdTurn);
+        }
+
         public Turn(Vector3 axis, Angle angle)
         {
             this.setTurn(axis, angle);
@@ -242,6 +253,17 @@ namespace MathKit.Geometry
         {
             checkTurn(turn);
             this.q = turn.q;
+        }
+
+        public Turn combineWith(Turn nextTurn)
+        {
+            return new Turn(this, nextTurn);
+        }
+
+        public void setCombinationOf(Turn firstTurn, Turn secondTurn)
+        {
+            this.q.setMultiplicationOf(firstTurn.q, secondTurn.q);
+            this.normalizeQuaternion();
         }
 
         public Vector3 turn(Vector3 vector)
