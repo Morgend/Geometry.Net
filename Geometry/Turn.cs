@@ -122,6 +122,25 @@ namespace MathKit.Geometry
             return matrix;
         }
 
+        public Matrix3x3 buildBackwardRotationMatrix()
+        {
+            Matrix3x3 matrix = new Matrix3x3();
+
+            matrix.a_1_1 = 1.0 - 2.0 * (q.y * q.y + q.z * q.z);
+            matrix.a_1_2 = 2.0 * (q.w * q.z + q.x * q.y);
+            matrix.a_1_3 = 2.0 * (q.x * q.z - q.w * q.y);
+
+            matrix.a_2_1 = 2.0 * (q.x * q.y - q.w * q.z);
+            matrix.a_2_2 = 1.0 - 2.0 * (q.x * q.x + q.z * q.z);
+            matrix.a_2_3 = 2.0 * (q.y * q.z + q.w * q.x);
+
+            matrix.a_3_1 = 2.0 * (q.x * q.z + q.w * q.y);
+            matrix.a_3_2 = 2.0 * (q.y * q.z - q.w * q.x);
+            matrix.a_3_3 = 1.0 - 2.0 * (q.x * q.x + q.y * q.y);
+
+            return matrix;
+        }
+
         public void reset()
         {
             this.q = DEFAULT_QUATERNION;
@@ -236,6 +255,20 @@ namespace MathKit.Geometry
                 q.w * vx + mw * q.x - vy * q.z + vz * q.y,
                 q.w * vy + mw * q.y - vz * q.x + vx * q.z,
                 q.w * vz + mw * q.z - vx * q.y + vy * q.x
+            );
+        }
+
+        public Vector3 turnBackward(Vector3 vector)
+        {
+            double mw = - q.x * vector.x - q.y * vector.y - q.z * vector.z;
+            double vx = q.w * vector.x - q.y * vector.z + q.z * vector.y;
+            double vy = q.w * vector.y - q.z * vector.x + q.x * vector.z;
+            double vz = q.w * vector.z - q.x * vector.y + q.y * vector.x;
+
+            return new Vector3(
+                q.w * vx - mw * q.x + vy * q.z - vz * q.y,
+                q.w * vy - mw * q.y + vz * q.x - vx * q.z,
+                q.w * vz - mw * q.z + vx * q.y - vy * q.x
             );
         }
     }
