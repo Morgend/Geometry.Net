@@ -40,7 +40,7 @@ namespace MathKit.Geometry
             this.w = q.w;
         }
 
-        public void reset()
+        public void zero()
         {
             this.x = DEFAULT_COORDINATE_VALUE;
             this.y = DEFAULT_COORDINATE_VALUE;
@@ -71,7 +71,7 @@ namespace MathKit.Geometry
 
             if (module < MathConst.EPSYLON)
             {
-                this.reset();
+                this.zero();
                 return;
             }
 

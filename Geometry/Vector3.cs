@@ -105,11 +105,32 @@ namespace MathKit.Geometry
             this.z *= value;
         }
 
-        public void devide(double value)
+        public void vectorMultiplyAt(Vector3 vector)
+        {
+            this.setValue(
+                this.y * vector.z - this.z * vector.y,
+                this.z * vector.x - this.x * vector.z,
+                this.x * vector.y - this.y * vector.x
+           );
+        }
+
+        public void divide(double value)
         {
             this.x /= value;
             this.y /= value;
             this.z /= value;
+        }
+
+        public void reverse()
+        {
+            this.x = -this.x;
+            this.y = -this.y;
+            this.z = -this.z;
+        }
+
+        public Vector3 getReverted()
+        {
+            return new Vector3(-this.x, -this.y, -this.z);
         }
 
         public static Vector3 operator +(Vector3 v1, Vector3 v2)

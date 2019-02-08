@@ -86,10 +86,21 @@ namespace MathKit.Geometry
             this.y *= value;
         }
 
-        public void devide(double value)
+        public void divide(double value)
         {
             this.x /= value;
             this.y /= value;
+        }
+
+        public void reverse()
+        {
+            this.x = -this.x;
+            this.y = -this.y;
+        }
+
+        public Vector2 getReverted()
+        {
+            return new Vector2(-this.x, -this.y);
         }
 
         public static Vector2 operator +(Vector2 v1, Vector2 v2)
