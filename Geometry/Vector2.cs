@@ -68,6 +68,13 @@ namespace MathKit.Geometry
             this.y /= module;
         }
 
+        public Vector2 getNormalized()
+        {
+            Vector2 result = this;
+            result.normalize();
+            return result;
+        }
+
         public void add(Vector2 v)
         {
             this.x += v.x;

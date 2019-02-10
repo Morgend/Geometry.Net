@@ -193,6 +193,68 @@ namespace MathKit.Geometry
             this.radians /= value;
         }
 
+        public void invert()
+        {
+            this.radians = -this.radians;
+        }
+
+        public Angle getInverted()
+        {
+            return new Angle(-this.radians);
+        }
+
+        public Vector2 turn(Vector2 vector)
+        {
+            double cos = this.cos();
+            double sin = this.sin();
+            return new Vector2(
+                vector.x * cos - vector.y * sin,
+                vector.x * sin + vector.y * cos
+            );
+        }
+
+        public Vector2 turnBackward(Vector2 vector)
+        {
+            double cos = this.cos();
+            double sin = this.sin();
+            return new Vector2(
+                vector.x * cos + vector.y * sin,
+                vector.y * cos - vector.x * sin
+            );
+        }
+
+        public Matrix2x2 buildRotationMatrix()
+        {
+            double cos = this.cos();
+            double sin = this.sin();
+
+            Matrix2x2 result = new Matrix2x2();
+
+            result.a_1_1 = cos;
+            result.a_1_2 = -sin;
+
+            result.a_2_1 = sin;
+            result.a_2_2 = cos;
+
+            return result;
+        }
+
+        public Matrix2x2 buildBackwardRotationMatrix()
+        {
+            double cos = this.cos();
+            double sin = this.sin();
+
+            Matrix2x2 result = new Matrix2x2();
+
+            result.a_1_1 = cos;
+            result.a_1_2 = sin;
+
+            result.a_2_1 = -sin;
+            result.a_2_2 = cos;
+
+            return result;
+        }
+
         public static Angle operator +(Angle a1, Angle a2)
         {
             return new Angle(a1.radians + a2.radians);
@@ -241,6 +303,11 @@ namespace MathKit.Geometry
         public static Angle operator -(Angle angle)
         {
             return new Angle(-angle.radians);
+        }
+
+        public static implicit operator double(Angle angle)
+        {
+            return angle.radians;
         }
 
         public override string ToString()

@@ -84,6 +84,13 @@ namespace MathKit.Geometry
             this.z /= module;
         }
 
+        public Vector3 getNormalized()
+        {
+            Vector3 result = this;
+            result.normalize();
+            return result;
+        }
+
         public void add(Vector3 v)
         {
             this.x += v.x;
