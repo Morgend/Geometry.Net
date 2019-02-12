@@ -16,22 +16,22 @@ namespace MathKit
         /// <summary>
         /// PI 
         /// </summary>
-        public const double PI = 3.1415926535897932;
+        public const double PI = Math.PI;
 
         /// <summary>
         /// 2 x PI 
         /// </summary>
-        public const double PIx2 = 6.2831853071795864;
+        public const double PIx2 = Math.PI * 2.0;
 
         /// <summary>
         /// 0.5 PI (PI divided by 2)
         /// </summary>
-        public const double PId2 = 1.5707963267948966;
+        public const double PId2 = Math.PI * 0.5;
 
         /// <summary>
         /// 3/2 PI
         /// </summary>
-        public const double PIx3d2 = 4.7123889803846898;
+        public const double PIx3d2 = Math.PI * 1.5;
 
         private MathConst()
         {

@@ -266,6 +266,18 @@ namespace MathKit.Geometry
             this.normalizeQuaternion();
         }
 
+        public Rotation differenceWith(Rotation subtrahend)
+        {
+            Rotation result = new Rotation();
+            result.setDifferenceOf(this, subtrahend);
+            return result;
+        }
+
+        public void setDifferenceOf(Rotation turn, Rotation subtrahend)
+        {
+            this.q = turn.q * subtrahend.q.getConjugated();
+        }
+
         public void invert()
         {
             this.q.conjugate();
@@ -304,6 +316,16 @@ namespace MathKit.Geometry
                 q.w * vy - mw * q.y + vz * q.x - vx * q.z,
                 q.w * vz - mw * q.z + vx * q.y - vy * q.x
             );
+        }
+
+        public static Rotation operator +(Rotation first, Rotation second)
+        {
+            return first.combineWith(second);
+        }
+
+        public static Rotation operator -(Rotation rotation, Rotation subtrahend)
+        {
+            return rotation.differenceWith(subtrahend);
         }
     }
 }

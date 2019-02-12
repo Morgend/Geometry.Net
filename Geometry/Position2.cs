@@ -57,11 +57,29 @@ namespace MathKit.Geometry
         {
             if (first == null || second == null)
             {
-                throw new NullReferenceException("An instance of Position was expected but NULL was got");
+                throw new NullReferenceException("An instance of Position2 was expected but NULL was got");
             }
 
             this.Point = first.Point + first.Angle.turn(second.Point);
             this.Angle = first.Angle + second.Angle;
+        }
+
+        public Position2 differenceWith(Position2 position)
+        {
+            Position2 result = new Position2();
+            result.setDifferenceOf(this, position);
+            return result;
+        }
+
+        public void setDifferenceOf(Position2 position, Position2 subtrahend)
+        {
+            if (position == null || subtrahend == null)
+            {
+                throw new NullReferenceException("An instance of Position2 was expected but NULL was got");
+            }
+
+            this.Point = subtrahend.Angle.turnBackward(position.Point - subtrahend.Point);
+            this.Angle = position.Angle - subtrahend.Angle;
         }
 
         public void invert()
@@ -115,6 +133,16 @@ namespace MathKit.Geometry
             }
 
             return this.Angle.turnBackward(position.Angle.turn(vector) + position.Point - this.Point);
+        }
+
+        public static Position2 operator +(Position2 first, Position2 second)
+        {
+            return first.combineWith(second);
+        }
+
+        public static Position2 operator -(Position2 position, Position2 subtrahend)
+        {
+            return position.differenceWith(subtrahend);
         }
     }
 }
