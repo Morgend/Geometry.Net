@@ -108,11 +108,27 @@ namespace MathKit.Geometry
         }
             
 
-        public void normalize()
+        public void normalize2Pi()
         {
             this.radians -= PIx2 * Math.Floor(this.radians / PIx2);
 
             if (this.radians < 0)
+            {
+                this.radians += PIx2;
+            }
+        }
+
+        public void normalizePiMinusPi()
+        {
+            this.radians -= PIx2 * Math.Floor(this.radians / PIx2);
+
+            if (this.radians > PI)
+            {
+                this.radians -= PIx2;
+                return;
+            }
+
+            if (this.radians <= -PI)
             {
                 this.radians += PIx2;
             }

@@ -34,6 +34,16 @@ namespace MathKit.Geometry
             this.bank = angles.bank;
         }
 
+        public static EulerAngles fromDegrees(double heading, double elevation, double bank)
+        {
+            return new EulerAngles(Angle.degreesToRadians(heading), Angle.degreesToRadians(elevation), Angle.degreesToRadians(bank));
+        }
+
+        public static EulerAngles fromGrads(double heading, double elevation, double bank)
+        {
+            return new EulerAngles(Angle.gradsToRadians(heading), Angle.gradsToRadians(elevation), Angle.gradsToRadians(bank));
+        }
+
         public void setAngles(double heading, double elevation, double bank)
         {
             this.heading.radians = heading;
@@ -71,24 +81,31 @@ namespace MathKit.Geometry
 
         public void normalize()
         {
-            this.heading.normalize();
-            this.elevation.normalize();
+            this.heading.normalizePiMinusPi();
+            this.elevation.normalizePiMinusPi();
 
-            if (MathConst.PId2 < this.elevation.radians && this.elevation.radians < MathConst.PIx3d2)
+            bool renormalize = false;
+
+            if (this.elevation.radians < -MathConst.PId2)
+            {
+                this.elevation.radians = -MathConst.PI - this.elevation.radians;
+                renormalize = true;
+            }
+            else if (this.elevation.radians > MathConst.PId2)
             {
                 this.elevation.radians = MathConst.PI - this.elevation.radians;
+                renormalize = true;
+            }
 
+            if (renormalize)
+            {
                 this.heading.addRadians(MathConst.PI);
-                this.heading.normalize();
+                this.heading.normalizePiMinusPi();
 
                 this.bank.addRadians(MathConst.PI);
             }
-            else if (this.elevation.radians >= MathConst.PI)
-            {
-                this.elevation.radians -= MathConst.PIx2;
-            }
 
-            this.bank.normalize();
+            this.bank.normalizePiMinusPi();
         }
 
         public override string ToString()
