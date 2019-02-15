@@ -85,6 +85,22 @@ namespace MathKit.Geometry
             );
         }
 
+        public void multiplyAt(double number)
+        {
+            this.a_1_1 *= number;
+            this.a_1_2 *= number;
+            this.a_2_1 *= number;
+            this.a_2_2 *= number;
+        }
+
+        public void divideAt(double number)
+        {
+            this.a_1_1 /= number;
+            this.a_1_2 /= number;
+            this.a_2_1 /= number;
+            this.a_2_2 /= number;
+        }
+
         public static Matrix2x2 operator *(Matrix2x2 leftMatrix, Matrix2x2 rightMatrix)
         {
             return leftMatrix.multiply(rightMatrix);
@@ -93,6 +109,27 @@ namespace MathKit.Geometry
         public static Vector2 operator *(Matrix2x2 matrix, Vector2 vector)
         {
             return matrix.multiply(vector);
+        }
+
+        public static Matrix2x2 operator *(Matrix2x2 matrix, double number)
+        {
+            Matrix2x2 result = matrix;
+            result.multiplyAt(number);
+            return result;
+        }
+
+        public static Matrix2x2 operator *(double number, Matrix2x2 matrix)
+        {
+            Matrix2x2 result = matrix;
+            result.multiplyAt(number);
+            return result;
+        }
+
+        public static Matrix2x2 operator /(Matrix2x2 matrix, double number)
+        {
+            Matrix2x2 result = matrix;
+            result.divideAt(number);
+            return result;
         }
     }
 }

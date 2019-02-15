@@ -126,6 +126,36 @@ namespace MathKit.Geometry
             );
         }
 
+        public void multiplyAt(double number)
+        {
+            this.a_1_1 *= number;
+            this.a_1_2 *= number;
+            this.a_1_3 *= number;
+
+            this.a_2_1 *= number;
+            this.a_2_2 *= number;
+            this.a_2_3 *= number;
+
+            this.a_3_1 *= number;
+            this.a_3_2 *= number;
+            this.a_3_3 *= number;
+        }
+
+        public void divideAt(double number)
+        {
+            this.a_1_1 /= number;
+            this.a_1_2 /= number;
+            this.a_1_3 /= number;
+
+            this.a_2_1 /= number;
+            this.a_2_2 /= number;
+            this.a_2_3 /= number;
+
+            this.a_3_1 /= number;
+            this.a_3_2 /= number;
+            this.a_3_3 /= number;
+        }
+
         public static Matrix3x3 operator *(Matrix3x3 leftMatrix, Matrix3x3 rightMatrix)
         {
             return leftMatrix.multiply(rightMatrix);
@@ -134,6 +164,27 @@ namespace MathKit.Geometry
         public static Vector3 operator *(Matrix3x3 matrix, Vector3 vector)
         {
             return matrix.multiply(vector);
+        }
+
+        public static Matrix3x3 operator *(Matrix3x3 matrix, double number)
+        {
+            Matrix3x3 result = matrix;
+            result.multiplyAt(number);
+            return result;
+        }
+
+        public static Matrix3x3 operator *(double number, Matrix3x3 matrix)
+        {
+            Matrix3x3 result = matrix;
+            result.multiplyAt(number);
+            return result;
+        }
+
+        public static Matrix3x3 operator /(Matrix3x3 matrix, double number)
+        {
+            Matrix3x3 result = matrix;
+            result.divideAt(number);
+            return result;
         }
     }
 }
