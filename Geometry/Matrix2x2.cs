@@ -64,6 +64,42 @@ namespace MathKit.Geometry
             a_2_1 = value;
         }
 
+        public void add(Matrix2x2 matrix)
+        {
+            this.a_1_1 += matrix.a_1_1;
+            this.a_1_2 += matrix.a_1_2;
+
+            this.a_2_1 += matrix.a_2_1;
+            this.a_2_2 += matrix.a_2_2;
+        }
+
+        public void setSumOf(Matrix3x3 firstMatrix, Matrix3x3 secondMatrix)
+        {
+            this.a_1_1 = firstMatrix.a_1_1 + secondMatrix.a_1_1;
+            this.a_1_2 = firstMatrix.a_1_2 + secondMatrix.a_1_2;
+
+            this.a_2_1 = firstMatrix.a_2_1 + secondMatrix.a_2_1;
+            this.a_2_2 = firstMatrix.a_2_2 + secondMatrix.a_2_2;
+        }
+
+        public void subtract(Matrix2x2 matrix)
+        {
+            this.a_1_1 -= matrix.a_1_1;
+            this.a_1_2 -= matrix.a_1_2;
+
+            this.a_2_1 -= matrix.a_2_1;
+            this.a_2_2 -= matrix.a_2_2;
+        }
+
+        public void setSubtractionOf(Matrix3x3 firstMatrix, Matrix3x3 secondMatrix)
+        {
+            this.a_1_1 = firstMatrix.a_1_1 - secondMatrix.a_1_1;
+            this.a_1_2 = firstMatrix.a_1_2 - secondMatrix.a_1_2;
+
+            this.a_2_1 = firstMatrix.a_2_1 - secondMatrix.a_2_1;
+            this.a_2_2 = firstMatrix.a_2_2 - secondMatrix.a_2_2;
+        }
+
         public Matrix2x2 multiply(Matrix2x2 rightMatrix)
         {
             Matrix2x2 result = new Matrix2x2();
@@ -99,6 +135,20 @@ namespace MathKit.Geometry
             this.a_1_2 /= number;
             this.a_2_1 /= number;
             this.a_2_2 /= number;
+        }
+
+        public static Matrix2x2 operator +(Matrix2x2 leftMatrix, Matrix2x2 rightMatrix)
+        {
+            Matrix2x2 result = leftMatrix;
+            result.add(rightMatrix);
+            return result;
+        }
+
+        public static Matrix2x2 operator -(Matrix2x2 leftMatrix, Matrix2x2 rightMatrix)
+        {
+            Matrix2x2 result = leftMatrix;
+            result.subtract(rightMatrix);
+            return result;
         }
 
         public static Matrix2x2 operator *(Matrix2x2 leftMatrix, Matrix2x2 rightMatrix)

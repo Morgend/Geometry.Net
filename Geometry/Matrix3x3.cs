@@ -98,6 +98,66 @@ namespace MathKit.Geometry
             a_3_2 = value;
         }
 
+        public void add(Matrix3x3 matrix)
+        {
+            this.a_1_1 += matrix.a_1_1;
+            this.a_1_2 += matrix.a_1_2;
+            this.a_1_3 += matrix.a_1_3;
+
+            this.a_2_1 += matrix.a_2_1;
+            this.a_2_2 += matrix.a_2_2;
+            this.a_2_3 += matrix.a_2_3;
+
+            this.a_3_1 += matrix.a_3_1;
+            this.a_3_2 += matrix.a_3_2;
+            this.a_3_3 += matrix.a_3_3;
+        }
+
+        public void setSumOf(Matrix3x3 firstMatrix, Matrix3x3 secondMatrix)
+        {
+            this.a_1_1 = firstMatrix.a_1_1 + secondMatrix.a_1_1;
+            this.a_1_2 = firstMatrix.a_1_2 + secondMatrix.a_1_2;
+            this.a_1_3 = firstMatrix.a_1_3 + secondMatrix.a_1_3;
+
+            this.a_2_1 = firstMatrix.a_2_1 + secondMatrix.a_2_1;
+            this.a_2_2 = firstMatrix.a_2_2 + secondMatrix.a_2_2;
+            this.a_2_3 = firstMatrix.a_2_3 + secondMatrix.a_2_3;
+
+            this.a_3_1 = firstMatrix.a_3_1 + secondMatrix.a_3_1;
+            this.a_3_2 = firstMatrix.a_3_2 + secondMatrix.a_3_2;
+            this.a_3_3 = firstMatrix.a_3_3 + secondMatrix.a_3_3;
+        }
+
+        public void subtract(Matrix3x3 matrix)
+        {
+            this.a_1_1 -= matrix.a_1_1;
+            this.a_1_2 -= matrix.a_1_2;
+            this.a_1_3 -= matrix.a_1_3;
+
+            this.a_2_1 -= matrix.a_2_1;
+            this.a_2_2 -= matrix.a_2_2;
+            this.a_2_3 -= matrix.a_2_3;
+
+            this.a_3_1 -= matrix.a_3_1;
+            this.a_3_2 -= matrix.a_3_2;
+            this.a_3_3 -= matrix.a_3_3;
+        }
+
+        public void setSubtractionOf(Matrix3x3 firstMatrix, Matrix3x3 secondMatrix)
+        {
+            this.a_1_1 = firstMatrix.a_1_1 - secondMatrix.a_1_1;
+            this.a_1_2 = firstMatrix.a_1_2 - secondMatrix.a_1_2;
+            this.a_1_3 = firstMatrix.a_1_3 - secondMatrix.a_1_3;
+
+            this.a_2_1 = firstMatrix.a_2_1 - secondMatrix.a_2_1;
+            this.a_2_2 = firstMatrix.a_2_2 - secondMatrix.a_2_2;
+            this.a_2_3 = firstMatrix.a_2_3 - secondMatrix.a_2_3;
+
+            this.a_3_1 = firstMatrix.a_3_1 - secondMatrix.a_3_1;
+            this.a_3_2 = firstMatrix.a_3_2 - secondMatrix.a_3_2;
+            this.a_3_3 = firstMatrix.a_3_3 - secondMatrix.a_3_3;
+        }
+
         public Matrix3x3 multiply(Matrix3x3 rightMatrix)
         {
             Matrix3x3 result = new Matrix3x3();
@@ -154,6 +214,20 @@ namespace MathKit.Geometry
             this.a_3_1 /= number;
             this.a_3_2 /= number;
             this.a_3_3 /= number;
+        }
+
+        public static Matrix3x3 operator +(Matrix3x3 leftMatrix, Matrix3x3 rightMatrix)
+        {
+            Matrix3x3 result = leftMatrix;
+            result.add(rightMatrix);
+            return result;
+        }
+
+        public static Matrix3x3 operator -(Matrix3x3 leftMatrix, Matrix3x3 rightMatrix)
+        {
+            Matrix3x3 result = leftMatrix;
+            result.subtract(rightMatrix);
+            return result;
         }
 
         public static Matrix3x3 operator *(Matrix3x3 leftMatrix, Matrix3x3 rightMatrix)
