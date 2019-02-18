@@ -7,13 +7,39 @@
 
 namespace MathKit.Geometry
 {
+    public enum MatrixInitialMode
+    {
+        ZERO_MATRIX = 0x0,
+        IDENTITY_MATRIX = 0x1,
+    }
+
     public struct Matrix2x2
     {
+        public const double DEFAULT_VALUE = 0.0;
+        public const double DEFAULT_IDENTITY_VALUE = 1.0;
+
         public double a_1_1;
         public double a_1_2;
 
         public double a_2_1;
         public double a_2_2;
+
+        public Matrix2x2(MatrixInitialMode matrixMode = MatrixInitialMode.IDENTITY_MATRIX)
+        {
+            if (matrixMode == MatrixInitialMode.IDENTITY_MATRIX)
+            {
+                this.a_1_1 = DEFAULT_IDENTITY_VALUE;
+                this.a_2_2 = DEFAULT_IDENTITY_VALUE;
+            }
+            else
+            {
+                this.a_1_1 = DEFAULT_VALUE;
+                this.a_2_2 = DEFAULT_VALUE;
+            }
+
+            this.a_1_2 = DEFAULT_VALUE;
+            this.a_2_1 = DEFAULT_VALUE;
+        }
 
         public Matrix2x2(Matrix2x2 matrix)
         {
@@ -27,6 +53,23 @@ namespace MathKit.Geometry
         public double determinant()
         {
             return this.a_1_1 * this.a_2_2 - this.a_2_1 * this.a_1_2;
+        }
+
+        public void reset(MatrixInitialMode matrixMode = MatrixInitialMode.IDENTITY_MATRIX)
+        {
+            if (matrixMode == MatrixInitialMode.IDENTITY_MATRIX)
+            {
+                this.a_1_1 = DEFAULT_IDENTITY_VALUE;
+                this.a_2_2 = DEFAULT_IDENTITY_VALUE;
+            }
+            else
+            {
+                this.a_1_1 = DEFAULT_VALUE;
+                this.a_2_2 = DEFAULT_VALUE;
+            }
+
+            this.a_1_2 = DEFAULT_VALUE;
+            this.a_2_1 = DEFAULT_VALUE;
         }
 
         public Vector2 row(int index)
@@ -64,6 +107,15 @@ namespace MathKit.Geometry
             a_2_1 = value;
         }
 
+        public void set(Matrix2x2 matrix)
+        {
+            this.a_1_1 = matrix.a_1_1;
+            this.a_1_2 = matrix.a_1_2;
+
+            this.a_2_1 = matrix.a_2_1;
+            this.a_2_2 = matrix.a_2_2;
+        }
+
         public void add(Matrix2x2 matrix)
         {
             this.a_1_1 += matrix.a_1_1;
@@ -91,7 +143,7 @@ namespace MathKit.Geometry
             this.a_2_2 -= matrix.a_2_2;
         }
 
-        public void setSubtractionOf(Matrix3x3 firstMatrix, Matrix3x3 secondMatrix)
+        public void setDifferenceOf(Matrix3x3 firstMatrix, Matrix3x3 secondMatrix)
         {
             this.a_1_1 = firstMatrix.a_1_1 - secondMatrix.a_1_1;
             this.a_1_2 = firstMatrix.a_1_2 - secondMatrix.a_1_2;
@@ -121,20 +173,44 @@ namespace MathKit.Geometry
             );
         }
 
-        public void multiplyAt(double number)
+        public Matrix2x2 multiply(double value)
         {
-            this.a_1_1 *= number;
-            this.a_1_2 *= number;
-            this.a_2_1 *= number;
-            this.a_2_2 *= number;
+            Matrix2x2 result = this;
+            result.divideAt(value);
+            return result;
         }
 
-        public void divideAt(double number)
+        public void multiplyAt(Matrix2x2 rightMatrix)
         {
-            this.a_1_1 /= number;
-            this.a_1_2 /= number;
-            this.a_2_1 /= number;
-            this.a_2_2 /= number;
+            this.set(this.multiply(rightMatrix));
+        }
+
+        public void multiplyAt(double value)
+        {
+            this.a_1_1 *= value;
+            this.a_1_2 *= value;
+            this.a_2_1 *= value;
+            this.a_2_2 *= value;
+        }
+
+        public Matrix2x2 divide(double value)
+        {
+            Matrix2x2 result = this;
+            result.divideAt(value);
+            return result;
+        }
+
+        public void divideAt(double value)
+        {
+            this.a_1_1 /= value;
+            this.a_1_2 /= value;
+            this.a_2_1 /= value;
+            this.a_2_2 /= value;
+        }
+
+        public void setMultiplicationOf(Matrix2x2 firstMatrix, Matrix2x2 secondMatrix)
+        {
+            this.set(firstMatrix.multiply(secondMatrix));
         }
 
         public static Matrix2x2 operator +(Matrix2x2 leftMatrix, Matrix2x2 rightMatrix)
@@ -161,24 +237,24 @@ namespace MathKit.Geometry
             return matrix.multiply(vector);
         }
 
-        public static Matrix2x2 operator *(Matrix2x2 matrix, double number)
+        public static Matrix2x2 operator *(Matrix2x2 matrix, double value)
         {
             Matrix2x2 result = matrix;
-            result.multiplyAt(number);
+            result.multiplyAt(value);
             return result;
         }
 
-        public static Matrix2x2 operator *(double number, Matrix2x2 matrix)
+        public static Matrix2x2 operator *(double value, Matrix2x2 matrix)
         {
             Matrix2x2 result = matrix;
-            result.multiplyAt(number);
+            result.multiplyAt(value);
             return result;
         }
 
-        public static Matrix2x2 operator /(Matrix2x2 matrix, double number)
+        public static Matrix2x2 operator /(Matrix2x2 matrix, double value)
         {
             Matrix2x2 result = matrix;
-            result.divideAt(number);
+            result.divideAt(value);
             return result;
         }
     }
