@@ -275,7 +275,7 @@ namespace MathKit.Geometry
 
         public void setDifferenceOf(Rotation turn, Rotation subtrahend)
         {
-            this.q = turn.q * subtrahend.q.getConjugated();
+            this.q.setMultiplicationOf(subtrahend.q.getConjugated(), turn.q);
         }
 
         public void invert()
