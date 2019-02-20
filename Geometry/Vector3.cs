@@ -140,6 +140,19 @@ namespace MathKit.Geometry
             return new Vector3(-this.x, -this.y, -this.z);
         }
 
+        public Angle angleWith(Vector3 vector)
+        {
+            double m1 = this.module();
+            double m2 = vector.module();
+
+            if (m1 < MathConst.EPSYLON || m2 < MathConst.EPSYLON)
+            {
+                return new Angle();
+            }
+
+            return new Angle(Math.Acos(this.scalar(vector) / (m1 * m2)));
+        }
+
         public static Vector3 operator +(Vector3 v1, Vector3 v2)
         {
             return new Vector3(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z);
