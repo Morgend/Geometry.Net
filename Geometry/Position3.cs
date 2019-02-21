@@ -115,7 +115,7 @@ namespace MathKit.Geometry
             return this.rotation.turn(vector) + this.Point;
         }
 
-        public Vector3 fromParentPositioning(Vector3 vector)
+        public Vector3 toLocalPositioning(Vector3 vector)
         {
             return this.rotation.turnBackward(vector - this.Point);
         }

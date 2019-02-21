@@ -100,7 +100,7 @@ namespace MathKit.Geometry
             return this.Angle.turn(vector) + this.Point;
         }
 
-        public Vector2 fromParentPositioning(Vector2 vector)
+        public Vector2 toLocalPositioning(Vector2 vector)
         {
             return this.Angle.turnBackward(vector - this.Point);
         }
