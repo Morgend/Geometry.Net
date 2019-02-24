@@ -247,6 +247,11 @@ namespace MathKit.Geometry
             }
 
             q /= module;
+
+            if (q.w < MathConst.EPSYLON - DEFAULT_QUATERNION.w || q.w > DEFAULT_QUATERNION.w - MathConst.EPSYLON)
+            {
+                this.reset();
+            }
         }
 
         public void copyOf(Rotation turn)

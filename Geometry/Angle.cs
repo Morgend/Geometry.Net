@@ -112,10 +112,19 @@ namespace MathKit.Geometry
         {
             this.radians -= PIx2 * Math.Floor(this.radians / PIx2);
 
-            if (this.radians < 0)
+            if (this.radians >= 0)
             {
-                this.radians += PIx2;
+                return;
             }
+
+            if (this.radians > MathConst.NEGATIVE_EPSYLON)
+            {
+                this.radians = 0;
+                return;
+            }
+
+            this.radians += PIx2;
+
         }
 
         public void normalizePiMinusPi()
@@ -124,13 +133,27 @@ namespace MathKit.Geometry
 
             if (this.radians > PI)
             {
-                this.radians -= PIx2;
+                if (this.radians < PI + MathConst.EPSYLON)
+                {
+                    this.radians = PI;
+                }
+                else
+                {
+                    this.radians -= PIx2;
+                }
                 return;
             }
 
             if (this.radians <= -PI)
             {
-                this.radians += PIx2;
+                if (this.radians > -PI - MathConst.EPSYLON)
+                {
+                    this.radians = PI;
+                }
+                else
+                {
+                    this.radians += PIx2;
+                }
             }
         }
 
