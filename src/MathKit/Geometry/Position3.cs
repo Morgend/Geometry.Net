@@ -63,6 +63,12 @@ namespace MathKit.Geometry
             }
         }
 
+        public void set(Position3 position)
+        {
+            this.Point = position.Point;
+            this.rotation.set(position.rotation);
+        }
+
         public Position3 combineWith(Position3 position)
         {
             return new Position3(this, position);

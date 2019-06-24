@@ -172,6 +172,11 @@ namespace MathKit.Geometry
             return Math.Atan2(2.0 * (q.w * q.x + q.y * q.z), 1.0 - 2.0 * (q.x * q.x + q.y * q.y));
         }
 
+        public void set(Rotation rotation)
+        {
+            this.q = rotation.q;
+        }
+
         public void setTurn(Vector3 axis, Angle angle)
         {
             double module = axis.module();
