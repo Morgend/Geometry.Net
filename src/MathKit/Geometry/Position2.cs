@@ -48,12 +48,6 @@ namespace MathKit.Geometry
             this.setCombinationOf(first, second);
         }
 
-        public void set(Position2 position)
-        {
-            this.Point = position.Point;
-            this.Angle = position.Angle;
-        }
-
         public Position2 combineWith(Position2 position)
         {
             return new Position2(this, position);
