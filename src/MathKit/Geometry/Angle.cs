@@ -18,254 +18,232 @@ namespace MathKit.Geometry
         public const double DEGREES_IN_RADIAN = 57.2957795130823209;
         public const double GRADS_IN_RADIAN = 63.6619772367581343;
 
-        public double radians;
+        public double Radians;
 
         public Angle(double radians)
         {
-            this.radians = radians;
+            this.Radians = radians;
         }
 
         public Angle(Angle angle)
         {
-            this.radians = angle.radians;
+            this.Radians = angle.Radians;
         }
 
-        public static Angle fromDegrees(double degrees)
+        public static Angle FromDegrees(double degrees)
         {
-            return new Angle(Angle.degreesToRadians(degrees));
+            return new Angle(Angle.DegreesToRadians(degrees));
         }
 
-        public static Angle fromGrads(double grads)
+        public static Angle FromGrads(double grads)
         {
-            return new Angle(Angle.gradsToRadians(grads));
+            return new Angle(Angle.GradsToRadians(grads));
         }
 
-        public static double degreesToRadians(double degrees)
+        public static double DegreesToRadians(double degrees)
         {
             return degrees / DEGREES_IN_RADIAN;
         }
 
-        public static double radiansToDegrees(double radians)
+        public static double RadiansToDegrees(double radians)
         {
             return radians * DEGREES_IN_RADIAN;
         }
 
-        public static double gradsToRadians(double degrees)
+        public static double GradsToRadians(double degrees)
         {
             return degrees / GRADS_IN_RADIAN;
         }
 
-        public static double radiansToGrads(double radians)
+        public static double RadiansToGrads(double radians)
         {
             return radians * GRADS_IN_RADIAN;
         }
 
-        public double degrees
+        public double Degrees
         {
             get
             {
-                return DEGREES_IN_RADIAN * this.radians;
+                return DEGREES_IN_RADIAN * this.Radians;
             }
 
             set
             {
-                this.radians = value / DEGREES_IN_RADIAN;
+                this.Radians = value / DEGREES_IN_RADIAN;
             }
         }
 
-        public double grads
+        public double Grads
         {
             get
             {
-                return GRADS_IN_RADIAN * this.radians;
+                return GRADS_IN_RADIAN * this.Radians;
             }
 
             set
             {
-                this.radians = value / GRADS_IN_RADIAN;
+                this.Radians = value / GRADS_IN_RADIAN;
             }
         }
 
-
-        public void setRadians(double radians)
+        public void Normalize2Pi()
         {
-            this.radians = radians;
-        }
+            this.Radians -= PIx2 * Math.Floor(this.Radians / PIx2);
 
-        public void setDegrees(double degrees)
-        {
-            this.radians = degreesToRadians(degrees);
-        }
-
-        public void setGrads(double grads)
-        {
-            this.radians = gradsToRadians(degrees);
-        }
-
-        public void set(Angle angle)
-        {
-            this.radians = angle.radians;
-        }
-            
-
-        public void normalize2Pi()
-        {
-            this.radians -= PIx2 * Math.Floor(this.radians / PIx2);
-
-            if (this.radians >= 0)
+            if (this.Radians >= 0)
             {
                 return;
             }
 
-            if (this.radians > MathConst.NEGATIVE_EPSYLON)
+            if (this.Radians > MathConst.NEGATIVE_EPSYLON)
             {
-                this.radians = 0;
+                this.Radians = 0;
                 return;
             }
 
-            this.radians += PIx2;
+            this.Radians += PIx2;
 
         }
 
-        public void normalizePiMinusPi()
+        public void NormalizePiMinusPi()
         {
-            this.radians -= PIx2 * Math.Floor(this.radians / PIx2);
+            this.Radians -= PIx2 * Math.Floor(this.Radians / PIx2);
 
-            if (this.radians > PI)
+            if (this.Radians > PI)
             {
-                if (this.radians < PI + MathConst.EPSYLON)
+                if (this.Radians < PI + MathConst.EPSYLON)
                 {
-                    this.radians = PI;
+                    this.Radians = PI;
                 }
                 else
                 {
-                    this.radians -= PIx2;
+                    this.Radians -= PIx2;
                 }
                 return;
             }
 
-            if (this.radians <= -PI)
+            if (this.Radians <= -PI)
             {
-                if (this.radians > -PI - MathConst.EPSYLON)
+                if (this.Radians > -PI - MathConst.EPSYLON)
                 {
-                    this.radians = PI;
+                    this.Radians = PI;
                 }
                 else
                 {
-                    this.radians += PIx2;
+                    this.Radians += PIx2;
                 }
             }
         }
 
-        public void zero()
+        public void Zero()
         {
-            this.radians = DEFAULT_VALUE;
+            this.Radians = DEFAULT_VALUE;
         }
 
-        public double sin()
+        public double Sin()
         {
-            return Math.Sin(this.radians);
+            return Math.Sin(this.Radians);
         }
 
-        public double cos()
+        public double Cos()
         {
-            return Math.Cos(this.radians);
+            return Math.Cos(this.Radians);
         }
 
-        public double tg()
+        public double Tg()
         {
-            return Math.Tan(this.radians);
+            return Math.Tan(this.Radians);
         }
 
-        public double ctg()
+        public double Ctg()
         {
-            return 1.0 / this.tg();
+            return 1.0 / this.Tg();
         }
 
-        public void add(Angle angle)
+        public void Add(Angle angle)
         {
-            this.radians += angle.radians;
+            this.Radians += angle.Radians;
         }
 
-        public void addRadians(double radians)
+        public void AddRadians(double radians)
         {
-            this.radians += radians;
+            this.Radians += radians;
         }
 
-        public void addDegrees(double degrees)
+        public void AddDegrees(double degrees)
         {
-            this.radians += degreesToRadians(degrees);
+            this.Radians += DegreesToRadians(degrees);
         }
 
-        public void addGrads(double grads)
+        public void AddGrads(double grads)
         {
-            this.radians += gradsToRadians(grads);
+            this.Radians += GradsToRadians(grads);
         }
 
-        public void subtract(Angle angle)
+        public void Subtract(Angle angle)
         {
-            this.radians -= angle.radians;
+            this.Radians -= angle.Radians;
         }
 
-        public void subtractRadians(double radians)
+        public void SubtractRadians(double radians)
         {
-            this.radians -= radians;
+            this.Radians -= radians;
         }
 
-        public void subtractDegrees(double degrees)
+        public void SubtractDegrees(double degrees)
         {
-            this.radians -= degreesToRadians(degrees);
+            this.Radians -= DegreesToRadians(degrees);
         }
 
-        public void subtractGrads(double grads)
+        public void SubtractGrads(double grads)
         {
-            this.radians -= gradsToRadians(grads);
+            this.Radians -= GradsToRadians(grads);
         }
 
-        public void mutiply(double value)
+        public void Mutiply(double value)
         {
-            this.radians *= value;
+            this.Radians *= value;
         }
 
-        public void divide(double value)
+        public void Divide(double value)
         {
-            this.radians /= value;
+            this.Radians /= value;
         }
 
-        public void invert()
+        public void Invert()
         {
-            this.radians = -this.radians;
+            this.Radians = -this.Radians;
         }
 
-        public Angle getInverted()
+        public Angle GetInverted()
         {
-            return new Angle(-this.radians);
+            return new Angle(-this.Radians);
         }
 
-        public Vector2 turn(Vector2 vector)
+        public Vector2 Turn(Vector2 vector)
         {
-            double cos = this.cos();
-            double sin = this.sin();
+            double cos = this.Cos();
+            double sin = this.Sin();
             return new Vector2(
                 vector.x * cos - vector.y * sin,
                 vector.x * sin + vector.y * cos
             );
         }
 
-        public Vector2 turnBackward(Vector2 vector)
+        public Vector2 TurnBackward(Vector2 vector)
         {
-            double cos = this.cos();
-            double sin = this.sin();
+            double cos = this.Cos();
+            double sin = this.Sin();
             return new Vector2(
                 vector.x * cos + vector.y * sin,
                 vector.y * cos - vector.x * sin
             );
         }
 
-        public Matrix2x2 buildRotationMatrix()
+        public Matrix2x2 GetRotationMatrix()
         {
-            double cos = this.cos();
-            double sin = this.sin();
+            double cos = this.Cos();
+            double sin = this.Sin();
 
             Matrix2x2 result = new Matrix2x2();
 
@@ -278,10 +256,10 @@ namespace MathKit.Geometry
             return result;
         }
 
-        public Matrix2x2 buildBackwardRotationMatrix()
+        public Matrix2x2 GetBackwardRotationMatrix()
         {
-            double cos = this.cos();
-            double sin = this.sin();
+            double cos = this.Cos();
+            double sin = this.Sin();
 
             Matrix2x2 result = new Matrix2x2();
 
@@ -296,62 +274,77 @@ namespace MathKit.Geometry
 
         public static Angle operator +(Angle a1, Angle a2)
         {
-            return new Angle(a1.radians + a2.radians);
+            return new Angle(a1.Radians + a2.Radians);
         }
 
         public static Angle operator +(Angle angle, double radians)
         {
-            return new Angle(angle.radians + radians);
+            return new Angle(angle.Radians + radians);
         }
 
         public static Angle operator +(double radians, Angle angle)
         {
-            return new Angle(angle.radians + radians);
+            return new Angle(angle.Radians + radians);
         }
 
         public static Angle operator -(Angle a1, Angle a2)
         {
-            return new Angle(a1.radians - a2.radians);
+            return new Angle(a1.Radians - a2.Radians);
         }
 
         public static Angle operator -(Angle angle, double radians)
         {
-            return new Angle(angle.radians - radians);
+            return new Angle(angle.Radians - radians);
         }
 
         public static Angle operator -(double radians, Angle angle)
         {
-            return new Angle(radians - angle.radians);
+            return new Angle(radians - angle.Radians);
         }
 
         public static Angle operator *(Angle angle, double value)
         {
-            return new Angle(angle.radians * value);
+            return new Angle(angle.Radians * value);
         }
 
         public static Angle operator *(double value, Angle angle)
         {
-            return new Angle(angle.radians * value);
+            return new Angle(angle.Radians * value);
         }
 
         public static Angle operator /(Angle angle, double value)
         {
-            return new Angle(angle.radians / value);
+            return new Angle(angle.Radians / value);
         }
 
         public static Angle operator -(Angle angle)
         {
-            return new Angle(-angle.radians);
+            return new Angle(-angle.Radians);
         }
 
         public static implicit operator double(Angle angle)
         {
-            return angle.radians;
+            return angle.Radians;
+        }
+
+        public static explicit operator Angle(double radians)
+        {
+            return new Angle(radians);
+        }
+
+        public static implicit operator float(Angle angle)
+        {
+            return (float)angle.Radians;
+        }
+
+        public static explicit operator Angle(float radians)
+        {
+            return new Angle(radians);
         }
 
         public override string ToString()
         {
-            return String.Format("Angle(radians = {0}, degrees = {1})", this.radians, this.degrees);
+            return String.Format("AngleD(radians = {0}, degrees = {1})", this.Radians, this.Degrees);
         }
     }
 }

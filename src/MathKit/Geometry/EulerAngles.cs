@@ -9,108 +9,108 @@ namespace MathKit.Geometry
 {
     public struct EulerAngles
     {
-        public Angle heading;
-        public Angle elevation;
-        public Angle bank;
+        public Angle Heading;
+        public Angle Elevation;
+        public Angle Bank;
 
         public EulerAngles(double heading, double elevation, double bank)
         {
-            this.heading = new Angle(heading);
-            this.elevation = new Angle(elevation);
-            this.bank = new Angle(bank);
+            this.Heading = new Angle(heading);
+            this.Elevation = new Angle(elevation);
+            this.Bank = new Angle(bank);
         }
 
         public EulerAngles(Angle heading, Angle elevation, Angle bank)
         {
-            this.heading = heading;
-            this.elevation = elevation;
-            this.bank = bank;
+            this.Heading = heading;
+            this.Elevation = elevation;
+            this.Bank = bank;
         }
 
         public EulerAngles(EulerAngles angles)
         {
-            this.heading = angles.heading;
-            this.elevation = angles.elevation;
-            this.bank = angles.bank;
+            this.Heading = angles.Heading;
+            this.Elevation = angles.Elevation;
+            this.Bank = angles.Bank;
         }
 
-        public static EulerAngles fromDegrees(double heading, double elevation, double bank)
+        public static EulerAngles FromDegrees(double heading, double elevation, double bank)
         {
-            return new EulerAngles(Angle.degreesToRadians(heading), Angle.degreesToRadians(elevation), Angle.degreesToRadians(bank));
+            return new EulerAngles(Angle.DegreesToRadians(heading), Angle.DegreesToRadians(elevation), Angle.DegreesToRadians(bank));
         }
 
-        public static EulerAngles fromGrads(double heading, double elevation, double bank)
+        public static EulerAngles FromGrads(double heading, double elevation, double bank)
         {
-            return new EulerAngles(Angle.gradsToRadians(heading), Angle.gradsToRadians(elevation), Angle.gradsToRadians(bank));
+            return new EulerAngles(Angle.GradsToRadians(heading), Angle.GradsToRadians(elevation), Angle.GradsToRadians(bank));
         }
 
-        public void setAngles(double heading, double elevation, double bank)
+        public void SetRadians(double heading, double elevation, double bank)
         {
-            this.heading.radians = heading;
-            this.elevation.radians = elevation;
-            this.bank.radians = bank;
+            this.Heading.Radians = heading;
+            this.Elevation.Radians = elevation;
+            this.Bank.Radians = bank;
         }
 
-        public void setDegrees(double heading, double elevation, double bank)
+        public void SetDegrees(double heading, double elevation, double bank)
         {
-            this.heading.setDegrees(heading);
-            this.elevation.setDegrees(elevation);
-            this.bank.setDegrees(bank);
+            this.Heading.Degrees = heading;
+            this.Elevation.Degrees = elevation;
+            this.Bank.Degrees = bank;
         }
 
-        public void setGrads(double heading, double elevation, double bank)
+        public void SetGrads(double heading, double elevation, double bank)
         {
-            this.heading.setGrads(heading);
-            this.elevation.setGrads(elevation);
-            this.bank.setGrads(bank);
+            this.Heading.Grads = heading;
+            this.Elevation.Grads = elevation;
+            this.Bank.Grads = bank;
         }
 
-        public void setAngles(Angle heading, Angle elevation, Angle bank)
+        public void SetAngles(Angle heading, Angle elevation, Angle bank)
         {
-            this.heading = heading;
-            this.elevation = elevation;
-            this.bank = bank;
+            this.Heading = heading;
+            this.Elevation = elevation;
+            this.Bank = bank;
         }
 
-        public void setAngles(EulerAngles angles)
+        public void SetAngles(EulerAngles angles)
         {
-            this.heading = angles.heading;
-            this.elevation = angles.elevation;
-            this.bank = angles.bank;
+            this.Heading = angles.Heading;
+            this.Elevation = angles.Elevation;
+            this.Bank = angles.Bank;
         }
 
-        public void normalize()
+        public void Normalize()
         {
-            this.heading.normalizePiMinusPi();
-            this.elevation.normalizePiMinusPi();
+            this.Heading.NormalizePiMinusPi();
+            this.Elevation.NormalizePiMinusPi();
 
             bool renormalize = false;
 
-            if (this.elevation.radians < -MathConst.PId2)
+            if (this.Elevation.Radians < -MathConst.PId2)
             {
-                this.elevation.radians = -MathConst.PI - this.elevation.radians;
+                this.Elevation.Radians = -MathConst.PI - this.Elevation.Radians;
                 renormalize = true;
             }
-            else if (this.elevation.radians > MathConst.PId2)
+            else if (this.Elevation.Radians > MathConst.PId2)
             {
-                this.elevation.radians = MathConst.PI - this.elevation.radians;
+                this.Elevation.Radians = MathConst.PI - this.Elevation.Radians;
                 renormalize = true;
             }
 
             if (renormalize)
             {
-                this.heading.addRadians(MathConst.PI);
-                this.heading.normalizePiMinusPi();
+                this.Heading.AddRadians(MathConst.PI);
+                this.Heading.NormalizePiMinusPi();
 
-                this.bank.addRadians(MathConst.PI);
+                this.Bank.AddRadians(MathConst.PI);
             }
 
-            this.bank.normalizePiMinusPi();
+            this.Bank.NormalizePiMinusPi();
         }
 
         public override string ToString()
         {
-            return String.Format("EulerAngles(heading = {0} deg, elevation = {1} deg, bank = {2} deg)", this.heading.degrees, this.elevation.degrees, this.bank.degrees);
+            return String.Format("EulerAngles(heading = {0} deg, elevation = {1} deg, bank = {2} deg)", this.Heading.Degrees, this.Elevation.Degrees, this.Bank.Degrees);
         }
     }
 }

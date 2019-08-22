@@ -29,33 +29,33 @@ namespace MathKit.Geometry
             this.z = v.z;
         }
 
-        public void zero()
+        public void Zero()
         {
             this.x = DEFAULT_COORDINATE_VALUE;
             this.y = DEFAULT_COORDINATE_VALUE;
             this.z = DEFAULT_COORDINATE_VALUE;
         }
 
-        public void setValue(double x, double y, double z)
+        public void SetValues(double x, double y, double z)
         {
             this.x = x;
             this.y = y;
             this.z = z;
         }
 
-        public void setValue(Vector3 v)
+        public void SetValues(Vector3 v)
         {
             this.x = v.x;
             this.y = v.y;
             this.z = v.z;
         }
 
-        public double scalar(Vector3 v)
+        public double Scalar(Vector3 v)
         {
             return this.x * v.x + this.y * v.y + this.z * v.z;
         }
 
-        public Vector3 vector(Vector3 v)
+        public Vector3 Vector(Vector3 v)
         {
             return new Vector3(
                 this.y * v.z - this.z * v.y,
@@ -64,18 +64,18 @@ namespace MathKit.Geometry
             );
         }
 
-        public double module()
+        public double Module()
         {
             return Math.Sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
         }
 
-        public void normalize()
+        public void Normalize()
         {
-            double module = this.module();
+            double module = this.Module();
 
             if (module < MathConst.EPSYLON)
             {
-                this.zero();
+                this.Zero();
                 return;
             }
 
@@ -84,73 +84,73 @@ namespace MathKit.Geometry
             this.z /= module;
         }
 
-        public Vector3 getNormalized()
+        public Vector3 GetNormalized()
         {
             Vector3 result = this;
-            result.normalize();
+            result.Normalize();
             return result;
         }
 
-        public void add(Vector3 v)
+        public void Add(Vector3 v)
         {
             this.x += v.x;
             this.y += v.y;
             this.z += v.z;
         }
 
-        public void subtract(Vector3 v)
+        public void Subtract(Vector3 v)
         {
             this.x -= v.x;
             this.y -= v.y;
             this.z -= v.z;
         }
 
-        public void multiply(double value)
+        public void Multiply(double value)
         {
             this.x *= value;
             this.y *= value;
             this.z *= value;
         }
 
-        public void vectorMultiplyAt(Vector3 vector)
+        public void VectorMultiplyAt(Vector3 vector)
         {
-            this.setValue(
+            this.SetValues(
                 this.y * vector.z - this.z * vector.y,
                 this.z * vector.x - this.x * vector.z,
                 this.x * vector.y - this.y * vector.x
            );
         }
 
-        public void divide(double value)
+        public void Divide(double value)
         {
             this.x /= value;
             this.y /= value;
             this.z /= value;
         }
 
-        public void reverse()
+        public void Reverse()
         {
             this.x = -this.x;
             this.y = -this.y;
             this.z = -this.z;
         }
 
-        public Vector3 getReverted()
+        public Vector3 GetReverted()
         {
             return new Vector3(-this.x, -this.y, -this.z);
         }
 
-        public Angle angleWith(Vector3 vector)
+        public Angle AngleWith(Vector3 vector)
         {
-            double m1 = this.module();
-            double m2 = vector.module();
+            double m1 = this.Module();
+            double m2 = vector.Module();
 
             if (m1 < MathConst.EPSYLON || m2 < MathConst.EPSYLON)
             {
                 return new Angle();
             }
 
-            return new Angle(Math.Acos(this.scalar(vector) / (m1 * m2)));
+            return new Angle(Math.Acos(this.Scalar(vector) / (m1 * m2)));
         }
 
         public static Vector3 operator +(Vector3 v1, Vector3 v2)

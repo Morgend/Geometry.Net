@@ -11,28 +11,28 @@ namespace MathKit.Geometry
     {
         public const double DEFAULT_COORDINATE_VALUE = 0.0;
 
+        public double w;
         public double x;
         public double y;
         public double z;
-        public double w;
 
-        public Quaternion(double x, double y, double z, double w)
+        public Quaternion(double w, double x, double y, double z)
         {
+            this.w = w;
             this.x = x;
             this.y = y;
             this.z = z;
-            this.w = w;
         }
 
-        public void setValue(double x, double y, double z, double w)
+        public void SetValues(double w, double x, double y, double z)
         {
+            this.w = w;
             this.x = x;
             this.y = y;
             this.z = z;
-            this.w = w;
         }
 
-        public void setValue(Quaternion q)
+        public void SetValues(Quaternion q)
         {
             this.x = q.x;
             this.y = q.y;
@@ -40,7 +40,7 @@ namespace MathKit.Geometry
             this.w = q.w;
         }
 
-        public void zero()
+        public void Zero()
         {
             this.x = DEFAULT_COORDINATE_VALUE;
             this.y = DEFAULT_COORDINATE_VALUE;
@@ -48,30 +48,30 @@ namespace MathKit.Geometry
             this.w = DEFAULT_COORDINATE_VALUE;
         }
 
-        public void conjugate()
+        public void Conjugate()
         {
             this.x = -this.x;
             this.y = -this.y;
             this.z = -this.z;
         }
 
-        public Quaternion getConjugated()
+        public Quaternion GetConjugated()
         {
-            return new Quaternion(-this.x, -this.y, -this.z, this.w);
+            return new Quaternion(this.w, - this.x, -this.y, -this.z);
         }
 
-        public double module()
+        public double Module()
         {
             return Math.Sqrt(this.x * this.x + this.y * this.y + this.z * this.z + this.w * this.w);
         }
 
-        public void normalize()
+        public void Mormalize()
         {
-            double module = this.module();
+            double module = this.Module();
 
             if (module < MathConst.EPSYLON)
             {
-                this.zero();
+                this.Zero();
                 return;
             }
 
@@ -81,42 +81,42 @@ namespace MathKit.Geometry
             this.w /= module;
         }
 
-        public Quaternion multiply(Quaternion q)
+        public Quaternion Multiply(Quaternion q)
         {
             return new Quaternion(
+                this.w * q.w - this.x * q.x - this.y * q.y - this.z * q.z,
                 this.y * q.z - this.z * q.y + this.w * q.x + this.x * q.w,
                 this.x * q.z - this.z * q.x + this.w * q.y + this.y * q.w,
-                this.x * q.y - this.y * q.x + this.w * q.z + this.z * q.w,
-                this.w * q.w - this.x * q.x - this.y * q.y - this.z * q.z
+                this.x * q.y - this.y * q.x + this.w * q.z + this.z * q.w
             );
         }
 
-        public void multiplyAt(Quaternion q)
+        public void MultiplyAt(Quaternion q)
         {
-            this.setValue(
+            this.SetValues(
+                this.w * q.w - this.x * q.x - this.y * q.y - this.z * q.z,
                 this.y * q.z - this.z * q.y + this.w * q.x + this.x * q.w,
                 this.x * q.z - this.z * q.x + this.w * q.y + this.y * q.w,
-                this.x * q.y - this.y * q.x + this.w * q.z + this.z * q.w,
-                this.w * q.w - this.x * q.x - this.y * q.y - this.z * q.z
+                this.x * q.y - this.y * q.x + this.w * q.z + this.z * q.w
             );
         }
 
-        public void setMultiplicationOf(Quaternion q1, Quaternion q2)
+        public void SetMultiplicationOf(Quaternion q1, Quaternion q2)
         {
-            this.setValue(
+            this.SetValues(
+                q1.w * q2.w - q1.x * q2.x - q1.y * q2.y - q1.z * q2.z,
                 q1.y * q2.z - q1.z * q2.y + q1.w * q2.x + q1.x * q2.w,
                 q1.x * q2.z - q1.z * q2.x + q1.w * q2.y + q1.y * q2.w,
-                q2.x * q2.y - q1.y * q2.x + q1.w * q2.z + q1.z * q2.w,
-                q1.w * q2.w - q1.x * q2.x - q1.y * q2.y - q1.z * q2.z
+                q2.x * q2.y - q1.y * q2.x + q1.w * q2.z + q1.z * q2.w
             );
         }
 
-        public Quaternion multiply(double value)
+        public Quaternion Multiply(double value)
         {
-            return new Quaternion(this.x * value, this.y * value, this.z * value, this.w * value);
+            return new Quaternion(this.w * value, this.x * value, this.y * value, this.z * value);
         }
 
-        public void multiplyAt(double value)
+        public void MultiplyAt(double value)
         {
             this.x *= value;
             this.y *= value;
@@ -124,12 +124,12 @@ namespace MathKit.Geometry
             this.w *= value;
         }
 
-        public Quaternion divide(double value)
+        public Quaternion Divide(double value)
         {
-            return new Quaternion(this.x / value, this.y / value, this.z / value, this.w / value);
+            return new Quaternion(this.w / value, this.x / value, this.y / value, this.z / value);
         }
 
-        public void divideAt(double value)
+        public void DivideAt(double value)
         {
             this.x /= value;
             this.y /= value;
@@ -139,27 +139,27 @@ namespace MathKit.Geometry
 
         public static Quaternion operator *(Quaternion q1, Quaternion q2)
         {
-            return q1.multiply(q2);
+            return q1.Multiply(q2);
         }
 
         public static Quaternion operator *(Quaternion quaternion, double value)
         {
-            return quaternion.multiply(value);
+            return quaternion.Multiply(value);
         }
 
         public static Quaternion operator *(double value, Quaternion quaternion)
         {
-            return quaternion.multiply(value);
+            return quaternion.Multiply(value);
         }
 
         public static Quaternion operator /(Quaternion quaternion, double value)
         {
-            return quaternion.divide(value);
+            return quaternion.Divide(value);
         }
 
         public static Quaternion operator -(Quaternion q)
         {
-            return q.getConjugated();
+            return q.GetConjugated();
         }
 
         public override string ToString()

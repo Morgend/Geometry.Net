@@ -50,12 +50,12 @@ namespace MathKit.Geometry
             this.a_2_2 = matrix.a_2_2;
         }
 
-        public double determinant()
+        public double Determinant()
         {
             return this.a_1_1 * this.a_2_2 - this.a_2_1 * this.a_1_2;
         }
 
-        public void reset(MatrixInitialMode matrixMode = MatrixInitialMode.IDENTITY_MATRIX)
+        public void Reset(MatrixInitialMode matrixMode = MatrixInitialMode.IDENTITY_MATRIX)
         {
             if (matrixMode == MatrixInitialMode.IDENTITY_MATRIX)
             {
@@ -72,7 +72,7 @@ namespace MathKit.Geometry
             this.a_2_1 = DEFAULT_VALUE;
         }
 
-        public Vector2 row(int index)
+        public Vector2 Row(int index)
         {
             switch (index)
             {
@@ -86,7 +86,7 @@ namespace MathKit.Geometry
             return new Vector2();
         }
 
-        public Vector2 column(int index)
+        public Vector2 Column(int index)
         {
             switch (index)
             {
@@ -100,14 +100,14 @@ namespace MathKit.Geometry
             return new Vector2();
         }
 
-        public void transpose()
+        public void Transpose()
         {
             double value = a_1_2;
             a_1_2 = a_2_1;
             a_2_1 = value;
         }
 
-        public void set(Matrix2x2 matrix)
+        public void Set(Matrix2x2 matrix)
         {
             this.a_1_1 = matrix.a_1_1;
             this.a_1_2 = matrix.a_1_2;
@@ -116,7 +116,7 @@ namespace MathKit.Geometry
             this.a_2_2 = matrix.a_2_2;
         }
 
-        public void add(Matrix2x2 matrix)
+        public void Add(Matrix2x2 matrix)
         {
             this.a_1_1 += matrix.a_1_1;
             this.a_1_2 += matrix.a_1_2;
@@ -125,7 +125,7 @@ namespace MathKit.Geometry
             this.a_2_2 += matrix.a_2_2;
         }
 
-        public void setSumOf(Matrix3x3 firstMatrix, Matrix3x3 secondMatrix)
+        public void SetSumOf(Matrix3x3 firstMatrix, Matrix3x3 secondMatrix)
         {
             this.a_1_1 = firstMatrix.a_1_1 + secondMatrix.a_1_1;
             this.a_1_2 = firstMatrix.a_1_2 + secondMatrix.a_1_2;
@@ -134,7 +134,7 @@ namespace MathKit.Geometry
             this.a_2_2 = firstMatrix.a_2_2 + secondMatrix.a_2_2;
         }
 
-        public void subtract(Matrix2x2 matrix)
+        public void Subtract(Matrix2x2 matrix)
         {
             this.a_1_1 -= matrix.a_1_1;
             this.a_1_2 -= matrix.a_1_2;
@@ -143,7 +143,7 @@ namespace MathKit.Geometry
             this.a_2_2 -= matrix.a_2_2;
         }
 
-        public void setDifferenceOf(Matrix3x3 firstMatrix, Matrix3x3 secondMatrix)
+        public void SetDifferenceOf(Matrix3x3 firstMatrix, Matrix3x3 secondMatrix)
         {
             this.a_1_1 = firstMatrix.a_1_1 - secondMatrix.a_1_1;
             this.a_1_2 = firstMatrix.a_1_2 - secondMatrix.a_1_2;
@@ -152,7 +152,7 @@ namespace MathKit.Geometry
             this.a_2_2 = firstMatrix.a_2_2 - secondMatrix.a_2_2;
         }
 
-        public Matrix2x2 multiply(Matrix2x2 rightMatrix)
+        public Matrix2x2 Multiply(Matrix2x2 rightMatrix)
         {
             Matrix2x2 result = new Matrix2x2();
 
@@ -165,7 +165,7 @@ namespace MathKit.Geometry
             return result;
         }
 
-        public Vector2 multiply(Vector2 vector)
+        public Vector2 Multiply(Vector2 vector)
         {
             return new Vector2(
                 this.a_1_1 * vector.x + this.a_1_2 * vector.y,
@@ -173,19 +173,19 @@ namespace MathKit.Geometry
             );
         }
 
-        public Matrix2x2 multiply(double value)
+        public Matrix2x2 Multiply(double value)
         {
             Matrix2x2 result = this;
-            result.divideAt(value);
+            result.DivideAt(value);
             return result;
         }
 
-        public void multiplyAt(Matrix2x2 rightMatrix)
+        public void MultiplyAt(Matrix2x2 rightMatrix)
         {
-            this.set(this.multiply(rightMatrix));
+            this.Set(this.Multiply(rightMatrix));
         }
 
-        public void multiplyAt(double value)
+        public void MultiplyAt(double value)
         {
             this.a_1_1 *= value;
             this.a_1_2 *= value;
@@ -193,14 +193,14 @@ namespace MathKit.Geometry
             this.a_2_2 *= value;
         }
 
-        public Matrix2x2 divide(double value)
+        public Matrix2x2 Divide(double value)
         {
             Matrix2x2 result = this;
-            result.divideAt(value);
+            result.DivideAt(value);
             return result;
         }
 
-        public void divideAt(double value)
+        public void DivideAt(double value)
         {
             this.a_1_1 /= value;
             this.a_1_2 /= value;
@@ -208,53 +208,53 @@ namespace MathKit.Geometry
             this.a_2_2 /= value;
         }
 
-        public void setMultiplicationOf(Matrix2x2 firstMatrix, Matrix2x2 secondMatrix)
+        public void SetMultiplicationOf(Matrix2x2 firstMatrix, Matrix2x2 secondMatrix)
         {
-            this.set(firstMatrix.multiply(secondMatrix));
+            this.Set(firstMatrix.Multiply(secondMatrix));
         }
 
         public static Matrix2x2 operator +(Matrix2x2 leftMatrix, Matrix2x2 rightMatrix)
         {
             Matrix2x2 result = leftMatrix;
-            result.add(rightMatrix);
+            result.Add(rightMatrix);
             return result;
         }
 
         public static Matrix2x2 operator -(Matrix2x2 leftMatrix, Matrix2x2 rightMatrix)
         {
             Matrix2x2 result = leftMatrix;
-            result.subtract(rightMatrix);
+            result.Subtract(rightMatrix);
             return result;
         }
 
         public static Matrix2x2 operator *(Matrix2x2 leftMatrix, Matrix2x2 rightMatrix)
         {
-            return leftMatrix.multiply(rightMatrix);
+            return leftMatrix.Multiply(rightMatrix);
         }
 
         public static Vector2 operator *(Matrix2x2 matrix, Vector2 vector)
         {
-            return matrix.multiply(vector);
+            return matrix.Multiply(vector);
         }
 
         public static Matrix2x2 operator *(Matrix2x2 matrix, double value)
         {
             Matrix2x2 result = matrix;
-            result.multiplyAt(value);
+            result.MultiplyAt(value);
             return result;
         }
 
         public static Matrix2x2 operator *(double value, Matrix2x2 matrix)
         {
             Matrix2x2 result = matrix;
-            result.multiplyAt(value);
+            result.MultiplyAt(value);
             return result;
         }
 
         public static Matrix2x2 operator /(Matrix2x2 matrix, double value)
         {
             Matrix2x2 result = matrix;
-            result.divideAt(value);
+            result.DivideAt(value);
             return result;
         }
     }

@@ -64,7 +64,7 @@ namespace MathKit.Geometry
             this.a_3_3 = matrix.a_3_3;
         }
 
-        public double determinant()
+        public double Determinant()
         {
             return this.a_1_1 * this.a_2_2 * this.a_3_3
                 + this.a_3_1 * this.a_1_2 * this.a_2_3
@@ -75,7 +75,7 @@ namespace MathKit.Geometry
                 - this.a_1_1 * this.a_3_2 * this.a_2_3;
         }
 
-        public void reset(MatrixInitialMode matrixMode = MatrixInitialMode.IDENTITY_MATRIX)
+        public void Reset(MatrixInitialMode matrixMode = MatrixInitialMode.IDENTITY_MATRIX)
         {
             if (matrixMode == MatrixInitialMode.IDENTITY_MATRIX)
             {
@@ -100,7 +100,7 @@ namespace MathKit.Geometry
             this.a_3_2 = DEFAULT_VALUE;
         }
 
-        public Vector3 row(int index)
+        public Vector3 Row(int index)
         {
             switch (index)
             {
@@ -117,7 +117,7 @@ namespace MathKit.Geometry
             return new Vector3();
         }
 
-        public Vector3 column(int index)
+        public Vector3 Column(int index)
         {
             switch (index)
             {
@@ -134,7 +134,7 @@ namespace MathKit.Geometry
             return new Vector3();
         }
 
-        public void transpose()
+        public void Transpose()
         {
             double value;
 
@@ -151,7 +151,7 @@ namespace MathKit.Geometry
             a_3_2 = value;
         }
 
-        public void set(Matrix3x3 matrix)
+        public void Set(Matrix3x3 matrix)
         {
             this.a_1_1 = matrix.a_1_1;
             this.a_1_2 = matrix.a_1_2;
@@ -166,7 +166,7 @@ namespace MathKit.Geometry
             this.a_3_3 = matrix.a_3_3;
         }
 
-        public void add(Matrix3x3 matrix)
+        public void Add(Matrix3x3 matrix)
         {
             this.a_1_1 += matrix.a_1_1;
             this.a_1_2 += matrix.a_1_2;
@@ -181,7 +181,7 @@ namespace MathKit.Geometry
             this.a_3_3 += matrix.a_3_3;
         }
 
-        public void setSumOf(Matrix3x3 firstMatrix, Matrix3x3 secondMatrix)
+        public void SetSumOf(Matrix3x3 firstMatrix, Matrix3x3 secondMatrix)
         {
             this.a_1_1 = firstMatrix.a_1_1 + secondMatrix.a_1_1;
             this.a_1_2 = firstMatrix.a_1_2 + secondMatrix.a_1_2;
@@ -196,7 +196,7 @@ namespace MathKit.Geometry
             this.a_3_3 = firstMatrix.a_3_3 + secondMatrix.a_3_3;
         }
 
-        public void subtract(Matrix3x3 matrix)
+        public void Subtract(Matrix3x3 matrix)
         {
             this.a_1_1 -= matrix.a_1_1;
             this.a_1_2 -= matrix.a_1_2;
@@ -211,7 +211,7 @@ namespace MathKit.Geometry
             this.a_3_3 -= matrix.a_3_3;
         }
 
-        public void setDifferenceOf(Matrix3x3 firstMatrix, Matrix3x3 secondMatrix)
+        public void SetDifferenceOf(Matrix3x3 firstMatrix, Matrix3x3 secondMatrix)
         {
             this.a_1_1 = firstMatrix.a_1_1 - secondMatrix.a_1_1;
             this.a_1_2 = firstMatrix.a_1_2 - secondMatrix.a_1_2;
@@ -226,7 +226,7 @@ namespace MathKit.Geometry
             this.a_3_3 = firstMatrix.a_3_3 - secondMatrix.a_3_3;
         }
 
-        public Matrix3x3 multiply(Matrix3x3 rightMatrix)
+        public Matrix3x3 Multiply(Matrix3x3 rightMatrix)
         {
             Matrix3x3 result = new Matrix3x3();
 
@@ -245,7 +245,7 @@ namespace MathKit.Geometry
             return result;
         }
 
-        public Vector3 multiply(Vector3 vector)
+        public Vector3 Multiply(Vector3 vector)
         {
             return new Vector3(
                 this.a_1_1 * vector.x + this.a_1_2 * vector.y + this.a_1_3 * vector.z,
@@ -254,19 +254,19 @@ namespace MathKit.Geometry
             );
         }
 
-        public Matrix3x3 multiply(double value)
+        public Matrix3x3 Multiply(double value)
         {
             Matrix3x3 result = this;
-            result.multiplyAt(value);
+            result.MultiplyAt(value);
             return result;
         }
 
-        public void multiplyAt(Matrix3x3 rightMatrix)
+        public void MultiplyAt(Matrix3x3 rightMatrix)
         {
-            this.set(this.multiply(rightMatrix));
+            this.Set(this.Multiply(rightMatrix));
         }
 
-        public void multiplyAt(double value)
+        public void MultiplyAt(double value)
         {
             this.a_1_1 *= value;
             this.a_1_2 *= value;
@@ -281,14 +281,14 @@ namespace MathKit.Geometry
             this.a_3_3 *= value;
         }
 
-        public Matrix3x3 divide(double value)
+        public Matrix3x3 Divide(double value)
         {
             Matrix3x3 result = this;
-            result.divideAt(value);
+            result.DivideAt(value);
             return result;
         }
 
-        public void divideAt(double value)
+        public void DivideAt(double value)
         {
             this.a_1_1 /= value;
             this.a_1_2 /= value;
@@ -303,53 +303,53 @@ namespace MathKit.Geometry
             this.a_3_3 /= value;
         }
 
-        public void setMultiplicationOf(Matrix3x3 firstMatrix, Matrix3x3 secondMatrix)
+        public void SetMultiplicationOf(Matrix3x3 firstMatrix, Matrix3x3 secondMatrix)
         {
-            this.set(firstMatrix.multiply(secondMatrix));
+            this.Set(firstMatrix.Multiply(secondMatrix));
         }
 
         public static Matrix3x3 operator +(Matrix3x3 leftMatrix, Matrix3x3 rightMatrix)
         {
             Matrix3x3 result = leftMatrix;
-            result.add(rightMatrix);
+            result.Add(rightMatrix);
             return result;
         }
 
         public static Matrix3x3 operator -(Matrix3x3 leftMatrix, Matrix3x3 rightMatrix)
         {
             Matrix3x3 result = leftMatrix;
-            result.subtract(rightMatrix);
+            result.Subtract(rightMatrix);
             return result;
         }
 
         public static Matrix3x3 operator *(Matrix3x3 leftMatrix, Matrix3x3 rightMatrix)
         {
-            return leftMatrix.multiply(rightMatrix);
+            return leftMatrix.Multiply(rightMatrix);
         }
 
         public static Vector3 operator *(Matrix3x3 matrix, Vector3 vector)
         {
-            return matrix.multiply(vector);
+            return matrix.Multiply(vector);
         }
 
         public static Matrix3x3 operator *(Matrix3x3 matrix, double value)
         {
             Matrix3x3 result = matrix;
-            result.multiplyAt(value);
+            result.MultiplyAt(value);
             return result;
         }
 
         public static Matrix3x3 operator *(double value, Matrix3x3 matrix)
         {
             Matrix3x3 result = matrix;
-            result.multiplyAt(value);
+            result.MultiplyAt(value);
             return result;
         }
 
         public static Matrix3x3 operator /(Matrix3x3 matrix, double value)
         {
             Matrix3x3 result = matrix;
-            result.divideAt(value);
+            result.DivideAt(value);
             return result;
         }
     }

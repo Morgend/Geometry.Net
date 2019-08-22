@@ -47,7 +47,7 @@ namespace MathKit.Geometry
         public Position3(Position3 first, Position3 second)
         {
             this.rotation = new Rotation();
-            this.setCombinationOf(first, second);
+            this.SetCombinationOf(first, second);
         }
 
         public Rotation Rotation
@@ -59,74 +59,74 @@ namespace MathKit.Geometry
 
             set
             {
-                this.rotation.copyOf(value);
+                this.rotation.SetTurn(value);
             }
         }
 
-        public void set(Position3 position)
+        public void SetPosition(Position3 position)
         {
             this.Point = position.Point;
-            this.rotation.set(position.rotation);
+            this.rotation.SetTurn(position.rotation);
         }
 
-        public Position3 combineWith(Position3 position)
+        public Position3 CombineWith(Position3 position)
         {
             return new Position3(this, position);
         }
 
-        public void setCombinationOf(Position3 first, Position3 second)
+        public void SetCombinationOf(Position3 first, Position3 second)
         {
             if (first == null || second == null)
             {
                 throw new NullReferenceException("An instance of Position3 was expected but NULL was got");
             }
 
-            this.Point = first.Point + first.rotation.turn(second.Point);
-            this.rotation.setCombinationOf(first.rotation, second.rotation);
+            this.Point = first.Point + first.rotation.Turn(second.Point);
+            this.rotation.SetCombinationOf(first.rotation, second.rotation);
         }
 
-        public Position3 differenceWith(Position3 position)
+        public Position3 DifferenceWith(Position3 position)
         {
             Position3 result = new Position3();
-            result.setDifferenceOf(this, position);
+            result.SetDifferenceOf(this, position);
             return result;
         }
 
-        public void setDifferenceOf(Position3 position, Position3 subtrahend)
+        public void SetDifferenceOf(Position3 position, Position3 subtrahend)
         {
             if (position == null || subtrahend == null)
             {
                 throw new NullReferenceException("An instance of Position3 was expected but NULL was got");
             }
 
-            this.Point = subtrahend.rotation.turnBackward(position.Point - subtrahend.Point);
-            this.rotation.setDifferenceOf(position.rotation, subtrahend.rotation);
+            this.Point = subtrahend.rotation.TurnBackward(position.Point - subtrahend.Point);
+            this.rotation.SetDifferenceOf(position.rotation, subtrahend.rotation);
         }
 
-        public void invert()
+        public void Invert()
         {
-            this.Point = this.rotation.turnBackward(-this.Point);
-            this.rotation.invert();
+            this.Point = this.rotation.TurnBackward(-this.Point);
+            this.rotation.Invert();
         }
 
-        public Position3 getInverted()
+        public Position3 GetInverted()
         {
             Position3 result = new Position3(this);
-            result.invert();
+            result.Invert();
             return result;
         }
 
-        public Vector3 toParentPositioning(Vector3 vector)
+        public Vector3 ToParentPositioning(Vector3 vector)
         {
-            return this.rotation.turn(vector) + this.Point;
+            return this.rotation.Turn(vector) + this.Point;
         }
 
-        public Vector3 toLocalPositioning(Vector3 vector)
+        public Vector3 ToLocalPositioning(Vector3 vector)
         {
-            return this.rotation.turnBackward(vector - this.Point);
+            return this.rotation.TurnBackward(vector - this.Point);
         }
 
-        public Vector3 changePositioningTo(Position3 position, Vector3 vector)
+        public Vector3 ChangePositioningTo(Position3 position, Vector3 vector)
         {
             if (position == null)
             {
@@ -138,10 +138,10 @@ namespace MathKit.Geometry
                 return vector;
             }
 
-            return position.rotation.turnBackward(this.rotation.turn(vector) + this.Point - position.Point);
+            return position.rotation.TurnBackward(this.rotation.Turn(vector) + this.Point - position.Point);
         }
 
-        public Vector3 changePositioningFrom(Position3 position, Vector3 vector)
+        public Vector3 ChangePositioningFrom(Position3 position, Vector3 vector)
         {
             if (position == null)
             {
@@ -153,17 +153,17 @@ namespace MathKit.Geometry
                 return vector;
             }
 
-            return this.rotation.turnBackward(position.rotation.turn(vector) + position.Point - this.Point);
+            return this.rotation.TurnBackward(position.rotation.Turn(vector) + position.Point - this.Point);
         }
 
         public static Position3 operator +(Position3 first, Position3 second)
         {
-            return first.combineWith(second);
+            return first.CombineWith(second);
         }
 
         public static Position3 operator -(Position3 position, Position3 subtrahend)
         {
-            return position.differenceWith(subtrahend);
+            return position.DifferenceWith(subtrahend);
         }
     }
 }

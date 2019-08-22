@@ -26,41 +26,41 @@ namespace MathKit.Geometry
             this.y = v.y;
         }
 
-        public void zero()
+        public void Zero()
         {
             this.x = DEFAULT_COORDINATE_VALUE;
             this.y = DEFAULT_COORDINATE_VALUE;
         }
 
-        public void setValue(double x, double y)
+        public void SetValues(double x, double y)
         {
             this.x = x;
             this.y = y;
         }
 
-        public void setValue(Vector2 v)
+        public void SetValues(Vector2 v)
         {
             this.x = v.x;
             this.y = v.y;
         }
 
-        public double scalar(Vector2 v)
+        public double Scalar(Vector2 v)
         {
             return this.x * v.x + this.y * v.y;
         }
 
-        public double module()
+        public double Module()
         {
             return Math.Sqrt(this.x * this.x + this.y * this.y);
         }
 
-        public void normalize()
+        public void Normalize()
         {
-            double module = this.module();
+            double module = this.Module();
 
             if (module < MathConst.EPSYLON)
             {
-                this.zero();
+                this.Zero();
                 return;
             }
 
@@ -68,59 +68,59 @@ namespace MathKit.Geometry
             this.y /= module;
         }
 
-        public Vector2 getNormalized()
+        public Vector2 GetNormalized()
         {
             Vector2 result = this;
-            result.normalize();
+            result.Normalize();
             return result;
         }
 
-        public void add(Vector2 v)
+        public void Add(Vector2 v)
         {
             this.x += v.x;
             this.y += v.y;
         }
 
-        public void subtract(Vector2 v)
+        public void Subtract(Vector2 v)
         {
             this.x -= v.x;
             this.y -= v.y;
         }
 
-        public void multiply(double value)
+        public void Multiply(double value)
         {
             this.x *= value;
             this.y *= value;
         }
 
-        public void divide(double value)
+        public void Divide(double value)
         {
             this.x /= value;
             this.y /= value;
         }
 
-        public void reverse()
+        public void Reverse()
         {
             this.x = -this.x;
             this.y = -this.y;
         }
 
-        public Vector2 getReverted()
+        public Vector2 GetReverted()
         {
             return new Vector2(-this.x, -this.y);
         }
 
-        public Angle angleWith(Vector2 vector)
+        public Angle AngleWith(Vector2 vector)
         {
-            double m1 = this.module();
-            double m2 = vector.module();
+            double m1 = this.Module();
+            double m2 = vector.Module();
 
             if (m1 < MathConst.EPSYLON || m2 < MathConst.EPSYLON)
             {
                 return new Angle();
             }
 
-            return new Angle(Math.Acos(this.scalar(vector) / (m1 * m2)));
+            return new Angle(Math.Acos(this.Scalar(vector) / (m1 * m2)));
         }
 
         public static Vector2 operator +(Vector2 v1, Vector2 v2)
@@ -135,7 +135,7 @@ namespace MathKit.Geometry
 
         public static double operator *(Vector2 v1, Vector2 v2)
         {
-            return v1.scalar(v2);
+            return v1.Scalar(v2);
         }
 
         public static Vector2 operator *(Vector2 vector, double value)

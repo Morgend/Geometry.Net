@@ -9,66 +9,65 @@ namespace MathKit.Geometry
 {
     public class Rotation
     {
-        public static readonly Quaternion DEFAULT_QUATERNION = new Quaternion(0.0, 0.0, 0.0, 1.0);
+        private static readonly Quaternion DEFAULT_QUATERNION = new Quaternion(1.0, 0.0, 0.0, 0.0);
 
         private Quaternion q;
 
         public Rotation()
         {
-            this.reset();
+            this.q = DEFAULT_QUATERNION;
         }
 
         public Rotation(Rotation turn)
         {
-            this.copyOf(turn);
+            this.SetTurn(turn);
         }
 
         public Rotation(Rotation firstTurn, Rotation secondTurn)
         {
-            this.setCombinationOf(firstTurn, secondTurn);
+            this.SetCombinationOf(firstTurn, secondTurn);
         }
 
         public Rotation(Rotation firstTurn, Rotation secondTurn, Rotation thirdTurn)
         {
-            this.setCombinationOf(firstTurn, secondTurn);
-            this.setCombinationOf(this, thirdTurn);
+            this.SetCombinationOf(firstTurn, secondTurn, thirdTurn);
         }
 
         public Rotation(Vector3 axis, Angle angle)
         {
-            this.setTurn(axis, angle);
+            this.SetTurn(axis, angle);
         }
 
         public Rotation(Quaternion quaternion)
         {
-            this.setTurn(quaternion);
+            this.SetTurn(quaternion);
         }
 
-        public Rotation(double x, double y, double z, double w)
+        public Rotation(double w, double x, double y, double z)
         {
-            this.setTurn(x, y, z, w);
+            this.SetTurn(w, x, y, z);
         }
 
         public Rotation(EulerAngles angles)
         {
-            this.setTurn(angles.heading.radians, angles.elevation.radians, angles.bank.radians);
+            this.SetTurn(angles.Heading.Radians, angles.Elevation.Radians, angles.Bank.Radians);
         }
 
         public Rotation(Angle heading, Angle elevation, Angle bank)
         {
-            this.setTurn(heading.radians, elevation.radians, bank.radians);
+            this.SetTurn(heading.Radians, elevation.Radians, bank.Radians);
         }
 
         public Rotation(double heading, double elevation, double bank)
         {
-            this.setTurn(heading, elevation, bank);
+            this.SetTurn(heading, elevation, bank);
         }
 
-        public static void checkTurn(Rotation turn)
+        public static void CheckRotation(Rotation rotation)
         {
-            if (turn == null)
+            if (rotation == null)
             {
-                throw new NullReferenceException("An instance of Turn was expected but NULL was got");
+                throw new NullReferenceException("An instance of Rotation was expected but NULL was got");
             }
         }
 
@@ -85,7 +84,7 @@ namespace MathKit.Geometry
             get
             {
                 Vector3 axis = new Vector3(q.x, q.y, q.z);
-                axis.normalize();
+                axis.Normalize();
                 return axis;
             }
         }
@@ -95,12 +94,12 @@ namespace MathKit.Geometry
             get
             {
                 EulerAngles result = new EulerAngles(
-                    this.calculateHeading(),
-                    this.calculateElevation(),
-                    this.calculateBank()
+                    this.CalculateHeading(),
+                    this.CalculateElevation(),
+                    this.CalculateBank()
                 );
 
-                result.normalize();
+                result.Normalize();
 
                 return result;
             }
@@ -114,7 +113,7 @@ namespace MathKit.Geometry
             }
         }
 
-        public Matrix3x3 buildRotationMatrix()
+        public Matrix3x3 GetRotationMatrix()
         {
             Matrix3x3 matrix = new Matrix3x3();
 
@@ -133,7 +132,7 @@ namespace MathKit.Geometry
             return matrix;
         }
 
-        public Matrix3x3 buildBackwardRotationMatrix()
+        public Matrix3x3 GetBackwardRotationMatrix()
         {
             Matrix3x3 matrix = new Matrix3x3();
 
@@ -152,72 +151,67 @@ namespace MathKit.Geometry
             return matrix;
         }
 
-        public void reset()
+        public void Reset()
         {
             this.q = DEFAULT_QUATERNION;
         }
 
-        private double calculateHeading()
+        private double CalculateHeading()
         {
             return Math.Atan2(2.0 * (q.w * q.z + q.x * q.y), 1.0 - 2.0 * (q.y * q.y + q.z * q.z));
         }
 
-        private double calculateElevation()
+        private double CalculateElevation()
         {
             return Math.Asin(2.0 * (q.w * q.y - q.z * q.x));
         }
 
-        private double calculateBank()
+        private double CalculateBank()
         {
             return Math.Atan2(2.0 * (q.w * q.x + q.y * q.z), 1.0 - 2.0 * (q.x * q.x + q.y * q.y));
         }
 
-        public void set(Rotation rotation)
+        public void SetTurn(Vector3 axis, Angle angle)
         {
-            this.q = rotation.q;
-        }
-
-        public void setTurn(Vector3 axis, Angle angle)
-        {
-            double module = axis.module();
+            double module = axis.Module();
 
             if (module == 0.0)
             {
-                this.reset();
+                this.Reset();
                 return;
             }
 
-            double k = Math.Sin(angle.radians * 0.5) / module;
+            double k = Math.Sin(angle.Radians * 0.5) / module;
 
             q.x = axis.x * k;
             q.y = axis.y * k;
             q.z = axis.z * k;
-            q.w = Math.Cos(angle.radians * 0.5);
+            q.w = Math.Cos(angle.Radians * 0.5);
         }
 
-        public void setTurn(Quaternion quaternion)
+        public void SetTurn(Quaternion quaternion)
         {
             q = quaternion;
-            this.normalizeQuaternion();
+            this.NormalizeQuaternion();
         }
 
-        public void setTurn(double x, double y, double z, double w)
+        public void SetTurn(double w, double x, double y, double z)
         {
-            q.setValue(x, y, z, w);
-            this.normalizeQuaternion();
+            q.SetValues(w, x, y, z);
+            this.NormalizeQuaternion();
         }
 
-        public void setTurn(EulerAngles angles)
+        public void SetTurn(EulerAngles angles)
         {
-            this.setTurn(angles.heading.radians, angles.elevation.radians, angles.bank.radians);
+            this.SetTurn(angles.Heading.Radians, angles.Elevation.Radians, angles.Bank.Radians);
         }
 
-        public void setTurn(Angle heading, Angle elevation, Angle bank)
+        public void SetTurn(Angle heading, Angle elevation, Angle bank)
         {
-            this.setTurn(heading.radians, elevation.radians, bank.radians);
+            this.SetTurn(heading.Radians, elevation.Radians, bank.Radians);
         }
 
-        public void setTurn(double heading, double elevation, double bank)
+        public void SetTurn(double heading, double elevation, double bank)
         {
             double cosHeading = Math.Cos(0.5 * heading);
             double sinHeading = Math.Sin(0.5 * heading);
@@ -233,21 +227,21 @@ namespace MathKit.Geometry
             q.y = sinHeading * cosElevation * sinBank + cosHeading * sinElevation * cosBank;
             q.z = sinHeading * cosElevation * cosBank - cosHeading * sinElevation * sinBank;
 
-            this.normalizeQuaternion();
+            this.NormalizeQuaternion();
         }
 
-        public void setTurnDegrees(double heading, double elevation, double bank)
+        public void SetTurnDegrees(double heading, double elevation, double bank)
         {
-            this.setTurn(Angle.degreesToRadians(heading), Angle.degreesToRadians(elevation), Angle.degreesToRadians(bank));
+            this.SetTurn(Angle.DegreesToRadians(heading), Angle.DegreesToRadians(elevation), Angle.DegreesToRadians(bank));
         }
 
-        private void normalizeQuaternion()
+        private void NormalizeQuaternion()
         {
-            double module = q.module();
+            double module = q.Module();
 
             if (module < MathConst.EPSYLON)
             {
-                this.reset();
+                this.Reset();
                 return;
             }
 
@@ -255,52 +249,60 @@ namespace MathKit.Geometry
 
             if (q.w < MathConst.EPSYLON - DEFAULT_QUATERNION.w || q.w > DEFAULT_QUATERNION.w - MathConst.EPSYLON)
             {
-                this.reset();
+                this.Reset();
             }
         }
 
-        public void copyOf(Rotation turn)
+        public void SetTurn(Rotation turn)
         {
-            checkTurn(turn);
+            CheckRotation(turn);
             this.q = turn.q;
         }
 
-        public Rotation combineWith(Rotation nextTurn)
+        public Rotation CombineWith(Rotation nextTurn)
         {
             return new Rotation(this, nextTurn);
         }
 
-        public void setCombinationOf(Rotation firstTurn, Rotation secondTurn)
+        public void SetCombinationOf(Rotation firstTurn, Rotation secondTurn)
         {
-            this.q.setMultiplicationOf(firstTurn.q, secondTurn.q);
-            this.normalizeQuaternion();
+            this.q.SetMultiplicationOf(firstTurn.q, secondTurn.q);
+            this.NormalizeQuaternion();
         }
 
-        public Rotation differenceWith(Rotation subtrahend)
+        public void SetCombinationOf(Rotation firstTurn, Rotation secondTurn, Rotation thirdTurn)
+        {
+            this.q = firstTurn.q;
+            this.q.MultiplyAt(secondTurn.q);
+            this.q.MultiplyAt(thirdTurn.q);
+            this.NormalizeQuaternion();
+        }
+
+        public Rotation DifferenceWith(Rotation subtrahend)
         {
             Rotation result = new Rotation();
-            result.setDifferenceOf(this, subtrahend);
+            result.SetDifferenceOf(this, subtrahend);
             return result;
         }
 
-        public void setDifferenceOf(Rotation turn, Rotation subtrahend)
+        public void SetDifferenceOf(Rotation turn, Rotation subtrahend)
         {
-            this.q.setMultiplicationOf(subtrahend.q.getConjugated(), turn.q);
+            this.q.SetMultiplicationOf(subtrahend.q.GetConjugated(), turn.q);
         }
 
-        public void invert()
+        public void Invert()
         {
-            this.q.conjugate();
+            this.q.Conjugate();
         }
 
-        public Rotation getInverted()
+        public Rotation GetInverted()
         {
             Rotation result = new Rotation();
-            result.invert();
+            result.Invert();
             return result;
         }
 
-        public Vector3 turn(Vector3 vector)
+        public Vector3 Turn(Vector3 vector)
         {
             double mw = q.x * vector.x + q.y * vector.y + q.z * vector.z;
             double vx = q.w * vector.x + q.y * vector.z - q.z * vector.y;
@@ -314,7 +316,7 @@ namespace MathKit.Geometry
             );
         }
 
-        public Vector3 turnBackward(Vector3 vector)
+        public Vector3 TurnBackward(Vector3 vector)
         {
             double mw = - q.x * vector.x - q.y * vector.y - q.z * vector.z;
             double vx = q.w * vector.x - q.y * vector.z + q.z * vector.y;
@@ -330,12 +332,12 @@ namespace MathKit.Geometry
 
         public static Rotation operator +(Rotation first, Rotation second)
         {
-            return first.combineWith(second);
+            return first.CombineWith(second);
         }
 
         public static Rotation operator -(Rotation rotation, Rotation subtrahend)
         {
-            return rotation.differenceWith(subtrahend);
+            return rotation.DifferenceWith(subtrahend);
         }
     }
 }
