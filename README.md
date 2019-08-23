@@ -9,4 +9,4 @@ This library was made because of a few reasons:
 - 
 - to study .NET and it's 
 
-I see no reason to hide it and I share it with the community
+I see no reason to hide it and I share it with the community.
