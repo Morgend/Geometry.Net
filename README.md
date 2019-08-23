@@ -1,6 +1,6 @@
-#MathKit
+# MathKit
 
-##What is it and why
+## What is it and why
 
 Math Kit Library contains mathematical tools for .NET
 
