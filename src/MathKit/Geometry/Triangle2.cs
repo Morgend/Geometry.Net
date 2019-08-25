@@ -46,6 +46,21 @@ namespace MathKit.Geometry
             }
         }
 
+        public Angle CalculateAngleA()
+        {
+            return (B - A).AngleWith(C - A);
+        }
+
+        public Angle CalculateAngleB()
+        {
+            return (C - B).AngleWith(A - B);
+        }
+
+        public Angle CalculateAngleC()
+        {
+            return (A - C).AngleWith(B - C);
+        }
+
         public double CalculateSquare()
         {
             return 0.5 * Math.Abs((B.x - A.x) * (C.y - A.y) - (B.y - A.y) * (C.x - A.x));

@@ -19,6 +19,10 @@ namespace MathKitTest.Geometry
             public Vector2 expectedAB;
             public Vector2 expectedBC;
             public Vector2 expectedCA;
+
+            public double angleA;
+            public double angleB;
+            public double angleC;
         }
 
         private TriangleInfo[] testData;
@@ -41,6 +45,10 @@ namespace MathKitTest.Geometry
             info.expectedAB = new Vector2(0, 1);
             info.expectedBC = new Vector2(1, -1);
             info.expectedCA = new Vector2(-1, 0);
+
+            info.angleA = MathConst.PId2;
+            info.angleB = MathConst.PI / 4.0;
+            info.angleC = MathConst.PI / 4.0;
 
             return info;
         }
@@ -76,6 +84,13 @@ namespace MathKitTest.Geometry
         {
             Assert.AreEqual(expectedSide.x, side.x, MathConst.EPSYLON);
             Assert.AreEqual(expectedSide.y, side.y, MathConst.EPSYLON);
+        }
+
+        private void CheckAngles(TriangleInfo info, Triangle2 triangle)
+        {
+            Assert.AreEqual(info.angleA, triangle.CalculateAngleA(), MathConst.EPSYLON);
+            Assert.AreEqual(info.angleB, triangle.CalculateAngleB(), MathConst.EPSYLON);
+            Assert.AreEqual(info.angleC, triangle.CalculateAngleC(), MathConst.EPSYLON);
         }
     }
 }
