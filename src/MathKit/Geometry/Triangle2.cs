@@ -22,12 +22,36 @@ namespace MathKit.Geometry
             C = anotherTriangle.C;
         }
 
-        public double GetSquare()
+        public Vector2 SideAB
+        {
+            get
+            {
+                return B - A;
+            }
+        }
+
+        public Vector2 SideBC
+        {
+            get
+            {
+                return C - B;
+            }
+        }
+
+        public Vector2 SideCA
+        {
+            get
+            {
+                return A - C;
+            }
+        }
+
+        public double CalculateSquare()
         {
             return 0.5 * Math.Abs((B.x - A.x) * (C.y - A.y) - (B.y - A.y) * (C.x - A.x));
         }
 
-        public Vector2 GetMedianCentre()
+        public Vector2 CalculateMedianCentre()
         {
             return (A + B + C) / 3.0;
         }
