@@ -6,19 +6,19 @@ using MathKit.Geometry;
 namespace MathKitTest.Geometry
 {
     [TestClass]
-    public class Triangle2Test
+    public class Triangle3Test
     {
-        private const int TRIANGLE_AMOUNT = 1;
+        private const int TRIANGLE_AMOUNT = 3;
 
         private struct TriangleInfo
         {
-            public Triangle2 triangle;
+            public Triangle3 triangle;
             public double expectedSquare;
-            public Vector2 expectedMedianCentre;
+            public Vector3 expectedMedianCentre;
 
-            public Vector2 expectedAB;
-            public Vector2 expectedBC;
-            public Vector2 expectedCA;
+            public Vector3 expectedAB;
+            public Vector3 expectedBC;
+            public Vector3 expectedCA;
 
             public double angleA;
             public double angleB;
@@ -27,24 +27,66 @@ namespace MathKitTest.Geometry
 
         private TriangleInfo[] testData;
 
-        public Triangle2Test()
+        public Triangle3Test()
         {
             testData = new TriangleInfo[TRIANGLE_AMOUNT];
             testData[0] = GetTestTriangle1();
+            testData[1] = GetTestTriangle2();
+            testData[2] = GetTestTriangle3();
         }
 
         private TriangleInfo GetTestTriangle1()
         {
             TriangleInfo info = new TriangleInfo();
 
-            info.triangle = new Triangle2(new Vector2(0, 0), new Vector2(0, 1), new Vector2(1, 0));
+            info.triangle = new Triangle3(new Vector3(0, 0, 0), new Vector3(0, 1, 0), new Vector3(1, 0, 0));
             info.expectedSquare = 0.5;
 
-            info.expectedMedianCentre = new Vector2(1.0 / 3.0, 1.0 / 3.0);
+            info.expectedMedianCentre = new Vector3(1.0 / 3.0, 1.0 / 3.0, 0);
 
-            info.expectedAB = new Vector2(0, 1);
-            info.expectedBC = new Vector2(1, -1);
-            info.expectedCA = new Vector2(-1, 0);
+            info.expectedAB = new Vector3(0, 1, 0);
+            info.expectedBC = new Vector3(1, -1, 0);
+            info.expectedCA = new Vector3(-1, 0, 0);
+
+            info.angleA = MathConst.PId2;
+            info.angleB = MathConst.PI / 4.0;
+            info.angleC = MathConst.PI / 4.0;
+
+            return info;
+        }
+
+        private TriangleInfo GetTestTriangle2()
+        {
+            TriangleInfo info = new TriangleInfo();
+
+            info.triangle = new Triangle3(new Vector3(0, 0, 0), new Vector3(0, 0, 1), new Vector3(1, 0, 0));
+            info.expectedSquare = 0.5;
+
+            info.expectedMedianCentre = new Vector3(1.0 / 3.0, 0, 1.0 / 3.0);
+
+            info.expectedAB = new Vector3(0, 0, 1);
+            info.expectedBC = new Vector3(1, 0, -1);
+            info.expectedCA = new Vector3(-1, 0, 0);
+
+            info.angleA = MathConst.PId2;
+            info.angleB = MathConst.PI / 4.0;
+            info.angleC = MathConst.PI / 4.0;
+
+            return info;
+        }
+
+        private TriangleInfo GetTestTriangle3()
+        {
+            TriangleInfo info = new TriangleInfo();
+
+            info.triangle = new Triangle3(new Vector3(0, 0, 0), new Vector3(0, 0, 1), new Vector3(0, 1, 0));
+            info.expectedSquare = 0.5;
+
+            info.expectedMedianCentre = new Vector3(0, 1.0 / 3.0, 1.0 / 3.0);
+
+            info.expectedAB = new Vector3(0, 0, 1);
+            info.expectedBC = new Vector3(0, 1, -1);
+            info.expectedCA = new Vector3(0, -1, 0);
 
             info.angleA = MathConst.PId2;
             info.angleB = MathConst.PI / 4.0;
@@ -72,10 +114,11 @@ namespace MathKitTest.Geometry
 
         private void CheckMedianCentre(TriangleInfo info)
         {
-            Vector2 median = info.triangle.MedianCentre();
+            Vector3 median = info.triangle.MedianCentre();
 
             Assert.AreEqual(info.expectedMedianCentre.x, median.x, MathConst.EPSYLON);
             Assert.AreEqual(info.expectedMedianCentre.y, median.y, MathConst.EPSYLON);
+            Assert.AreEqual(info.expectedMedianCentre.z, median.z, MathConst.EPSYLON);
         }
 
         private void CheckSides(TriangleInfo info)
@@ -85,10 +128,11 @@ namespace MathKitTest.Geometry
             CheckSide(info.expectedCA, info.triangle.SideCA);
         }
 
-        private void CheckSide(Vector2 expectedSide, Vector2 side)
+        private void CheckSide(Vector3 expectedSide, Vector3 side)
         {
             Assert.AreEqual(expectedSide.x, side.x, MathConst.EPSYLON);
             Assert.AreEqual(expectedSide.y, side.y, MathConst.EPSYLON);
+            Assert.AreEqual(expectedSide.z, side.z, MathConst.EPSYLON);
         }
 
         private void CheckAngles(TriangleInfo info)

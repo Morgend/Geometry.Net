@@ -42,6 +42,8 @@
     <Compile Include="Geometry\Position3.cs" />
     <Compile Include="Geometry\Quaternion.cs" />
     <Compile Include="Geometry\Rotation.cs" />
+    <Compile Include="Geometry\Triangle2.cs" />
+    <Compile Include="Geometry\Triangle3.cs" />
     <Compile Include="Geometry\Vector2.cs" />
     <Compile Include="Geometry\Vector3.cs" />
     <Compile Include="MathConst.cs" />

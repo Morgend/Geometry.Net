@@ -1,5 +1,10 @@
 ﻿using System;
 
+/*
+ * Author: Andrey Pokidov
+ * Date: 23 Aug 2019
+ */
+
 namespace MathKit.Geometry
 {
     public struct Triangle3
@@ -30,11 +35,27 @@ namespace MathKit.Geometry
             }
         }
 
+        public Vector3 SideBA
+        {
+            get
+            {
+                return A - B;
+            }
+        }
+
         public Vector3 SideBC
         {
             get
             {
                 return C - B;
+            }
+        }
+
+        public Vector3 SideCB
+        {
+            get
+            {
+                return B - C;
             }
         }
 
@@ -46,32 +67,40 @@ namespace MathKit.Geometry
             }
         }
 
-        public Angle CalculateAngleA()
+        public Vector3 SideAC
+        {
+            get
+            {
+                return C - A;
+            }
+        }
+
+        public Angle AngleA()
         {
             return (B - A).AngleWith(C - A);
         }
 
-        public Angle CalculateAngleB()
+        public Angle AngleB()
         {
             return (C - B).AngleWith(A - B);
         }
 
-        public Angle CalculateAngleC()
+        public Angle AngleC()
         {
             return (A - C).AngleWith(B - C);
         }
 
-        public double CalculateSquare()
+        public double Square()
         {
             return 0.5 * (B - A).Vector(C - A).Module();
         }
 
-        public Vector3 CalculateMedianCentre()
+        public Vector3 MedianCentre()
         {
             return (A + B + C) / 3.0;
         }
 
-        public Vector3 CalculateNormal()
+        public Vector3 Normal()
         {
             Vector3 n = (B - A).Vector(C - A);
             n.Normalize();

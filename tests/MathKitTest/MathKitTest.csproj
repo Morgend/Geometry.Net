@@ -55,6 +55,7 @@
     <Compile Include="Geometry\AngleTest.cs" />
     <Compile Include="Geometry\RotationTest.cs" />
     <Compile Include="Geometry\EulerAnglesTest.cs" />
+    <Compile Include="Geometry\Triangle3Test.cs" />
     <Compile Include="Geometry\Triangle2Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

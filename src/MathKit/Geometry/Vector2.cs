@@ -117,7 +117,7 @@ namespace MathKit.Geometry
 
             if (m1 < MathConst.EPSYLON || m2 < MathConst.EPSYLON)
             {
-                return new Angle();
+                return new Angle(0.0);
             }
 
             return new Angle(Math.Acos(this.Scalar(vector) / (m1 * m2)));
