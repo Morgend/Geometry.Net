@@ -128,6 +128,21 @@ namespace MathKit.Geometry
             return MathKit.AreEqual(this.x * v.y, this.y * v.x);
         }
 
+        public bool IsCoDirectionalTo(Vector2 v)
+        {
+            return this.IsParallelTo(v) && this.Scalar(v) >= 0;
+        }
+
+        public bool IsAntiDirectionalTo(Vector2 v)
+        {
+            return this.IsParallelTo(v) && this.Scalar(v) < 0;
+        }
+
+        public bool IsOrthogonalTo(Vector2 v)
+        {
+            return MathKit.AreEqual(this.Scalar(v), 0.0);
+        }
+
         public static Vector2 operator +(Vector2 v1, Vector2 v2)
         {
             return new Vector2(v1.x + v2.x, v1.y + v2.y);
