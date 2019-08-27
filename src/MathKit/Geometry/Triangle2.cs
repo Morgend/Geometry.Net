@@ -19,7 +19,6 @@ namespace MathKit.Geometry
             this.B = B;
             this.C = C;
         }
-
         public Triangle2(Triangle2 anotherTriangle)
         {
             A = anotherTriangle.A;
@@ -73,6 +72,11 @@ namespace MathKit.Geometry
             {
                 return C - A;
             }
+        }
+
+        public bool IsDegenerated()
+        {
+            return this.SideAB.IsParallelTo(this.SideAC);
         }
 
         public Angle AngleA()

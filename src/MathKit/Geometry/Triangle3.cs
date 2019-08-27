@@ -75,6 +75,11 @@ namespace MathKit.Geometry
             }
         }
 
+        public bool IsDegenerated()
+        {
+            return this.SideAB.IsParallelTo(this.SideAC);
+        }
+
         public Angle AngleA()
         {
             return (B - A).AngleWith(C - A);

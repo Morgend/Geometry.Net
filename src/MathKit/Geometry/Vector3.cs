@@ -153,6 +153,11 @@ namespace MathKit.Geometry
             return new Angle(Math.Acos(this.Scalar(vector) / (m1 * m2)));
         }
 
+        public bool IsParallelTo(Vector3 v)
+        {
+            return MathKit.AreEqual(this.x * v.y, this.y * v.x) && MathKit.AreEqual(this.x * v.z, this.z * v.x) && MathKit.AreEqual(this.y * v.z, this.z * v.y);
+        }
+
         public static Vector3 operator +(Vector3 v1, Vector3 v2)
         {
             return new Vector3(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z);

@@ -14,5 +14,49 @@ namespace MathKit
         private MathKit()
         {
         }
+
+        public static double Mininal(double a, double b)
+        {
+            return a < b ? a : b;
+        }
+
+        public static double Mininal(double a, double b, double c)
+        {
+            if (a < b)
+            {
+                return a < c ? a : c;
+            }
+            return b < c ? b : c;
+        }
+
+        public static double Maxinal(double a, double b)
+        {
+            return a > b ? a : b;
+        }
+
+        public static double Maxinal(double a, double b, double c)
+        {
+            if (a > b)
+            {
+                return a > c ? a : c;
+            }
+
+            return b > c ? b : c;
+        }
+
+        public static bool AreEqual(double a, double b)
+        {
+            if (a < b)
+            {
+                return a + MathConst.EPSYLON >= b;
+            }
+
+            return b + MathConst.EPSYLON >= a;
+        }
+
+        public static bool AreEqual(double a, double b, double c)
+        {
+            return Mininal(a, b, c) + MathConst.EPSYLON >= Maxinal(a, b, c);
+        }
     }
 }

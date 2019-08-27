@@ -10,6 +10,8 @@ namespace MathKitTest.Geometry
     {
         private const int TRIANGLE_AMOUNT = 1;
 
+        private const int DEGENERATED_TRIANGLE_AMOUNT = 5;
+
         private struct TriangleInfo
         {
             public Triangle2 triangle;
@@ -27,7 +29,15 @@ namespace MathKitTest.Geometry
 
         private TriangleInfo[] testData;
 
+        private Triangle2[] degeneratedTriangle;
+
         public Triangle2Test()
+        {
+            InitCommonTrianlges();
+            InitDegeneratedTriangles();
+        }
+
+        private void InitCommonTrianlges()
         {
             testData = new TriangleInfo[TRIANGLE_AMOUNT];
             testData[0] = GetTestTriangle1();
@@ -53,8 +63,18 @@ namespace MathKitTest.Geometry
             return info;
         }
 
+        private void InitDegeneratedTriangles()
+        {
+            this.degeneratedTriangle = new Triangle2[DEGENERATED_TRIANGLE_AMOUNT];
+            this.degeneratedTriangle[0] = new Triangle2(new Vector2(), new Vector2(), new Vector2());
+            this.degeneratedTriangle[1] = new Triangle2(new Vector2(1, 2), new Vector2(1, 2), new Vector2(1, 2));
+            this.degeneratedTriangle[2] = new Triangle2(new Vector2(1, 2), new Vector2(2, 1), new Vector2(1, 2));
+            this.degeneratedTriangle[3] = new Triangle2(new Vector2(3, 5), new Vector2(7, 9), new Vector2(5, 7));
+            this.degeneratedTriangle[4] = new Triangle2(new Vector2(-3, 2), new Vector2(-4, 2.5), new Vector2(1, 0));
+        }
+
         [TestMethod]
-        public void TestTriagles()
+        public void TestCommonTriagles()
         {
             for (int i = 0; i < TRIANGLE_AMOUNT; i++)
             {
@@ -62,6 +82,8 @@ namespace MathKitTest.Geometry
                 CheckMedianCentre(this.testData[i]);
                 CheckSides(this.testData[i]);
                 CheckAngles(this.testData[i]);
+
+                Assert.IsFalse(this.testData[i].triangle.IsDegenerated());
             }
         }
 
@@ -96,6 +118,15 @@ namespace MathKitTest.Geometry
             Assert.AreEqual(info.angleA, info.triangle.AngleA(), MathConst.EPSYLON);
             Assert.AreEqual(info.angleB, info.triangle.AngleB(), MathConst.EPSYLON);
             Assert.AreEqual(info.angleC, info.triangle.AngleC(), MathConst.EPSYLON);
+        }
+
+        [TestMethod]
+        public void TestDegeneratedTriagles()
+        {
+            for (int i = 0; i < DEGENERATED_TRIANGLE_AMOUNT; i++)
+            {
+                Assert.IsTrue(this.degeneratedTriangle[i].IsDegenerated());
+            }
         }
     }
 }
