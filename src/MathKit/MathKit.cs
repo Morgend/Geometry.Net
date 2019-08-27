@@ -15,12 +15,12 @@ namespace MathKit
         {
         }
 
-        public static double Mininal(double a, double b)
+        public static double Minimal(double a, double b)
         {
             return a < b ? a : b;
         }
 
-        public static double Mininal(double a, double b, double c)
+        public static double Minimal(double a, double b, double c)
         {
             if (a < b)
             {
@@ -29,12 +29,12 @@ namespace MathKit
             return b < c ? b : c;
         }
 
-        public static double Maxinal(double a, double b)
+        public static double Maximal(double a, double b)
         {
             return a > b ? a : b;
         }
 
-        public static double Maxinal(double a, double b, double c)
+        public static double Maximal(double a, double b, double c)
         {
             if (a > b)
             {
@@ -56,7 +56,7 @@ namespace MathKit
 
         public static bool AreEqual(double a, double b, double c)
         {
-            return Mininal(a, b, c) + MathConst.EPSYLON >= Maxinal(a, b, c);
+            return Minimal(a, b, c) + MathConst.EPSYLON >= Maximal(a, b, c);
         }
     }
 }
