@@ -32,6 +32,11 @@ namespace MathKit.Geometry
             this.y = DEFAULT_COORDINATE_VALUE;
         }
 
+        public bool IsZero()
+        {
+            return x * x + y * y <= MathConst.EPSYLON_QUAD;
+        }
+
         public void SetValues(double x, double y)
         {
             this.x = x;

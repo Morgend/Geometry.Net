@@ -9,7 +9,8 @@ namespace MathKit
 {
     public class MathConst
     {
-        public const double EPSYLON = 0.000000000001;
+        public const double EPSYLON = 0.00000000001;
+        public const double EPSYLON_QUAD = EPSYLON * EPSYLON;
         public const double POSITIVE_EPSYLON = EPSYLON;
         public const double NEGATIVE_EPSYLON = -EPSYLON;
 

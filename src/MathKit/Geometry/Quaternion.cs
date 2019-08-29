@@ -48,6 +48,11 @@ namespace MathKit.Geometry
             this.w = DEFAULT_COORDINATE_VALUE;
         }
 
+        public bool IsZero()
+        {
+            return w * w + x * x + y * y + z * z <= MathConst.EPSYLON_QUAD;
+        }
+
         public void Conjugate()
         {
             this.x = -this.x;
