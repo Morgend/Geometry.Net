@@ -15,6 +15,11 @@ namespace MathKit
         {
         }
 
+        public static double Absolute(double value)
+        {
+            return value >= 0 ? value : -value;
+        }
+
         public static double Minimal(double a, double b)
         {
             return a < b ? a : b;
@@ -46,17 +51,17 @@ namespace MathKit
 
         public static bool AreEqual(double a, double b)
         {
-            if (a < b)
-            {
-                return a + MathConst.EPSYLON >= b;
-            }
-
-            return b + MathConst.EPSYLON >= a;
+            return a < b ? AreNumbersEqual(a, b) : AreNumbersEqual(a, b);
         }
 
         public static bool AreEqual(double a, double b, double c)
         {
-            return Minimal(a, b, c) + MathConst.EPSYLON >= Maximal(a, b, c);
+            return AreNumbersEqual(Minimal(a, b, c), Maximal(a, b, c));
+        }
+
+        private static bool AreNumbersEqual(double minimal, double maximal)
+        {
+            return Absolute(maximal - minimal) <= MathConst.EPSYLON * Minimal(Absolute(minimal), Absolute(maximal));
         }
     }
 }
