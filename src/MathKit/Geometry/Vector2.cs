@@ -145,7 +145,7 @@ namespace MathKit.Geometry
 
         public bool IsOrthogonalTo(Vector2 v)
         {
-            return MathKit.AreEqual(this.Scalar(v), 0.0);
+            return this.Scalar(v) <= MathConst.EPSYLON_QUAD;
         }
 
         public static Vector2 operator +(Vector2 v1, Vector2 v2)
