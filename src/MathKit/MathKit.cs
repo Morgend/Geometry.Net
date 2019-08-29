@@ -51,17 +51,12 @@ namespace MathKit
 
         public static bool AreEqual(double a, double b)
         {
-            return a < b ? AreNumbersEqual(a, b) : AreNumbersEqual(a, b);
+            return Absolute(a - b) <= MathConst.EPSYLON * Minimal(Absolute(a), Absolute(b));
         }
 
         public static bool AreEqual(double a, double b, double c)
         {
-            return AreNumbersEqual(Minimal(a, b, c), Maximal(a, b, c));
-        }
-
-        private static bool AreNumbersEqual(double minimal, double maximal)
-        {
-            return Absolute(maximal - minimal) <= MathConst.EPSYLON * Minimal(Absolute(minimal), Absolute(maximal));
+            return AreEqual(Maximal(a, b, c), Minimal(a, b, c));
         }
     }
 }
