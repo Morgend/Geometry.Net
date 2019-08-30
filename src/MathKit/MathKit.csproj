@@ -41,7 +41,10 @@
     <Compile Include="Geometry\Position2.cs" />
     <Compile Include="Geometry\Position3.cs" />
     <Compile Include="Geometry\Quaternion.cs" />
+    <Compile Include="Geometry\RayLine3.cs" />
+    <Compile Include="CalculationResult.cs" />
     <Compile Include="Geometry\Rotation.cs" />
+    <Compile Include="Geometry\RayLine2.cs" />
     <Compile Include="Geometry\StraightLine3.cs" />
     <Compile Include="Geometry\StraightLine2.cs" />
     <Compile Include="Geometry\Triangle2.cs" />

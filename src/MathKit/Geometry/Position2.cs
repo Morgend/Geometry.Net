@@ -8,16 +8,10 @@
 
 namespace MathKit.Geometry
 {
-    public class Position2
+    public struct Position2
     {
         public Vector2 Point;
         public Angle Angle;
-
-        public Position2()
-        {
-            this.Point = new Vector2();
-            this.Angle = new Angle();
-        }
 
         public Position2(Position2 position)
         {
@@ -45,7 +39,8 @@ namespace MathKit.Geometry
 
         public Position2(Position2 first, Position2 second)
         {
-            this.SetCombinationOf(first, second);
+            this.Point = first.Point + first.Angle.Turn(second.Point);
+            this.Angle = first.Angle + second.Angle;
         }
 
         public void SetPosition(Position2 position)
@@ -61,11 +56,6 @@ namespace MathKit.Geometry
 
         public void SetCombinationOf(Position2 first, Position2 second)
         {
-            if (first == null || second == null)
-            {
-                throw new NullReferenceException("An instance of Position2 was expected but NULL was got");
-            }
-
             this.Point = first.Point + first.Angle.Turn(second.Point);
             this.Angle = first.Angle + second.Angle;
         }
@@ -79,11 +69,6 @@ namespace MathKit.Geometry
 
         public void SetDifferenceOf(Position2 position, Position2 subtrahend)
         {
-            if (position == null || subtrahend == null)
-            {
-                throw new NullReferenceException("An instance of Position2 was expected but NULL was got");
-            }
-
             this.Point = subtrahend.Angle.TurnBackward(position.Point - subtrahend.Point);
             this.Angle = position.Angle - subtrahend.Angle;
         }
@@ -113,31 +98,11 @@ namespace MathKit.Geometry
 
         public Vector2 ChangePositioningTo(Position2 position, Vector2 vector)
         {
-            if (position == null)
-            {
-                throw new ArgumentNullException("An instance of Position2 was expected but NULL was got");
-            }
-
-            if (position == this)
-            {
-                return vector;
-            }
-
             return position.Angle.TurnBackward(this.Angle.Turn(vector) + this.Point - position.Point);
         }
 
         public Vector2 ChangePositioningFrom(Position2 position, Vector2 vector)
         {
-            if (position == null)
-            {
-                throw new ArgumentNullException("An instance of Position2 was expected but NULL was got");
-            }
-
-            if (position == this)
-            {
-                return vector;
-            }
-
             return this.Angle.TurnBackward(position.Angle.Turn(vector) + position.Point - this.Point);
         }
 

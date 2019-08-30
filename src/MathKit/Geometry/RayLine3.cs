@@ -78,5 +78,15 @@ namespace MathKit.Geometry
         {
             return this.direction.AngleWith(line.Direction);
         }
+
+        public Angle MinimalAngleWith(StraightLine3 line)
+        {
+            return line.MinimalAngleWith(this);
+        }
+
+        public Angle MaximalAngleWith(StraightLine3 line)
+        {
+            return line.MaximalAngleWith(this);
+        }
     }
 }
