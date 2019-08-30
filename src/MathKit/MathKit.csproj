@@ -51,8 +51,12 @@
     <Compile Include="Geometry\Triangle3.cs" />
     <Compile Include="Geometry\Vector2.cs" />
     <Compile Include="Geometry\Vector3.cs" />
-    <Compile Include="MathConst.cs" />
-    <Compile Include="MathKit.cs" />
+    <Compile Include="MathConstant.cs" />
+    <Compile Include="Absolute.cs" />
+    <Compile Include="Compare.cs" />
+    <Compile Include="Maximum.cs" />
+    <Compile Include="Minimum.cs" />
+    <Compile Include="MathKitInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

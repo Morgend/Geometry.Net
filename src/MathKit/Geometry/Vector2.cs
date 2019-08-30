@@ -34,7 +34,7 @@ namespace MathKit.Geometry
 
         public bool IsZero()
         {
-            return x * x + y * y <= MathConst.EPSYLON_QUAD;
+            return x * x + y * y <= MathConstant.EPSYLON_QUAD;
         }
 
         public void SetValues(double x, double y)
@@ -63,7 +63,7 @@ namespace MathKit.Geometry
         {
             double module = this.Module();
 
-            if (module < MathConst.EPSYLON)
+            if (module < MathConstant.EPSYLON)
             {
                 this.Zero();
                 return;
@@ -120,7 +120,7 @@ namespace MathKit.Geometry
             double m1 = this.Module();
             double m2 = vector.Module();
 
-            if (m1 < MathConst.EPSYLON || m2 < MathConst.EPSYLON)
+            if (m1 < MathConstant.EPSYLON || m2 < MathConstant.EPSYLON)
             {
                 return new Angle(0.0);
             }
@@ -130,7 +130,7 @@ namespace MathKit.Geometry
 
         public bool IsParallelTo(Vector2 v)
         {
-            return MathKit.AreEqual(this.x * v.y, this.y * v.x);
+            return Compare.AreEqual(this.x * v.y, this.y * v.x);
         }
 
         public bool IsCoDirectionalTo(Vector2 v)
@@ -145,7 +145,7 @@ namespace MathKit.Geometry
 
         public bool IsOrthogonalTo(Vector2 v)
         {
-            return this.Scalar(v) <= MathConst.EPSYLON_QUAD;
+            return this.Scalar(v) <= MathConstant.EPSYLON_QUAD;
         }
 
         public static Vector2 operator +(Vector2 v1, Vector2 v2)

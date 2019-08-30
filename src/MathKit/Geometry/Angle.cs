@@ -11,9 +11,9 @@ namespace MathKit.Geometry
     {
         public const double DEFAULT_VALUE = 0.0;
 
-        public const double PI = MathConst.PI;
-        public const double PIx2 = MathConst.PIx2;
-        public const double PId2 = MathConst.PId2;
+        public const double PI = MathConstant.PI;
+        public const double PIx2 = MathConstant.PIx2;
+        public const double PId2 = MathConstant.PId2;
 
         public const double DEGREES_IN_RADIAN = 57.2957795130823209;
         public const double GRADS_IN_RADIAN = 63.6619772367581343;
@@ -95,7 +95,7 @@ namespace MathKit.Geometry
                 return;
             }
 
-            if (this.Radians > MathConst.NEGATIVE_EPSYLON)
+            if (this.Radians > MathConstant.NEGATIVE_EPSYLON)
             {
                 this.Radians = 0;
                 return;
@@ -111,7 +111,7 @@ namespace MathKit.Geometry
 
             if (this.Radians > PI)
             {
-                if (this.Radians < PI + MathConst.EPSYLON)
+                if (this.Radians < PI + MathConstant.EPSYLON)
                 {
                     this.Radians = PI;
                 }
@@ -124,7 +124,7 @@ namespace MathKit.Geometry
 
             if (this.Radians <= -PI)
             {
-                if (this.Radians > -PI - MathConst.EPSYLON)
+                if (this.Radians > -PI - MathConstant.EPSYLON)
                 {
                     this.Radians = PI;
                 }

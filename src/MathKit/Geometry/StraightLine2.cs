@@ -136,9 +136,9 @@ namespace MathKit.Geometry
 
         private static Angle MinimalAngleBetweenLines(Angle angle)
         {
-            if (angle.Radians > MathConst.PId2)
+            if (angle.Radians > MathConstant.PId2)
             {
-                angle.Radians = MathConst.PI - angle.Radians;
+                angle.Radians = MathConstant.PI - angle.Radians;
             }
 
             return angle;
@@ -146,9 +146,9 @@ namespace MathKit.Geometry
 
         private static Angle MaximalAngleBetweenLines(Angle angle)
         {
-            if (angle.Radians < MathConst.PId2)
+            if (angle.Radians < MathConstant.PId2)
             {
-                angle.Radians = MathConst.PI - angle.Radians;
+                angle.Radians = MathConstant.PI - angle.Radians;
             }
 
             return angle;

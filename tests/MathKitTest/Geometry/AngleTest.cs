@@ -11,13 +11,13 @@ namespace MathKitTest.Geometry
         [TestMethod]
         public void TestDegrees()
         {
-            Angle a = new Angle(MathConst.PI / 4.0);
+            Angle a = new Angle(MathConstant.PI / 4.0);
 
-            Assert.AreEqual(45.0, a.Degrees, MathConst.EPSYLON);
+            Assert.AreEqual(45.0, a.Degrees, MathConstant.EPSYLON);
 
             a.Degrees = -10;
 
-            Assert.AreEqual(-MathConst.PI / 18.0, a.Radians, MathConst.EPSYLON);
+            Assert.AreEqual(-MathConstant.PI / 18.0, a.Radians, MathConstant.EPSYLON);
         }
     }
 }

@@ -50,7 +50,7 @@ namespace MathKit.Geometry
 
         public bool IsZero()
         {
-            return w * w + x * x + y * y + z * z <= MathConst.EPSYLON_QUAD;
+            return w * w + x * x + y * y + z * z <= MathConstant.EPSYLON_QUAD;
         }
 
         public void Conjugate()
@@ -74,7 +74,7 @@ namespace MathKit.Geometry
         {
             double module = this.Module();
 
-            if (module < MathConst.EPSYLON)
+            if (module < MathConstant.EPSYLON)
             {
                 this.Zero();
                 return;

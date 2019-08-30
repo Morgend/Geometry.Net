@@ -86,23 +86,23 @@ namespace MathKit.Geometry
 
             bool renormalize = false;
 
-            if (this.Elevation.Radians < -MathConst.PId2)
+            if (this.Elevation.Radians < -MathConstant.PId2)
             {
-                this.Elevation.Radians = -MathConst.PI - this.Elevation.Radians;
+                this.Elevation.Radians = -MathConstant.PI - this.Elevation.Radians;
                 renormalize = true;
             }
-            else if (this.Elevation.Radians > MathConst.PId2)
+            else if (this.Elevation.Radians > MathConstant.PId2)
             {
-                this.Elevation.Radians = MathConst.PI - this.Elevation.Radians;
+                this.Elevation.Radians = MathConstant.PI - this.Elevation.Radians;
                 renormalize = true;
             }
 
             if (renormalize)
             {
-                this.Heading.AddRadians(MathConst.PI);
+                this.Heading.AddRadians(MathConstant.PI);
                 this.Heading.NormalizePiMinusPi();
 
-                this.Bank.AddRadians(MathConst.PI);
+                this.Bank.AddRadians(MathConstant.PI);
             }
 
             this.Bank.NormalizePiMinusPi();

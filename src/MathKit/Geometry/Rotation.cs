@@ -262,7 +262,7 @@ namespace MathKit.Geometry
 
             double sinus = Math.Sin(angle.Radians * 0.5);
 
-            if (MathConst.NEGATIVE_EPSYLON <= sinus && sinus <= MathConst.POSITIVE_EPSYLON)
+            if (MathConstant.NEGATIVE_EPSYLON <= sinus && sinus <= MathConstant.POSITIVE_EPSYLON)
             {
                 Reset();
                 return;
@@ -339,7 +339,7 @@ namespace MathKit.Geometry
 
             double module = q.Module();
 
-            if (module < MathConst.EPSYLON)
+            if (module < MathConstant.EPSYLON)
             {
                 Reset();
                 return;
@@ -353,7 +353,7 @@ namespace MathKit.Geometry
 
         private void CheckIdentity()
         {
-            if (state != RotationState.IDENTITY && 1.0 - MathConst.EPSYLON <= q.w && q.w <= 1.0 + MathConst.EPSYLON)
+            if (state != RotationState.IDENTITY && 1.0 - MathConstant.EPSYLON <= q.w && q.w <= 1.0 + MathConstant.EPSYLON)
             {
                 Reset();
             }

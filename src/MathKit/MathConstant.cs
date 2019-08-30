@@ -7,7 +7,7 @@
 
 namespace MathKit
 {
-    public class MathConst
+    public class MathConstant
     {
         public const double EPSYLON = 0.00000000001;
         public const double EPSYLON_QUAD = EPSYLON * EPSYLON;
@@ -34,7 +34,7 @@ namespace MathKit
         /// </summary>
         public const double PIx3d2 = Math.PI * 1.5;
 
-        private MathConst()
+        private MathConstant()
         {
         }
     }

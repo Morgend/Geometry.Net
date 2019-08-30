@@ -58,9 +58,9 @@ namespace MathKitTest.Geometry
             info.expectedBC = new Vector3(1, -1, 0);
             info.expectedCA = new Vector3(-1, 0, 0);
 
-            info.angleA = MathConst.PId2;
-            info.angleB = MathConst.PI / 4.0;
-            info.angleC = MathConst.PI / 4.0;
+            info.angleA = MathConstant.PId2;
+            info.angleB = MathConstant.PI / 4.0;
+            info.angleC = MathConstant.PI / 4.0;
 
             return info;
         }
@@ -78,9 +78,9 @@ namespace MathKitTest.Geometry
             info.expectedBC = new Vector3(1, 0, -1);
             info.expectedCA = new Vector3(-1, 0, 0);
 
-            info.angleA = MathConst.PId2;
-            info.angleB = MathConst.PI / 4.0;
-            info.angleC = MathConst.PI / 4.0;
+            info.angleA = MathConstant.PId2;
+            info.angleB = MathConstant.PI / 4.0;
+            info.angleC = MathConstant.PI / 4.0;
 
             return info;
         }
@@ -98,9 +98,9 @@ namespace MathKitTest.Geometry
             info.expectedBC = new Vector3(0, 1, -1);
             info.expectedCA = new Vector3(0, -1, 0);
 
-            info.angleA = MathConst.PId2;
-            info.angleB = MathConst.PI / 4.0;
-            info.angleC = MathConst.PI / 4.0;
+            info.angleA = MathConstant.PId2;
+            info.angleB = MathConstant.PI / 4.0;
+            info.angleC = MathConstant.PI / 4.0;
 
             return info;
         }
@@ -132,16 +132,16 @@ namespace MathKitTest.Geometry
 
         private void CheckSquare(TriangleInfo info)
         {
-            Assert.AreEqual(info.expectedSquare, info.triangle.Square(), MathConst.EPSYLON);
+            Assert.AreEqual(info.expectedSquare, info.triangle.Square(), MathConstant.EPSYLON);
         }
 
         private void CheckMedianCentre(TriangleInfo info)
         {
             Vector3 median = info.triangle.MedianCentre();
 
-            Assert.AreEqual(info.expectedMedianCentre.x, median.x, MathConst.EPSYLON);
-            Assert.AreEqual(info.expectedMedianCentre.y, median.y, MathConst.EPSYLON);
-            Assert.AreEqual(info.expectedMedianCentre.z, median.z, MathConst.EPSYLON);
+            Assert.AreEqual(info.expectedMedianCentre.x, median.x, MathConstant.EPSYLON);
+            Assert.AreEqual(info.expectedMedianCentre.y, median.y, MathConstant.EPSYLON);
+            Assert.AreEqual(info.expectedMedianCentre.z, median.z, MathConstant.EPSYLON);
         }
 
         private void CheckSides(TriangleInfo info)
@@ -153,16 +153,16 @@ namespace MathKitTest.Geometry
 
         private void CheckSide(Vector3 expectedSide, Vector3 side)
         {
-            Assert.AreEqual(expectedSide.x, side.x, MathConst.EPSYLON);
-            Assert.AreEqual(expectedSide.y, side.y, MathConst.EPSYLON);
-            Assert.AreEqual(expectedSide.z, side.z, MathConst.EPSYLON);
+            Assert.AreEqual(expectedSide.x, side.x, MathConstant.EPSYLON);
+            Assert.AreEqual(expectedSide.y, side.y, MathConstant.EPSYLON);
+            Assert.AreEqual(expectedSide.z, side.z, MathConstant.EPSYLON);
         }
 
         private void CheckAngles(TriangleInfo info)
         {
-            Assert.AreEqual(info.angleA, info.triangle.AngleA(), MathConst.EPSYLON);
-            Assert.AreEqual(info.angleB, info.triangle.AngleB(), MathConst.EPSYLON);
-            Assert.AreEqual(info.angleC, info.triangle.AngleC(), MathConst.EPSYLON);
+            Assert.AreEqual(info.angleA, info.triangle.AngleA(), MathConstant.EPSYLON);
+            Assert.AreEqual(info.angleB, info.triangle.AngleB(), MathConstant.EPSYLON);
+            Assert.AreEqual(info.angleC, info.triangle.AngleC(), MathConstant.EPSYLON);
         }
 
         [TestMethod]
