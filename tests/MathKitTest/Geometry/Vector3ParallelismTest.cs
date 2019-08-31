@@ -6,27 +6,15 @@ using MathKit.Geometry;
 namespace MathKitTest.Geometry
 {
     [TestClass]
-    public class Vector3Test
+    public class Vector3ParallelismTest
     {
         private const int PARALLEL_AMOUNT = 5;
         private const int NONPARALLEL_AMOUNT = 8;
 
-        private struct Vector3Pair
-        {
-            public Vector3 a;
-            public Vector3 b;
-
-            public Vector3Pair(Vector3 a, Vector3 b)
-            {
-                this.a = a;
-                this.b = b;
-            }
-        }
-
         private Vector3Pair[] parallelVectors;
         private Vector3Pair[] nonParallelVectors;
 
-        public Vector3Test()
+        public Vector3ParallelismTest()
         {
             InitParallelVectors();
             InitNonParallelVectors();

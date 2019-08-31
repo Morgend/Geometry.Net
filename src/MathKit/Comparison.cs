@@ -7,12 +7,12 @@
 
 namespace MathKit
 {
-    public class Compare
+    public class Comparison
     {
         private const double EPSYLON_EFFECTIVENESS_LOW = -100.0;
         private const double EPSYLON_EFFECTIVENESS_HIGH = 100.0;
 
-        private Compare()
+        private Comparison()
         {
         }
 

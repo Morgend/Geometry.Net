@@ -53,7 +53,7 @@
     <Compile Include="Geometry\Vector3.cs" />
     <Compile Include="MathConstant.cs" />
     <Compile Include="Absolute.cs" />
-    <Compile Include="Compare.cs" />
+    <Compile Include="Comparison.cs" />
     <Compile Include="Maximum.cs" />
     <Compile Include="Minimum.cs" />
     <Compile Include="MathKitInfo.cs" />

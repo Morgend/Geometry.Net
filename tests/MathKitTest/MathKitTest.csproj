@@ -57,8 +57,12 @@
     <Compile Include="Geometry\EulerAnglesTest.cs" />
     <Compile Include="Geometry\Triangle3Test.cs" />
     <Compile Include="Geometry\Triangle2Test.cs" />
-    <Compile Include="Geometry\Vector3Test.cs" />
-    <Compile Include="Geometry\Vector2Test.cs" />
+    <Compile Include="Geometry\Vector2ParallelismTest.cs" />
+    <Compile Include="Geometry\Vector2ComparisonTest.cs" />
+    <Compile Include="Geometry\Vector3ComparisonTest.cs" />
+    <Compile Include="Geometry\Vector2Pair.cs" />
+    <Compile Include="Geometry\Vector3Pair.cs" />
+    <Compile Include="Geometry\Vector3ParallelismTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

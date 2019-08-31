@@ -128,9 +128,14 @@ namespace MathKit.Geometry
             return new Angle(Math.Acos(this.Scalar(vector) / (m1 * m2)));
         }
 
+        public bool IsEqualTo(Vector2 v)
+        {
+            return Comparison.AreEqual(this.x, v.x) && Comparison.AreEqual(this.y, v.y);
+        }
+
         public bool IsParallelTo(Vector2 v)
         {
-            return Compare.AreEqual(this.x * v.y, this.y * v.x);
+            return Comparison.AreEqual(this.x * v.y, this.y * v.x);
         }
 
         public bool IsCoDirectionalTo(Vector2 v)
