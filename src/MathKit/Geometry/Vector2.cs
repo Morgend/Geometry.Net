@@ -150,7 +150,8 @@ namespace MathKit.Geometry
 
         public bool IsOrthogonalTo(Vector2 v)
         {
-            return this.Scalar(v) <= MathConstant.EPSYLON_QUAD;
+            double scalar = this.Scalar(v);
+            return -MathConstant.EPSYLON_QUAD <= scalar && scalar <= MathConstant.EPSYLON_QUAD;
         }
 
         public static Vector2 operator +(Vector2 v1, Vector2 v2)

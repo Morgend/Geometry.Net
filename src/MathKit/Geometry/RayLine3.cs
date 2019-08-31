@@ -49,14 +49,29 @@ namespace MathKit.Geometry
             return this.valid && line.valid && this.direction.IsParallelTo(line.direction);
         }
 
-        public bool IsOrthogonal(Vector3 vector)
+        public bool IsParallelTo(StraightLine3 line)
+        {
+            return this.valid && line.IsValid && this.direction.IsParallelTo(line.Direction);
+        }
+
+        public bool IsOrthogonalTo(Vector3 vector)
         {
             return this.valid && this.direction.IsOrthogonalTo(vector);
         }
 
-        public bool IsOrthogonal(RayLine3 line)
+        public bool IsOrthogonalTo(RayLine3 line)
         {
             return this.valid && line.valid && this.direction.IsOrthogonalTo(line.direction);
+        }
+
+        public bool IsOrthogonalTo(StraightLine3 line)
+        {
+            return this.valid && line.IsValid && this.direction.IsOrthogonalTo(line.Direction);
+        }
+
+        public bool IsEqualTo(RayLine3 line)
+        {
+            return this.valid && line.valid && this.StartPoint.IsEqualTo(line.StartPoint) && this.direction.IsCoDirectionalTo(line.direction);
         }
 
         public bool IsAtLine(Vector3 point)

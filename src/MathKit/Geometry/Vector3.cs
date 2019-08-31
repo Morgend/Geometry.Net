@@ -180,7 +180,8 @@ namespace MathKit.Geometry
 
         public bool IsOrthogonalTo(Vector3 v)
         {
-            return this.Scalar(v) <= MathConstant.EPSYLON_QUAD;
+            double scalar = this.Scalar(v);
+            return -MathConstant.EPSYLON_QUAD <= scalar && scalar <= MathConstant.EPSYLON_QUAD;
         }
 
         public static Vector3 operator +(Vector3 v1, Vector3 v2)
