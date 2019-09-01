@@ -110,6 +110,11 @@ namespace MathKit.Geometry
             return new Rotation(Angle.DegreesToRadians(heading), Angle.DegreesToRadians(elevation), Angle.DegreesToRadians(bank));
         }
 
+        public static Rotation FromGrads(double heading, double elevation, double bank)
+        {
+            return new Rotation(Angle.GradsToRadians(heading), Angle.GradsToRadians(elevation), Angle.GradsToRadians(bank));
+        }
+
         public bool IsIdentity
         {
             get
@@ -325,9 +330,14 @@ namespace MathKit.Geometry
             CheckIdentity();
         }
 
-        public void SetTurnDegrees(double heading, double elevation, double bank)
+        public void SetTurnInDegrees(double heading, double elevation, double bank)
         {
             SetTurn(Angle.DegreesToRadians(heading), Angle.DegreesToRadians(elevation), Angle.DegreesToRadians(bank));
+        }
+
+        public void SetTurnInGrads(double heading, double elevation, double bank)
+        {
+            SetTurn(Angle.GradsToRadians(heading), Angle.GradsToRadians(elevation), Angle.GradsToRadians(bank));
         }
 
         public void Normalize()
