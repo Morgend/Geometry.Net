@@ -16,6 +16,13 @@ namespace MathKit.Geometry
             this.valid = !this.direction.IsZero();
         }
 
+        public StraightLine3(StraightLine3 line)
+        {
+            this.BasicPoint = line.BasicPoint;
+            this.direction = line.direction;
+            this.valid = line.valid;
+        }
+
         public Vector3 Direction
         {
             get
@@ -71,7 +78,7 @@ namespace MathKit.Geometry
 
         public bool IsEqualTo(StraightLine3 line)
         {
-            return this.valid && line.valid && this.direction.IsParallelTo(line.direction) && this.direction.IsParallelTo(line.BasicPoint - this.BasicPoint);
+            return this.IsParallelTo(line) && this.direction.IsParallelTo(line.BasicPoint - this.BasicPoint);
         }
 
         public bool IsAtLine(Vector3 point)

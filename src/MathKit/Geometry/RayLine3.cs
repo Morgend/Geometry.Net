@@ -16,6 +16,13 @@ namespace MathKit.Geometry
             this.valid = this.direction.IsZero();
         }
 
+        public RayLine3(RayLine3 line)
+        {
+            this.StartPoint = line.StartPoint;
+            this.direction = line.direction;
+            this.valid = line.valid;
+        }
+
         public Vector3 Direction
         {
             get
@@ -54,6 +61,26 @@ namespace MathKit.Geometry
             return this.valid && line.IsValid && this.direction.IsParallelTo(line.Direction);
         }
 
+        public bool IsCoDirectionalTo(Vector3 vector)
+        {
+            return this.valid && this.direction.IsCoDirectionalTo(vector);
+        }
+
+        public bool IsCoDirectionalTo(RayLine3 line)
+        {
+            return this.valid && line.valid && this.direction.IsCoDirectionalTo(line.direction);
+        }
+
+        public bool IsAntiDirectionalTo(Vector3 vector)
+        {
+            return this.valid && this.direction.IsAntiDirectionalTo(vector);
+        }
+
+        public bool IsAntiDirectionalTo(RayLine3 line)
+        {
+            return this.valid && line.valid && this.direction.IsAntiDirectionalTo(line.direction);
+        }
+
         public bool IsOrthogonalTo(Vector3 vector)
         {
             return this.valid && this.direction.IsOrthogonalTo(vector);
@@ -71,7 +98,7 @@ namespace MathKit.Geometry
 
         public bool IsEqualTo(RayLine3 line)
         {
-            return this.valid && line.valid && this.StartPoint.IsEqualTo(line.StartPoint) && this.direction.IsCoDirectionalTo(line.direction);
+            return this.IsCoDirectionalTo(line) && this.StartPoint.IsEqualTo(line.StartPoint);
         }
 
         public bool IsAtLine(Vector3 point)
