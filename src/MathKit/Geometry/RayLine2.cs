@@ -1,4 +1,9 @@
 ﻿
+/*
+ * Author: Andrey Pokidov
+ * Date: 30 Aug 2019
+ */
+
 namespace MathKit.Geometry
 {
     public struct RayLine2

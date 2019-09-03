@@ -38,6 +38,7 @@
     <Compile Include="Geometry\EulerAngles.cs" />
     <Compile Include="Geometry\Matrix2x2.cs" />
     <Compile Include="Geometry\Matrix3x3.cs" />
+    <Compile Include="Geometry\Plane.cs" />
     <Compile Include="Geometry\Position2.cs" />
     <Compile Include="Geometry\Position3.cs" />
     <Compile Include="Geometry\Quaternion.cs" />

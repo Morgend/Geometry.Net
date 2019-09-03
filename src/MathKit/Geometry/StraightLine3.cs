@@ -1,4 +1,9 @@
 ﻿
+/*
+ * Author: Andrey Pokidov
+ * Date: 29 Aug 2019
+ */
+
 namespace MathKit.Geometry
 {
     public struct StraightLine3

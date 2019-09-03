@@ -1,5 +1,10 @@
 ﻿using System;
 
+/*
+ * Author: Andrey Pokidov
+ * Date: 1 Sep 2019
+ */
+
 namespace MathKit.Geometry
 {
     public struct Plane
