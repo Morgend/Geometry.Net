@@ -111,5 +111,29 @@ namespace GeometryKit
 
             return point - (point - BasicPoint).Scalar(normal) * normal;
         }
+
+        public PlaneCoordinateSystem MakeRightCoordinateSystem(Vector3 protoX)
+        {
+            if (!valid)
+            {
+                return new PlaneCoordinateSystem(); // Return invalid coordinate system
+            }
+
+            Vector3 xVector = protoX - normal * normal.Scalar(protoX);
+
+            return new PlaneCoordinateSystem(this.BasicPoint, xVector, normal.Vector(xVector));
+        }
+
+        public PlaneCoordinateSystem MakeLeftCoordinateSystem(Vector3 protoX)
+        {
+            if (!valid)
+            {
+                return new PlaneCoordinateSystem(); // Return invalid coordinate system
+            }
+
+            Vector3 xVector = protoX - normal * normal.Scalar(protoX);
+
+            return new PlaneCoordinateSystem(this.BasicPoint, xVector, xVector.Vector(normal));
+        }
     }
 }

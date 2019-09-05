@@ -65,7 +65,7 @@ namespace GeometryKit
             valid = false;
         }
 
-        public bool Valid
+        public bool IsValid
         {
             get
             {
