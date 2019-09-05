@@ -46,5 +46,50 @@ namespace GeometryKit
                 return A - B;
             }
         }
+
+        public bool IsParallelTo(Vector3 vector)
+        {
+            return vector.IsParallelTo(B - A);
+        }
+
+        public bool IsParallelTo(StraightLine3 line)
+        {
+            return line.IsParallelTo(this);
+        }
+
+        public bool IsParallelTo(RayLine3 line)
+        {
+            return line.IsParallelTo(this);
+        }
+
+        public bool IsParallelTo(LineSegment3 segment)
+        {
+            return (B - A).IsParallelTo(segment.B - segment.A);
+        }
+
+        public bool IsOrthogonalTo(Vector3 vector)
+        {
+            return vector.IsOrthogonalTo(B - A);
+        }
+
+        public bool IsOrthogonalTo(StraightLine3 line)
+        {
+            return line.IsOrthogonalTo(this);
+        }
+
+        public bool IsOrthogonalTo(RayLine3 line)
+        {
+            return line.IsOrthogonalTo(this);
+        }
+
+        public bool IsOrthogonalTo(LineSegment3 segment)
+        {
+            return (B - A).IsOrthogonalTo(segment.B - segment.A);
+        }
+
+        public bool IsEqualTo(LineSegment3 line)
+        {
+            return (A.IsEqualTo(line.A) && B.IsEqualTo(line.B)) || (A.IsEqualTo(line.B) && B.IsEqualTo(line.A));
+        }
     }
 }

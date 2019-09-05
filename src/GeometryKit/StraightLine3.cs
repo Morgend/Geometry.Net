@@ -66,6 +66,11 @@ namespace GeometryKit
             return this.valid && line.IsValid && this.direction.IsParallelTo(line.Direction);
         }
 
+        public bool IsParallelTo(LineSegment3 segment)
+        {
+            return this.valid && this.direction.IsParallelTo(segment.VectorAB);
+        }
+
         public bool IsOrthogonalTo(Vector3 vector)
         {
             return this.valid && this.direction.IsOrthogonalTo(vector);
@@ -79,6 +84,11 @@ namespace GeometryKit
         public bool IsOrthogonalTo(RayLine3 line)
         {
             return this.valid && line.IsValid && this.direction.IsOrthogonalTo(line.Direction);
+        }
+
+        public bool IsOrthogonalTo(LineSegment3 segment)
+        {
+            return this.valid && this.direction.IsOrthogonalTo(segment.VectorAB);
         }
 
         public bool IsEqualTo(StraightLine3 line)
