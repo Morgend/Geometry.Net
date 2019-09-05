@@ -27,7 +27,31 @@ namespace MathKit.Geometry
             C = anotherTriangle.C;
         }
 
-        public Vector3 SideAB
+        public LineSegment3 SideAB
+        {
+            get
+            {
+                return new LineSegment3(A, B);
+            }
+        }
+
+        public LineSegment3 SideBC
+        {
+            get
+            {
+                return new LineSegment3(B, C);
+            }
+        }
+
+        public LineSegment3 SideCA
+        {
+            get
+            {
+                return new LineSegment3(C, A);
+            }
+        }
+
+        public Vector3 VectorAB
         {
             get
             {
@@ -35,7 +59,7 @@ namespace MathKit.Geometry
             }
         }
 
-        public Vector3 SideBA
+        public Vector3 VectorBA
         {
             get
             {
@@ -43,7 +67,7 @@ namespace MathKit.Geometry
             }
         }
 
-        public Vector3 SideBC
+        public Vector3 VectorBC
         {
             get
             {
@@ -51,7 +75,7 @@ namespace MathKit.Geometry
             }
         }
 
-        public Vector3 SideCB
+        public Vector3 VectorCB
         {
             get
             {
@@ -59,7 +83,7 @@ namespace MathKit.Geometry
             }
         }
 
-        public Vector3 SideCA
+        public Vector3 VectorCA
         {
             get
             {
@@ -67,7 +91,7 @@ namespace MathKit.Geometry
             }
         }
 
-        public Vector3 SideAC
+        public Vector3 VectorAC
         {
             get
             {
@@ -77,7 +101,7 @@ namespace MathKit.Geometry
 
         public bool IsDegenerated()
         {
-            return this.SideAB.IsParallelTo(this.SideAC);
+            return (B - A).IsParallelTo(C - A);
         }
 
         public Angle AngleA()

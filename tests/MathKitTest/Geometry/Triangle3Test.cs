@@ -146,9 +146,9 @@ namespace MathKitTest.Geometry
 
         private void CheckSides(TriangleInfo info)
         {
-            CheckSide(info.expectedAB, info.triangle.SideAB);
-            CheckSide(info.expectedBC, info.triangle.SideBC);
-            CheckSide(info.expectedCA, info.triangle.SideCA);
+            CheckSide(info.expectedAB, info.triangle.VectorAB);
+            CheckSide(info.expectedBC, info.triangle.VectorBC);
+            CheckSide(info.expectedCA, info.triangle.VectorCA);
         }
 
         private void CheckSide(Vector3 expectedSide, Vector3 side)

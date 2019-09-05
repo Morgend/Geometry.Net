@@ -46,8 +46,8 @@
     <Compile Include="CalculationResult.cs" />
     <Compile Include="Geometry\Rotation.cs" />
     <Compile Include="Geometry\RayLine2.cs" />
-    <Compile Include="Geometry\SegmentLine3.cs" />
-    <Compile Include="Geometry\SegmentLine2.cs" />
+    <Compile Include="Geometry\LineSegment3.cs" />
+    <Compile Include="Geometry\LineSegment2.cs" />
     <Compile Include="Geometry\StraightLine3.cs" />
     <Compile Include="Geometry\StraightLine2.cs" />
     <Compile Include="Geometry\Triangle2.cs" />
