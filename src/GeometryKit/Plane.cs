@@ -101,5 +101,15 @@ namespace GeometryKit
         {
             return this.valid && this.normal.IsOrthogonalTo(point - this.BasicPoint);
         }
+
+        public Vector3 ProjectionOf(Vector3 point)
+        {
+            if (!valid)
+            {
+                return Vector3.ZERO_VECTOR;
+            }
+
+            return point - (point - BasicPoint).Scalar(normal) * normal;
+        }
     }
 }

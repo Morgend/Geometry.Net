@@ -23,7 +23,7 @@ namespace MathKitTest.Geometry
         {
             this.equalVectors = new Vector3Pair[EQUAL_AMOUNT];
 
-            this.equalVectors[0] = new Vector3Pair(new Vector3(), new Vector3());
+            this.equalVectors[0] = new Vector3Pair(Vector3.ZERO_VECTOR, Vector3.ZERO_VECTOR);
             this.equalVectors[1] = new Vector3Pair(new Vector3(2, 1, 0.4), new Vector3(2, 1, 0.4));
             this.equalVectors[2] = new Vector3Pair(new Vector3(1, 2, 3), new Vector3(1 + MathConstant.EPSYLON / 2, 2 - MathConstant.EPSYLON / 3, 3 - MathConstant.EPSYLON / 2));
             this.equalVectors[3] = new Vector3Pair(new Vector3(-1, -500, 1000), new Vector3(-1, -500 + MathConstant.EPSYLON, 1000 - MathConstant.EPSYLON));

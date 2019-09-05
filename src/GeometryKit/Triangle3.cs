@@ -135,5 +135,10 @@ namespace GeometryKit
             n.Normalize();
             return n;
         }
+
+        public Plane Plane()
+        {
+            return new Plane(A, (B - A).Vector(C - A));
+        }
     }
 }

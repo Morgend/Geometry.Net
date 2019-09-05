@@ -83,7 +83,7 @@ namespace GeometryKit
                     return new Vector2(this.a_2_1, this.a_2_2);
             }
 
-            return new Vector2();
+            return Vector2.ZERO_VECTOR;
         }
 
         public Vector2 Column(int index)
@@ -97,7 +97,7 @@ namespace GeometryKit
                     return new Vector2(this.a_1_2, this.a_2_2);
             }
 
-            return new Vector2();
+            return Vector2.ZERO_VECTOR;
         }
 
         public void Transpose()

@@ -107,7 +107,7 @@ namespace MathKitTest.Geometry
         private void InitDegeneratedTriangles()
         {
             this.degeneratedTriangle = new Triangle3[DEGENERATED_TRIANGLE_AMOUNT];
-            this.degeneratedTriangle[0] = new Triangle3(new Vector3(), new Vector3(), new Vector3());
+            this.degeneratedTriangle[0] = new Triangle3(Vector3.ZERO_VECTOR, Vector3.ZERO_VECTOR, Vector3.ZERO_VECTOR);
             this.degeneratedTriangle[1] = new Triangle3(new Vector3(1, 2, 3), new Vector3(1, 2, 3), new Vector3(1, 2, 3));
             this.degeneratedTriangle[2] = new Triangle3(new Vector3(1, 2, 3), new Vector3(2, 1, 3), new Vector3(1, 2, 3));
             this.degeneratedTriangle[3] = new Triangle3(new Vector3(1, 2, 3), new Vector3(1, 3, 2), new Vector3(1, 2, 3));

@@ -8,7 +8,7 @@
     <ProjectGuid>{171913CF-95E0-422C-9E94-A3FB8BCD4D73}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MathKit</RootNamespace>
+    <RootNamespace>GeometryKit</RootNamespace>
     <AssemblyName>MathKit</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
@@ -48,6 +48,7 @@
     <Compile Include="Maximum.cs" />
     <Compile Include="Minimum.cs" />
     <Compile Include="Plane.cs" />
+    <Compile Include="PlaneCoordinateSystem.cs" />
     <Compile Include="Position2.cs" />
     <Compile Include="Position3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

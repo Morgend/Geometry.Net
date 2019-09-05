@@ -39,7 +39,7 @@ namespace GeometryKit
 
         public Position3(Position3 first, Position3 second)
         {
-            this.Point = new Vector3();
+            this.Point = Vector3.ZERO_VECTOR;
             this.Rotation = new Rotation();
 
             this.SetCombinationOf(first, second);

@@ -141,7 +141,7 @@ namespace GeometryKit
 
                 if (state == RotationState.IDENTITY)
                 {
-                    return new Vector3();
+                    return Vector3.ZERO_VECTOR;
                 }
 
                 Vector3 axis = new Vector3(q.x, q.y, q.z);

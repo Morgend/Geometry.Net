@@ -23,9 +23,9 @@ namespace MathKitTest.Geometry
         {
             this.parallelVectors = new Vector3Pair[PARALLEL_AMOUNT];
 
-            this.parallelVectors[0] = new Vector3Pair(new Vector3(), new Vector3());
+            this.parallelVectors[0] = new Vector3Pair(Vector3.ZERO_VECTOR, Vector3.ZERO_VECTOR);
             this.parallelVectors[1] = new Vector3Pair(new Vector3(2, 1, 0.4), new Vector3(4.2, 2.1, 0.84));
-            this.parallelVectors[2] = new Vector3Pair(new Vector3(1, 2, 3), new Vector3());
+            this.parallelVectors[2] = new Vector3Pair(new Vector3(1, 2, 3), Vector3.ZERO_VECTOR);
             this.parallelVectors[3] = new Vector3Pair(new Vector3(-1, 3, -2.5), new Vector3(2, -6, 5));
             this.parallelVectors[4] = new Vector3Pair(new Vector3(0.8, 0.1, 100.2), new Vector3(4.0, 0.5, 501.0));
         }

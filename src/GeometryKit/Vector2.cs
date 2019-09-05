@@ -10,6 +10,7 @@ namespace GeometryKit
     public struct Vector2
     {
         public const double DEFAULT_COORDINATE_VALUE = 0.0;
+        public static readonly Vector2 ZERO_VECTOR = new Vector2(DEFAULT_COORDINATE_VALUE, DEFAULT_COORDINATE_VALUE);
 
         public double x;
         public double y;

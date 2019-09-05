@@ -114,7 +114,7 @@ namespace GeometryKit
                     return new Vector3(this.a_3_1, this.a_3_2, this.a_3_3);
             }
 
-            return new Vector3();
+            return Vector3.ZERO_VECTOR;
         }
 
         public Vector3 Column(int index)
@@ -131,7 +131,7 @@ namespace GeometryKit
                     return new Vector3(this.a_1_3, this.a_2_3, this.a_3_3);
             }
 
-            return new Vector3();
+            return Vector3.ZERO_VECTOR;
         }
 
         public void Transpose()
