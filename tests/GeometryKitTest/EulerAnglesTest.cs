@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using GeometryKit;
 
-namespace MathKitTest.Geometry
+namespace GeometryKitTest
 {
     [TestClass]
     public class EulerAnglesTest

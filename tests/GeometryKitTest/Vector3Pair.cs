@@ -1,6 +1,6 @@
 ﻿using GeometryKit;
 
-namespace MathKitTest.Geometry
+namespace GeometryKitTest
 {
     public struct Vector3Pair
     {
