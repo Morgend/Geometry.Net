@@ -7,7 +7,7 @@
 
 namespace GeometryKit
 {
-    public struct Angle
+    public struct Angle : IComparable<Angle>
     {
         public const double DEFAULT_VALUE = 0.0;
 
@@ -270,6 +270,76 @@ namespace GeometryKit
             result.a_2_2 = cos;
 
             return result;
+        }
+
+        public bool IsEqualTo(Angle angle)
+        {
+            return Comparison.AreEqual(this.Radians, angle.Radians);
+        }
+
+        public bool IsEqualTo(double radians)
+        {
+            return Comparison.AreEqual(this.Radians, radians);
+        }
+
+        public bool IsStrictlyEqualTo(Angle angle)
+        {
+            return this.Radians == angle.Radians;
+        }
+
+        public int CompareTo(Angle angle)
+        {
+            if (this.Radians < angle.Radians)
+            {
+                return -1;
+            }
+
+            if (this.Radians > angle.Radians)
+            {
+                return 1;
+            }
+
+            return 0;
+        }
+
+        public override bool Equals(Object angleInstance)
+        {
+            return Comparison.AreEqual(this.Radians, ((Angle)angleInstance).Radians);
+        }
+
+        public override int GetHashCode()
+        {
+            return this.Radians.GetHashCode();
+        }
+
+        public static bool operator >(Angle angle1, Angle angle2)
+        {
+            return angle1.Radians > angle2.Radians;
+        }
+
+        public static bool operator >=(Angle angle1, Angle angle2)
+        {
+            return angle1.Radians >= angle2.Radians;
+        }
+
+        public static bool operator <(Angle angle1, Angle angle2)
+        {
+            return angle1.Radians < angle2.Radians;
+        }
+
+        public static bool operator <=(Angle angle1, Angle angle2)
+        {
+            return angle1.Radians <= angle2.Radians;
+        }
+
+        public static bool operator ==(Angle angle1, Angle angle2)
+        {
+            return Comparison.AreEqual(angle1.Radians, angle2.Radians);
+        }
+
+        public static bool operator !=(Angle angle1, Angle angle2)
+        {
+            return !Comparison.AreEqual(angle1.Radians, angle2.Radians);
         }
 
         public static Angle operator +(Angle a1, Angle a2)
