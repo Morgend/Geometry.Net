@@ -91,15 +91,5 @@ namespace GeometryKit
         {
             return (A.IsEqualTo(line.A) && B.IsEqualTo(line.B)) || (A.IsEqualTo(line.B) && B.IsEqualTo(line.A));
         }
-
-        public static bool operator ==(LineSegment2 line1, LineSegment2 line2)
-        {
-            return line1.IsEqualTo(line2);
-        }
-
-        public static bool operator !=(LineSegment2 line1, LineSegment2 line2)
-        {
-            return !line1.IsEqualTo(line2);
-        }
     }
 }

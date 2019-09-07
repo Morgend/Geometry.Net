@@ -116,16 +116,6 @@ namespace GeometryKit
             return this.IsCoDirectionalTo(line) && this.StartPoint.IsEqualTo(line.StartPoint);
         }
 
-        public static bool operator ==(RayLine3 line1, RayLine3 line2)
-        {
-            return line1.IsEqualTo(line2);
-        }
-
-        public static bool operator !=(RayLine3 line1, RayLine3 line2)
-        {
-            return !line1.IsEqualTo(line2);
-        }
-
         public bool IsAtLine(Vector3 point)
         {
             return this.valid && this.direction.IsCoDirectionalTo(point - this.StartPoint);

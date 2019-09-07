@@ -97,16 +97,6 @@ namespace GeometryKit
             return this.IsParallelTo(plane) && this.normal.IsOrthogonalTo(plane.BasicPoint - this.BasicPoint);
         }
 
-        public static bool operator ==(Plane plane1, Plane plane2)
-        {
-            return plane1.IsEqualTo(plane2);
-        }
-
-        public static bool operator !=(Plane plane1, Plane plane2)
-        {
-            return !plane1.IsEqualTo(plane2);
-        }
-
         public bool IsAtPlane(Vector3 point)
         {
             return this.valid && this.normal.IsOrthogonalTo(point - this.BasicPoint);

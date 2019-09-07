@@ -96,16 +96,6 @@ namespace GeometryKit
             return this.IsParallelTo(line) && this.direction.IsParallelTo(line.BasicPoint - this.BasicPoint);
         }
 
-        public static bool operator ==(StraightLine3 line1, StraightLine3 line2)
-        {
-            return line1.IsEqualTo(line2);
-        }
-
-        public static bool operator !=(StraightLine3 line1, StraightLine3 line2)
-        {
-            return !line1.IsEqualTo(line2);
-        }
-
         public bool IsAtLine(Vector3 point)
         {
             return this.valid && this.direction.IsParallelTo(point - this.BasicPoint);
