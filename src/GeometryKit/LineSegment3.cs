@@ -47,6 +47,8 @@ namespace GeometryKit
             }
         }
 
+        // ============= Parallelism check methods: =============
+
         public bool IsParallelTo(Vector3 vector)
         {
             return vector.IsParallelTo(B - A);
@@ -54,18 +56,25 @@ namespace GeometryKit
 
         public bool IsParallelTo(StraightLine3 line)
         {
-            return line.IsParallelTo(this);
+            return line.IsValid && line.Direction.IsParallelTo(B - A);
         }
 
         public bool IsParallelTo(RayLine3 line)
         {
-            return line.IsParallelTo(this);
+            return line.IsValid && line.Direction.IsParallelTo(B - A);
         }
 
         public bool IsParallelTo(LineSegment3 segment)
         {
             return (B - A).IsParallelTo(segment.B - segment.A);
         }
+
+        public bool IsParallelTo(Plane plane)
+        {
+            return plane.IsValid && plane.Normal.IsOrthogonalTo(B - A);
+        }
+
+        // ============= Orthogonality check methods: =============
 
         public bool IsOrthogonalTo(Vector3 vector)
         {
@@ -74,18 +83,25 @@ namespace GeometryKit
 
         public bool IsOrthogonalTo(StraightLine3 line)
         {
-            return line.IsOrthogonalTo(this);
+            return line.IsValid && line.Direction.IsOrthogonalTo(B - A);
         }
 
         public bool IsOrthogonalTo(RayLine3 line)
         {
-            return line.IsOrthogonalTo(this);
+            return line.IsValid && line.Direction.IsOrthogonalTo(B - A);
         }
 
         public bool IsOrthogonalTo(LineSegment3 segment)
         {
             return (B - A).IsOrthogonalTo(segment.B - segment.A);
         }
+
+        public bool IsOrthogonalTo(Plane plane)
+        {
+            return plane.IsValid && plane.Normal.IsParallelTo(B - A);
+        }
+
+        // ========================================================
 
         public bool IsEqualTo(LineSegment3 line)
         {

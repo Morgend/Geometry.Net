@@ -176,26 +176,86 @@ namespace GeometryKit
             return this.x == v.x && this.y == v.y && this.z == v.z;
         }
 
+        // ============= Parallelism check methods: =============
+
         public bool IsParallelTo(Vector3 v)
         {
             return Comparison.AreEqual(this.x * v.y, this.y * v.x) && Comparison.AreEqual(this.x * v.z, this.z * v.x) && Comparison.AreEqual(this.y * v.z, this.z * v.y);
         }
+
+        public bool IsParallelTo(StraightLine3 line)
+        {
+            return line.IsValid && this.IsParallelTo(line.Direction);
+        }
+
+        public bool IsParallelTo(RayLine3 line)
+        {
+            return line.IsValid && this.IsParallelTo(line.Direction);
+        }
+
+        public bool IsParallelTo(LineSegment3 segment3)
+        {
+            return this.IsParallelTo(segment3.B - segment3.A);
+        }
+
+        public bool IsParallelTo(Plane plane)
+        {
+            return plane.IsValid && this.IsOrthogonalTo(plane.Normal);
+        }
+
+        // ============= Co-direction check methods: =============
 
         public bool IsCoDirectionalTo(Vector3 v)
         {
             return this.IsParallelTo(v) && this.Scalar(v) >= 0;
         }
 
+        public bool IsCoDirectionalTo(RayLine3 line)
+        {
+            return line.IsValid && this.IsCoDirectionalTo(line.Direction);
+        }
+
+        // ============= Anti-direction check methods: =============
+
         public bool IsAntiDirectionalTo(Vector3 v)
         {
             return this.IsParallelTo(v) && this.Scalar(v) < 0;
         }
+
+        public bool IsAntiDirectionalTo(RayLine3 line)
+        {
+            return line.IsValid && this.IsAntiDirectionalTo(line.Direction);
+        }
+
+        // ============= Orthogonality check methods: =============
 
         public bool IsOrthogonalTo(Vector3 v)
         {
             double scalar = this.Scalar(v);
             return -MathConstant.SQUARE_EPSYLON <= scalar && scalar <= MathConstant.SQUARE_EPSYLON;
         }
+
+        public bool IsOrthogonalTo(StraightLine3 line)
+        {
+            return line.IsValid && this.IsOrthogonalTo(line.Direction);
+        }
+
+        public bool IsOrthogonalTo(RayLine3 line)
+        {
+            return line.IsValid && this.IsOrthogonalTo(line.Direction);
+        }
+
+        public bool IsOrthogonalTo(LineSegment3 segment3)
+        {
+            return this.IsOrthogonalTo(segment3.B - segment3.A);
+        }
+
+        public bool IsOrthogonalTo(Plane plane)
+        {
+            return plane.IsValid && this.IsParallelTo(plane.Normal);
+        }
+
+        // ========================================================
 
         public static Vector3 operator +(Vector3 v1, Vector3 v2)
         {

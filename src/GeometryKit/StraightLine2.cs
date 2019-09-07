@@ -51,6 +51,8 @@ namespace GeometryKit
             }
         }
 
+        // ============= Parallelism check methods: =============
+
         public bool IsParallelTo(Vector2 vector)
         {
             return this.valid && this.direction.IsParallelTo(vector);
@@ -71,6 +73,8 @@ namespace GeometryKit
             return this.valid && this.direction.IsParallelTo(segment.VectorAB);
         }
 
+        // ============= Orthogonality check methods: =============
+
         public bool IsOrthogonalTo(Vector2 vector)
         {
             return this.valid && this.direction.IsOrthogonalTo(vector);
@@ -90,6 +94,8 @@ namespace GeometryKit
         {
             return this.valid && this.direction.IsOrthogonalTo(segment.VectorAB);
         }
+
+        // ========================================================
 
         public bool IsEqualTo(StraightLine2 line)
         {

@@ -51,6 +51,8 @@ namespace GeometryKit
             }
         }
 
+        // ============= Parallelism check methods: =============
+
         public bool IsParallelTo(Vector3 vector)
         {
             return this.valid && this.direction.IsParallelTo(vector);
@@ -71,6 +73,13 @@ namespace GeometryKit
             return this.valid && this.direction.IsParallelTo(segment.VectorAB);
         }
 
+        public bool IsParallelTo(Plane plane)
+        {
+            return this.valid && plane.IsValid && this.direction.IsOrthogonalTo(plane.Normal);
+        }
+
+        // ============= Co-direction check methods: =============
+
         public bool IsCoDirectionalTo(Vector3 vector)
         {
             return this.valid && this.direction.IsCoDirectionalTo(vector);
@@ -81,6 +90,8 @@ namespace GeometryKit
             return this.valid && line.valid && this.direction.IsCoDirectionalTo(line.direction);
         }
 
+        // ============= Anti-direction check methods: =============
+
         public bool IsAntiDirectionalTo(Vector3 vector)
         {
             return this.valid && this.direction.IsAntiDirectionalTo(vector);
@@ -90,6 +101,8 @@ namespace GeometryKit
         {
             return this.valid && line.valid && this.direction.IsAntiDirectionalTo(line.direction);
         }
+
+        // ============= Orthogonality check methods: =============
 
         public bool IsOrthogonalTo(Vector3 vector)
         {
@@ -110,6 +123,13 @@ namespace GeometryKit
         {
             return this.valid && this.direction.IsOrthogonalTo(segment.VectorAB);
         }
+
+        public bool IsOrthogonalTo(Plane plane)
+        {
+            return this.valid && plane.IsValid && this.direction.IsParallelTo(plane.Normal);
+        }
+
+        // ========================================================
 
         public bool IsEqualTo(RayLine3 line)
         {

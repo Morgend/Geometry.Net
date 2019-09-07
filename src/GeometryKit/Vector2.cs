@@ -146,26 +146,76 @@ namespace GeometryKit
             return this.x == v.x && this.y == v.y;
         }
 
+        // ============= Parallelism check methods: =============
+
         public bool IsParallelTo(Vector2 v)
         {
             return Comparison.AreEqual(this.x * v.y, this.y * v.x);
         }
+
+        public bool IsParallelTo(StraightLine2 line)
+        {
+            return line.IsValid && this.IsParallelTo(line.Direction);
+        }
+
+        public bool IsParallelTo(RayLine2 line)
+        {
+            return line.IsValid && this.IsParallelTo(line.Direction);
+        }
+
+        public bool IsParallelTo(LineSegment2 segment3)
+        {
+            return this.IsParallelTo(segment3.B - segment3.A);
+        }
+
+        // ============= Co-direction check methods: =============
 
         public bool IsCoDirectionalTo(Vector2 v)
         {
             return this.IsParallelTo(v) && this.Scalar(v) >= 0;
         }
 
+        public bool IsCoDirectionalTo(RayLine2 line)
+        {
+            return line.IsValid && this.IsCoDirectionalTo(line.Direction);
+        }
+
+        // ============= Anti-direction check methods: =============
+
         public bool IsAntiDirectionalTo(Vector2 v)
         {
             return this.IsParallelTo(v) && this.Scalar(v) < 0;
         }
+
+        public bool IsAntiDirectionalTo(RayLine2 line)
+        {
+            return line.IsValid && this.IsAntiDirectionalTo(line.Direction);
+        }
+
+        // ============= Orthogonality check methods: =============
 
         public bool IsOrthogonalTo(Vector2 v)
         {
             double scalar = this.Scalar(v);
             return -MathConstant.SQUARE_EPSYLON <= scalar && scalar <= MathConstant.SQUARE_EPSYLON;
         }
+
+        public bool IsOrthogonalTo(StraightLine2 line)
+        {
+            return line.IsValid && this.IsOrthogonalTo(line.Direction);
+        }
+
+        public bool IsOrthogonalTo(RayLine2 line)
+        {
+            return line.IsValid && this.IsOrthogonalTo(line.Direction);
+        }
+
+        public bool IsOrthogonalTo(LineSegment2 segment3)
+        {
+            return this.IsOrthogonalTo(segment3.B - segment3.A);
+        }
+
+        // ========================================================
 
         public static Vector2 operator +(Vector2 v1, Vector2 v2)
         {
