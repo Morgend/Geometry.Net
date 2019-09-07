@@ -39,7 +39,7 @@ namespace GeometryKit
 
         public bool IsZero()
         {
-            return x * x + y * y + z * z <= MathConstant.EPSYLON_QUAD;
+            return x * x + y * y + z * z <= MathConstant.SQUARE_EPSYLON;
         }
 
         public void SetValues(double x, double y, double z)
@@ -77,13 +77,20 @@ namespace GeometryKit
 
         public void Normalize()
         {
-            double module = this.Module();
+            double squareModule = this.x * this.x + this.y * this.y + this.z * this.z;
 
-            if (module < MathConstant.EPSYLON)
+            if (squareModule == 1.0 || squareModule == 0.0)
+            {
+                return;
+            }
+
+            if (squareModule < MathConstant.SQUARE_EPSYLON)
             {
                 this.Zero();
                 return;
             }
+
+            double module = Math.Sqrt(squareModule);
 
             this.x /= module;
             this.y /= module;
@@ -164,6 +171,11 @@ namespace GeometryKit
             return Comparison.AreEqual(this.x, v.x) && Comparison.AreEqual(this.y, v.y) && Comparison.AreEqual(this.z, v.z);
         }
 
+        public bool IsStrictlyEqualTo(Vector3 v)
+        {
+            return this.x == v.x && this.y == v.y && this.z == v.z;
+        }
+
         public bool IsParallelTo(Vector3 v)
         {
             return Comparison.AreEqual(this.x * v.y, this.y * v.x) && Comparison.AreEqual(this.x * v.z, this.z * v.x) && Comparison.AreEqual(this.y * v.z, this.z * v.y);
@@ -182,7 +194,7 @@ namespace GeometryKit
         public bool IsOrthogonalTo(Vector3 v)
         {
             double scalar = this.Scalar(v);
-            return -MathConstant.EPSYLON_QUAD <= scalar && scalar <= MathConstant.EPSYLON_QUAD;
+            return -MathConstant.SQUARE_EPSYLON <= scalar && scalar <= MathConstant.SQUARE_EPSYLON;
         }
 
         public static Vector3 operator +(Vector3 v1, Vector3 v2)
