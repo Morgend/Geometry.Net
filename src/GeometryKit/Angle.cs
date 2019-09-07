@@ -15,6 +15,11 @@ namespace GeometryKit
         public const double PIx2 = MathConstant.PIx2;
         public const double PId2 = MathConstant.PId2;
 
+        public readonly static Angle ZERO = new Angle(0.0);
+        public readonly static Angle AnglePI = new Angle(PI);
+        public readonly static Angle AnglePIx2 = new Angle(PIx2);
+        public readonly static Angle AnglePId2 = new Angle(PId2);
+
         public const double DEGREES_IN_RADIAN = 57.2957795130823209;
         public const double GRADS_IN_RADIAN = 63.6619772367581343;
 

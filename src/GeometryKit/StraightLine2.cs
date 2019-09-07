@@ -107,94 +107,88 @@ namespace GeometryKit
             return this.valid && this.direction.IsParallelTo(point - this.BasicPoint);
         }
 
-        public Angle AngleWith(Vector2 vector)
-        {
-            return this.direction.AngleWith(vector);
-        }
-
-        public Angle AngleWith(StraightLine2 line)
-        {
-            return this.direction.AngleWith(line.Direction);
-        }
-
-        public Angle AngleWith(RayLine2 line)
-        {
-            return this.direction.AngleWith(line.Direction);
-        }
+        // =================== Minimal angles: ====================
 
         public Angle MinimalAngleWith(Vector2 vector)
         {
-            return MinimalAngleBetweenLines(this.direction.AngleWith(vector));
+            if (!this.valid)
+            {
+                return Angle.ZERO;
+            }
+
+            return this.direction.MinimalAngleWithAxis(vector);
         }
 
         public Angle MinimalAngleWith(StraightLine2 line)
         {
             if (!this.valid || !line.valid)
             {
-                return new Angle();
+                return Angle.ZERO;
             }
 
-            return MinimalAngleBetweenLines(this.direction.AngleWith(line.direction));
+            return this.direction.MinimalAngleWithAxis(line.direction);
         }
 
         public Angle MinimalAngleWith(RayLine2 line)
         {
-            if (!this.valid || !line.IsValid)
+            if (!this.valid)
             {
-                return new Angle();
+                return Angle.ZERO;
             }
 
-            return MinimalAngleBetweenLines(this.direction.AngleWith(line.Direction));
+            return line.MinimalAngleWith(this.direction);
         }
+
+        public Angle MinimalAngleWith(LineSegment2 line)
+        {
+            if (!this.valid)
+            {
+                return Angle.ZERO;
+            }
+
+            return this.direction.MinimalAngleWithAxis(line.VectorAB);
+        }
+
+        // =================== Maximal angles: ====================
 
         public Angle MaximalAngleWith(Vector2 vector)
         {
-            if (!this.valid || vector.IsZero())
+            if (!this.valid)
             {
-                return new Angle();
+                return Angle.ZERO;
             }
 
-            return MaximalAngleBetweenLines(this.direction.AngleWith(vector));
+            return this.direction.MaximalAngleWithAxis(vector);
         }
 
         public Angle MaximalAngleWith(StraightLine2 line)
         {
             if (!this.valid || !line.valid)
             {
-                return new Angle();
+                return Angle.ZERO;
             }
 
-            return MaximalAngleBetweenLines(this.direction.AngleWith(line.direction));
+            return this.direction.MaximalAngleWithAxis(line.direction);
         }
 
         public Angle MaximalAngleWith(RayLine2 line)
         {
-            if (!this.valid || !line.IsValid)
+            if (!this.valid)
             {
-                return new Angle();
+                return Angle.ZERO;
             }
 
-            return MaximalAngleBetweenLines(this.direction.AngleWith(line.Direction));
+            return line.MinimalAngleWith(this.direction);
         }
 
-        private static Angle MinimalAngleBetweenLines(Angle angle)
+        public Angle MaximalAngleWith(LineSegment2 line)
         {
-            if (angle.Radians > MathConstant.PId2)
+            if (!this.valid)
             {
-                angle.Radians = MathConstant.PI - angle.Radians;
+                return Angle.ZERO;
             }
 
-            return angle;
-        }
-
-        private static Angle MaximalAngleBetweenLines(Angle angle)
-        {
-            if (angle.Radians < MathConstant.PId2)
-            {
-                angle.Radians = MathConstant.PI - angle.Radians;
-            }
-
-            return angle;
+            return this.direction.MaximalAngleWithAxis(line.VectorAB);
         }
     }
 }

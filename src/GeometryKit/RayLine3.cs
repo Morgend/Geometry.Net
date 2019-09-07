@@ -141,6 +141,8 @@ namespace GeometryKit
             return this.valid && this.direction.IsCoDirectionalTo(point - this.StartPoint);
         }
 
+        // ======================= Angles: ========================
+
         public Angle AngleWith(Vector3 vector)
         {
             return this.direction.AngleWith(vector);
@@ -151,19 +153,108 @@ namespace GeometryKit
             return this.direction.AngleWith(line.direction);
         }
 
-        public Angle AngleWith(StraightLine3 line)
+        // =================== Minimal angles: ====================
+
+        public Angle MinimalAngleWith(Vector3 vector)
         {
-            return this.direction.AngleWith(line.Direction);
+            if (!this.valid)
+            {
+                return Angle.ZERO;
+            }
+
+            return this.direction.MinimalAngleWithAxis(vector);
         }
 
         public Angle MinimalAngleWith(StraightLine3 line)
         {
-            return line.MinimalAngleWith(this);
+            if (!this.valid)
+            {
+                return Angle.ZERO;
+            }
+
+            return line.MinimalAngleWith(this.direction);
+        }
+
+        public Angle MinimalAngleWith(RayLine3 line)
+        {
+            if (!this.valid || !line.valid)
+            {
+                return Angle.ZERO;
+            }
+
+            return this.direction.MinimalAngleWithAxis(line.direction);
+        }
+
+        public Angle MinimalAngleWith(LineSegment3 line)
+        {
+            if (!this.valid)
+            {
+                return Angle.ZERO;
+            }
+
+            return this.direction.MinimalAngleWithAxis(line.VectorAB);
+        }
+
+        public Angle MinimalAngleWith(Plane plane)
+        {
+            if (!this.valid)
+            {
+                return Angle.ZERO;
+            }
+
+            return plane.MinimalAngleWith(this.direction);
+        }
+
+        // =================== Maximal angles: ====================
+
+        public Angle MaximalAngleWith(Vector3 vector)
+        {
+            if (!this.valid)
+            {
+                return Angle.ZERO;
+            }
+
+            return this.direction.MaximalAngleWithAxis(vector);
         }
 
         public Angle MaximalAngleWith(StraightLine3 line)
         {
-            return line.MaximalAngleWith(this);
+            if (!this.valid)
+            {
+                return Angle.ZERO;
+            }
+
+            return line.MaximalAngleWith(this.direction);
+        }
+
+        public Angle MaximalAngleWith(RayLine3 line)
+        {
+            if (!this.valid || !line.valid)
+            {
+                return Angle.ZERO;
+            }
+
+            return this.direction.MaximalAngleWithAxis(line.direction);
+        }
+
+        public Angle MaximalAngleWith(LineSegment3 line)
+        {
+            if (!this.valid)
+            {
+                return Angle.ZERO;
+            }
+
+            return this.direction.MaximalAngleWithAxis(line.VectorAB);
+        }
+
+        public Angle MaximalAngleWith(Plane plane)
+        {
+            if (!this.valid)
+            {
+                return Angle.ZERO;
+            }
+
+            return plane.MaximalAngleWith(this.direction);
         }
     }
 }

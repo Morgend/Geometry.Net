@@ -130,10 +130,30 @@ namespace GeometryKit
 
             if (m1 < MathConstant.EPSYLON || m2 < MathConstant.EPSYLON)
             {
-                return new Angle(0.0);
+                return Angle.ZERO;
             }
 
             return new Angle(Math.Acos(this.Scalar(vector) / (m1 * m2)));
+        }
+
+        public Angle MinimalAngleWithAxis(Vector2 vector)
+        {
+            Angle angle = this.AngleWith(vector);
+            if (angle.Radians > Angle.PId2)
+            {
+                angle.Radians = Angle.PI - angle.Radians;
+            }
+            return angle;
+        }
+
+        public Angle MaximalAngleWithAxis(Vector2 vector)
+        {
+            Angle angle = this.AngleWith(vector);
+            if (angle.Radians < Angle.PId2)
+            {
+                angle.Radians = Angle.PI - angle.Radians;
+            }
+            return angle;
         }
 
         public bool IsEqualTo(Vector2 v)

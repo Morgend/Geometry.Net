@@ -107,5 +107,59 @@ namespace GeometryKit
         {
             return (A.IsEqualTo(line.A) && B.IsEqualTo(line.B)) || (A.IsEqualTo(line.B) && B.IsEqualTo(line.A));
         }
+
+        // =================== Minimal angles: ====================
+
+        public Angle MinimalAngleWith(Vector3 vector)
+        {
+            return this.VectorAB.MinimalAngleWithAxis(vector);
+        }
+
+        public Angle MinimalAngleWith(StraightLine3 line)
+        {
+            return line.MinimalAngleWith(this.VectorAB);
+        }
+
+        public Angle MinimalAngleWith(RayLine3 line)
+        {
+            return line.MinimalAngleWith(this.VectorAB);
+        }
+
+        public Angle MinimalAngleWith(LineSegment3 line)
+        {
+            return this.VectorAB.MinimalAngleWithAxis(line.VectorAB);
+        }
+
+        public Angle MinimalAngleWith(Plane plane)
+        {
+            return plane.MinimalAngleWith(this.VectorAB);
+        }
+
+        // =================== Maximal angles: ====================
+
+        public Angle MaximalAngleWith(Vector3 vector)
+        {
+            return this.VectorAB.MaximalAngleWithAxis(vector);
+        }
+
+        public Angle MaximalAngleWith(StraightLine3 line)
+        {
+            return line.MaximalAngleWith(this.VectorAB);
+        }
+
+        public Angle MaximalAngleWith(RayLine3 line)
+        {
+            return line.MaximalAngleWith(this.VectorAB);
+        }
+
+        public Angle MaximalAngleWith(LineSegment3 line)
+        {
+            return this.VectorAB.MaximalAngleWithAxis(line.VectorAB);
+        }
+
+        public Angle MaximalAngleWith(Plane plane)
+        {
+            return plane.MaximalAngleWith(this.VectorAB);
+        }
     }
 }

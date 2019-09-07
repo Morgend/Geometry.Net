@@ -52,6 +52,8 @@ namespace GeometryKit
             }
         }
 
+        // ============= Parallelism check methods: =============
+
         public bool IsParallelTo(Vector3 vector)
         {
             return this.valid && this.normal.IsOrthogonalTo(vector);
@@ -67,10 +69,17 @@ namespace GeometryKit
             return this.valid && line.IsValid && this.normal.IsOrthogonalTo(line.Direction);
         }
 
+        public bool IsParallelTo(LineSegment3 line)
+        {
+            return this.valid && this.normal.IsOrthogonalTo(line.VectorAB);
+        }
+
         public bool IsParallelTo(Plane plane)
         {
             return this.valid && plane.valid && this.normal.IsParallelTo(plane.normal);
         }
+
+        // ============= Orthogonality check methods: =============
 
         public bool IsOrthogonalTo(Vector3 vector)
         {
@@ -92,15 +101,129 @@ namespace GeometryKit
             return this.valid && plane.valid && this.normal.IsOrthogonalTo(plane.normal);
         }
 
+        public bool IsOrthogonalTo(LineSegment3 line)
+        {
+            return this.valid && this.normal.IsParallelTo(line.VectorAB);
+        }
+
+        // ========================================================
+
         public bool IsEqualTo(Plane plane)
         {
             return this.IsParallelTo(plane) && this.normal.IsOrthogonalTo(plane.BasicPoint - this.BasicPoint);
         }
 
+
         public bool IsAtPlane(Vector3 point)
         {
             return this.valid && this.normal.IsOrthogonalTo(point - this.BasicPoint);
         }
+
+        // =================== Minimal angles: ====================
+
+        public Angle MinimalAngleWith(Vector3 vector)
+        {
+            if (!this.valid)
+            {
+                return Angle.ZERO;
+            }
+
+            return Angle.PId2 - this.normal.AngleWith(vector);
+        }
+
+        public Angle MinimalAngleWith(StraightLine3 line)
+        {
+            if (!this.valid || !line.IsValid)
+            {
+                return Angle.ZERO;
+            }
+
+            return Angle.PId2 - this.normal.AngleWith(line.Direction);
+        }
+
+        public Angle MinimalAngleWith(RayLine3 line)
+        {
+            if (!this.valid || !line.IsValid)
+            {
+                return Angle.ZERO;
+            }
+
+            return Angle.PId2 - this.normal.AngleWith(line.Direction);
+        }
+
+        public Angle MinimalAngleWith(LineSegment3 line)
+        {
+            if (!this.valid)
+            {
+                return Angle.ZERO;
+            }
+
+            return Angle.PId2 - this.normal.AngleWith(line.VectorAB);
+        }
+
+        public Angle MinimalAngleWith(Plane plane)
+        {
+            if (!this.valid || !plane.valid)
+            {
+                return Angle.ZERO;
+            }
+
+            return this.normal.MinimalAngleWithAxis(plane.normal);
+        }
+
+        // =================== Maximal angles: ====================
+
+        public Angle MaximalAngleWith(Vector3 vector)
+        {
+            if (!this.valid)
+            {
+                return Angle.ZERO;
+            }
+
+            return Angle.PId2 + this.normal.AngleWith(vector);
+        }
+
+        public Angle MaximalAngleWith(StraightLine3 line)
+        {
+            if (!this.valid || !line.IsValid)
+            {
+                return Angle.ZERO;
+            }
+
+            return Angle.PId2 + this.normal.AngleWith(line.Direction);
+        }
+
+        public Angle MaximalAngleWith(RayLine3 line)
+        {
+            if (!this.valid || !line.IsValid)
+            {
+                return Angle.ZERO;
+            }
+
+            return Angle.PId2 + this.normal.AngleWith(line.Direction);
+        }
+
+        public Angle MaximalAngleWith(LineSegment3 line)
+        {
+            if (!this.valid)
+            {
+                return Angle.ZERO;
+            }
+
+            return Angle.PId2 + this.normal.AngleWith(line.VectorAB);
+        }
+
+        public Angle MaximalAngleWith(Plane plane)
+        {
+            if (!this.valid || !plane.valid)
+            {
+                return Angle.ZERO;
+            }
+
+            return this.normal.MaximalAngleWithAxis(plane.normal);
+        }
+
+        // ========================================================
 
         public Vector3 ProjectionOf(Vector3 point)
         {

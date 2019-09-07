@@ -117,94 +117,109 @@ namespace GeometryKit
             return this.valid && this.direction.IsParallelTo(point - this.BasicPoint);
         }
 
-        public Angle AngleWith(Vector3 vector)
-        {
-            return this.direction.AngleWith(vector);
-        }
-
-        public Angle AngleWith(StraightLine3 line)
-        {
-            return this.direction.AngleWith(line.Direction);
-        }
-
-        public Angle AngleWith(RayLine3 line)
-        {
-            return this.direction.AngleWith(line.Direction);
-        }
+        // =================== Minimal angles: ====================
 
         public Angle MinimalAngleWith(Vector3 vector)
         {
-            return MinimalAngleBetweenLines(this.direction.AngleWith(vector));
+            if (!this.valid)
+            {
+                return Angle.ZERO;
+            }
+
+            return this.direction.MinimalAngleWithAxis(vector);
         }
 
         public Angle MinimalAngleWith(StraightLine3 line)
         {
             if (!this.valid || !line.valid)
             {
-                return new Angle();
+                return Angle.ZERO;
             }
 
-            return MinimalAngleBetweenLines(this.direction.AngleWith(line.direction));
+            return this.direction.MinimalAngleWithAxis(line.direction);
         }
 
         public Angle MinimalAngleWith(RayLine3 line)
         {
-            if (!this.valid || !line.IsValid)
+            if (!this.valid)
             {
-                return new Angle();
+                return Angle.ZERO;
             }
 
-            return MinimalAngleBetweenLines(this.direction.AngleWith(line.Direction));
+            return line.MinimalAngleWith(this.direction);
         }
+
+        public Angle MinimalAngleWith(LineSegment3 line)
+        {
+            if (!this.valid)
+            {
+                return Angle.ZERO;
+            }
+
+            return this.direction.MinimalAngleWithAxis(line.VectorAB);
+        }
+
+        public Angle MinimalAngleWith(Plane plane)
+        {
+            if (!this.valid)
+            {
+                return Angle.ZERO;
+            }
+
+            return plane.MinimalAngleWith(this.direction);
+        }
+
+
+        // =================== Maximal angles: ====================
 
         public Angle MaximalAngleWith(Vector3 vector)
         {
-            if (!this.valid || vector.IsZero())
+            if (!this.valid)
             {
-                return new Angle();
+                return Angle.ZERO;
             }
 
-            return MaximalAngleBetweenLines(this.direction.AngleWith(vector));
+            return this.direction.MaximalAngleWithAxis(vector);
         }
 
         public Angle MaximalAngleWith(StraightLine3 line)
         {
             if (!this.valid || !line.valid)
             {
-                return new Angle();
+                return Angle.ZERO;
             }
 
-            return MaximalAngleBetweenLines(this.direction.AngleWith(line.direction));
+            return this.direction.MaximalAngleWithAxis(line.direction);
         }
 
         public Angle MaximalAngleWith(RayLine3 line)
         {
-            if (!this.valid || !line.IsValid)
+            if (!this.valid)
             {
-                return new Angle();
+                return Angle.ZERO;
             }
 
-            return MaximalAngleBetweenLines(this.direction.AngleWith(line.Direction));
+            return line.MaximalAngleWith(this.direction);
         }
 
-        private static Angle MinimalAngleBetweenLines(Angle angle)
+        public Angle MaximalAngleWith(LineSegment3 line)
         {
-            if (angle.Radians > MathConstant.PId2)
+            if (!this.valid)
             {
-                angle.Radians = MathConstant.PI - angle.Radians;
+                return Angle.ZERO;
             }
 
-            return angle;
+            return this.direction.MaximalAngleWithAxis(line.VectorAB);
         }
 
-        private static Angle MaximalAngleBetweenLines(Angle angle)
+        public Angle MaximalAngleWith(Plane plane)
         {
-            if (angle.Radians < MathConstant.PId2)
+            if (!this.valid)
             {
-                angle.Radians = MathConstant.PI - angle.Radians;
+                return Angle.ZERO;
             }
 
-            return angle;
+            return plane.MaximalAngleWith(this.direction);
         }
     }
 }
