@@ -146,6 +146,16 @@ namespace GeometryKit
             return this.x == v.x && this.y == v.y;
         }
 
+        public static bool operator ==(Vector2 v1, Vector2 v2)
+        {
+            return v1.IsEqualTo(v2);
+        }
+
+        public static bool operator !=(Vector2 v1, Vector2 v2)
+        {
+            return !v1.IsEqualTo(v2);
+        }
+
         public bool IsParallelTo(Vector2 v)
         {
             return Comparison.AreEqual(this.x * v.y, this.y * v.x);
