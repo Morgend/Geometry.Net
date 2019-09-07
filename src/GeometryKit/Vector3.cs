@@ -155,15 +155,26 @@ namespace GeometryKit
 
         public Angle AngleWith(Vector3 vector)
         {
-            double m1 = this.Module();
-            double m2 = vector.Module();
+            double m1 = this.Scalar(this);
+            double m2 = vector.Scalar(vector);
 
-            if (m1 < MathConstant.EPSYLON || m2 < MathConstant.EPSYLON)
+            if (m1 <= MathConstant.SQUARE_EPSYLON || m2 <= MathConstant.SQUARE_EPSYLON)
             {
                 return Angle.ZERO;
             }
 
-            return new Angle(Math.Acos(this.Scalar(vector) / (m1 * m2)));
+            double cos = this.Scalar(vector) / Math.Sqrt(m1 * m2);
+
+            if (cos >= 1.0)
+            {
+                return Angle.ZERO;
+            }
+            else if (cos <= -1.0)
+            {
+                return Angle.AnglePI;
+            }
+
+            return new Angle(Math.Acos(cos));
         }
 
         public Angle MinimalAngleWithAxis(Vector3 vector)
