@@ -50,7 +50,7 @@ namespace GeometryKit
 
         public bool IsZero()
         {
-            return w * w + x * x + y * y + z * z <= MathConstant.EPSYLON_QUAD;
+            return w * w + x * x + y * y + z * z <= MathConstant.SQUARE_EPSYLON;
         }
 
         public void Conjugate()
