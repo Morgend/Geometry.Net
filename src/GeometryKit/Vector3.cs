@@ -226,7 +226,7 @@ namespace GeometryKit
             this.y = -this.y;
         }
 
-        public Vector3 GetReflectedAcrossZX()
+        public Vector3 GetReflectedAcrossPlaneZX()
         {
             return new Vector3(this.x, -this.y, this.z);
         }
