@@ -25,7 +25,7 @@ I see no reason to hide it and I share it with the community.
 
 Many geometry libraries have been designed for specific tasks like 3D or 2D graphics, thus:
 - many of them have not some important mathematical entities and operations. For example, some of them have even no vector multiplication of 3D vectors :confused:
-- many of them have excess entities which are useful for the specific tasks
+- many of them have excess entities which are useful for specific tasks but useless for common tasks
 - many geometry tool have specific naming policy and some entities are not obviously named
 
 ## Current state
@@ -76,3 +76,7 @@ You can do same things like you can do with 2D vectors but also you can:
 - Add more functionality to the library
 
 And perhaps it will be transformed into mathematical library which will consist for serveral .NET projects with minimum dependencies.
+
+## Enjoy!
+
+I hope you will enjoy the usage of the library! Good luck!
