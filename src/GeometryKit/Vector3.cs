@@ -163,6 +163,74 @@ namespace GeometryKit
             return new Vector3(-this.x, -this.y, -this.z);
         }
 
+        public void ReflectAcrossX()
+        {
+            this.y = -this.y;
+            this.z = -this.z;
+        }
+
+        public Vector3 GetReflectedAcrossX()
+        {
+            return new Vector3(this.x, -this.y, -this.z);
+        }
+
+        public void ReflectAcrossY()
+        {
+            this.x = -this.x;
+            this.z = -this.z;
+        }
+
+        public Vector3 GetReflectedAcrossY()
+        {
+            return new Vector3(-this.x, this.y, -this.z);
+        }
+
+        public void ReflectAcrossZ()
+        {
+            this.x = -this.x;
+            this.y = -this.y;
+        }
+
+        public Vector3 GetReflectedAcrossZ()
+        {
+            return new Vector3(-this.x, -this.y, this.z);
+        }
+
+        public Vector3 Reflect(Vector3 vectorToReflect)
+        {
+            return (2.0 * this.Scalar(vectorToReflect)) * this - vectorToReflect;
+        }
+
+        public void ReflectAcrossPlaneXY()
+        {
+            this.z = -this.z;
+        }
+
+        public Vector3 GetReflectedAcrossPlaneXY()
+        {
+            return new Vector3(this.x, this.y, -this.z);
+        }
+
+        public void ReflectAcrossPlaneYZ()
+        {
+            this.x = -this.x;
+        }
+
+        public Vector3 GetReflectedAcrossPlaneYZ()
+        {
+            return new Vector3(-this.x, this.y, this.z);
+        }
+
+        public void ReflectAcrossPlaneZX()
+        {
+            this.y = -this.y;
+        }
+
+        public Vector3 GetReflectedAcrossZX()
+        {
+            return new Vector3(this.x, -this.y, this.z);
+        }
+
         public Angle AngleWith(Vector3 vector)
         {
             double m1 = this.Scalar(this);
