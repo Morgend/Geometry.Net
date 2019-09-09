@@ -231,6 +231,51 @@ namespace GeometryKit
             return new Vector3(this.x, -this.y, this.z);
         }
 
+        public Vector3 TurnedAt90DegreesAroundX()
+        {
+            return new Vector3(x, -z, y);
+        }
+
+        public Vector3 TurnedAt180DegreesAroundX()
+        {
+            return new Vector3(x, -y, -z);
+        }
+
+        public Vector3 TurnedAt270DegreesAroundX()
+        {
+            return new Vector3(x, z, -y);
+        }
+
+        public Vector3 TurnedAt90DegreesAroundY()
+        {
+            return new Vector3(z, y, -x);
+        }
+
+        public Vector3 TurnedAt180DegreesAroundY()
+        {
+            return new Vector3(-x, y, -z);
+        }
+
+        public Vector3 TurnedAt270DegreesAroundY()
+        {
+            return new Vector3(-z, y, x);
+        }
+
+        public Vector3 TurnedAt90DegreesAroundZ()
+        {
+            return new Vector3(-y, x, z);
+        }
+
+        public Vector3 TurnedAt180DegreesAroundZ()
+        {
+            return new Vector3(-x, -y, z);
+        }
+
+        public Vector3 TurnedAt270DegreesAroundZ()
+        {
+            return new Vector3(y, -x, z);
+        }
+
         public Angle AngleWith(Vector3 vector)
         {
             double m1 = this.Scalar(this);

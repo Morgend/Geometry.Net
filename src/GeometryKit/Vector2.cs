@@ -157,6 +157,21 @@ namespace GeometryKit
             return (2.0 * this.Scalar(vectorToReflect)) * this - vectorToReflect;
         }
 
+        public Vector2 TurnedAt90Degrees()
+        {
+            return new Vector2(-y, x);
+        }
+
+        public Vector2 TurnedAt180Degrees()
+        {
+            return new Vector2(-x, -y);
+        }
+
+        public Vector2 TurnedAt270Degrees()
+        {
+            return new Vector2(y, -x);
+        }
+
         public Angle AngleWith(Vector2 vector)
         {
             double m1 = this.Scalar(this);
