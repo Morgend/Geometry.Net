@@ -10,7 +10,10 @@ namespace GeometryKit
     public struct Vector2
     {
         public const double DEFAULT_COORDINATE_VALUE = 0.0;
-        public static readonly Vector2 ZERO_VECTOR = new Vector2(DEFAULT_COORDINATE_VALUE, DEFAULT_COORDINATE_VALUE);
+        public static readonly Vector2 ZERO_VECTOR = new Vector2(0.0, 0.0);
+
+        public static readonly Vector2 UNIT_X_VECTOR = new Vector2(1.0, 0.0);
+        public static readonly Vector2 UNIT_Y_VECTOR = new Vector2(0.0, 1.0);
 
         public double x;
         public double y;
@@ -36,6 +39,12 @@ namespace GeometryKit
         public bool IsZero()
         {
             return x * x + y * y <= MathConstant.SQUARE_EPSYLON;
+        }
+
+        public bool IsUnit()
+        {
+            double squareModule = x * x + y * y;
+            return 1.0 - MathConstant.SQUARE_EPSYLON <= squareModule && squareModule <= 1.0 + MathConstant.SQUARE_EPSYLON;
         }
 
         public void SetValues(double x, double y)
