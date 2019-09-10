@@ -129,6 +129,13 @@ namespace GeometryKit
             return (A + B + C) / 3.0;
         }
 
+        public void MoveAt(Vector3 vector)
+        {
+            A.Add(vector);
+            B.Add(vector);
+            C.Add(vector);
+        }
+
         public Vector3 Normal()
         {
             Vector3 n = (B - A).Vector(C - A);

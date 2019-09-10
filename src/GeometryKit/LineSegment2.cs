@@ -47,6 +47,12 @@ namespace GeometryKit
             }
         }
 
+        public void MoveAt(Vector2 vector)
+        {
+            A.Add(vector);
+            B.Add(vector);
+        }
+
         public Vector2 PointAt(double position)
         {
             return (1.0 - position) * A + position * B;

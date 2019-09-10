@@ -127,5 +127,12 @@ namespace GeometryKit
         {
             return (A + B + C) / 3.0;
         }
+
+        public void MoveAt(Vector2 vector)
+        {
+            A.Add(vector);
+            B.Add(vector);
+            C.Add(vector);
+        }
     }
 }
