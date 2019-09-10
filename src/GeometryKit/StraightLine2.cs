@@ -51,6 +51,68 @@ namespace GeometryKit
             }
         }
 
+        // =============== Reflecting 2D entities ===============
+
+        public Vector2 Reflect(Vector2 point)
+        {
+            if (!this.valid)
+            {
+                return point;
+            }
+
+            return RelativelyReflect(point - BasicPoint) + BasicPoint;
+        }
+
+        public Vector2 RelativelyReflect(Vector2 vector)
+        {
+            if (!this.valid)
+            {
+                return vector;
+            }
+
+            return (2.0 * direction.Scalar(vector)) * direction - vector;
+        }
+
+        public StraightLine2 Reflect(StraightLine2 line)
+        {
+            if (!this.valid)
+            {
+                return line;
+            }
+
+            return new StraightLine2(Reflect(line.BasicPoint), RelativelyReflect(line.Direction));
+        }
+
+        public RayLine2 Reflect(RayLine2 line)
+        {
+            if (!this.valid)
+            {
+                return line;
+            }
+
+            return new RayLine2(Reflect(line.StartPoint), RelativelyReflect(line.Direction));
+        }
+
+        public LineSegment2 Reflect(LineSegment2 segment)
+        {
+            if (!this.valid)
+            {
+                return segment;
+            }
+
+            return new LineSegment2(Reflect(segment.A), Reflect(segment.B));
+        }
+
+        public Triangle2 Reflect(Triangle2 triangle)
+        {
+            if (!this.valid)
+            {
+                return triangle;
+            }
+
+            return new Triangle2(Reflect(triangle.A), Reflect(triangle.B), Reflect(triangle.C));
+        }
+
         // ============= Parallelism check methods: =============
 
         public bool IsParallelTo(Vector2 vector)

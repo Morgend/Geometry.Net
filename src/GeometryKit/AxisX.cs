@@ -23,9 +23,9 @@ namespace GeometryKit
 
         // ================== Reflecting 2D entities ==================
 
-        public static Vector2 Reflect(Vector2 vector)
+        public static Vector2 Reflect(Vector2 point)
         {
-            return new Vector2(vector.x, -vector.y);
+            return new Vector2(point.x, -point.y);
         }
 
         public static StraightLine2 Reflect(StraightLine2 line)
@@ -50,9 +50,9 @@ namespace GeometryKit
 
         // ================== Reflecting 3D entities ==================
 
-        public static Vector3 Reflect(Vector3 vector)
+        public static Vector3 Reflect(Vector3 point)
         {
-            return new Vector3(vector.x, -vector.y, -vector.z);
+            return new Vector3(point.x, -point.y, -point.z);
         }
 
         public static StraightLine3 Reflect(StraightLine3 line)

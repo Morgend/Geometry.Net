@@ -35,6 +35,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Angle.cs" />
+    <Compile Include="AxisZ.cs" />
+    <Compile Include="AxisY.cs" />
     <Compile Include="AxisX.cs" />
     <Compile Include="CalculationResult.cs" />
     <Compile Include="EulerAngles.cs" />
@@ -50,6 +52,9 @@
     <Compile Include="Minimum.cs" />
     <Compile Include="Plane.cs" />
     <Compile Include="PlaneCoordinateSystem.cs" />
+    <Compile Include="PlaneZX.cs" />
+    <Compile Include="PlaneYZ.cs" />
+    <Compile Include="PlaneXY.cs" />
     <Compile Include="Position2.cs" />
     <Compile Include="Position3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

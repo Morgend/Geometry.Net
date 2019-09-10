@@ -132,25 +132,34 @@ namespace GeometryKit
             return new Vector2(-this.x, -this.y);
         }
 
-        public Vector2 Reflect(Vector2 vectorToReflect)
+        // ================== Reflecting 2D entities ==================
+
+        public Vector2 Reflect(Vector2 point)
         {
-            return new Vector2(2.0 * x - vectorToReflect.x, 2.0 * y - vectorToReflect.y);
+            return new Vector2(2.0 * x - point.x, 2.0 * y - point.y);
         }
 
-        public Vector2 TurnedAt90Degrees()
+        public StraightLine2 Reflect(StraightLine2 line)
         {
-            return new Vector2(-y, x);
+            return new StraightLine2(Reflect(line.BasicPoint), -line.Direction);
         }
 
-        public Vector2 TurnedAt180Degrees()
+        public RayLine2 Reflect(RayLine2 line)
         {
-            return new Vector2(-x, -y);
+            return new RayLine2(Reflect(line.StartPoint), -line.Direction);
         }
 
-        public Vector2 TurnedAt270Degrees()
+        public LineSegment2 Reflect(LineSegment2 segment)
         {
-            return new Vector2(y, -x);
+            return new LineSegment2(Reflect(segment.A), Reflect(segment.B));
         }
+
+        public Triangle2 Reflect(Triangle2 triangle)
+        {
+            return new Triangle2(Reflect(triangle.A), Reflect(triangle.B), Reflect(triangle.C));
+        }
+
+        // ============================================================
 
         public Angle AngleWith(Vector2 vector)
         {

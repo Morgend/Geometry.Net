@@ -163,10 +163,39 @@ namespace GeometryKit
             return new Vector3(-this.x, -this.y, -this.z);
         }
 
-        public Vector3 Reflect(Vector3 vectorToReflect)
+        // ================== Reflecting 3D entities ==================
+
+        public Vector3 Reflect(Vector3 point)
         {
-            return new Vector3(2.0 * x - vectorToReflect.x, 2.0 * y - vectorToReflect.y, 2.0 * z - vectorToReflect.z);
+            return new Vector3(2.0 * x - point.x, 2.0 * y - point.y, 2.0 * z - point.z);
         }
+
+        public StraightLine3 Reflect(StraightLine3 line)
+        {
+            return new StraightLine3(Reflect(line.BasicPoint), -line.Direction);
+        }
+
+        public RayLine3 Reflect(RayLine3 line)
+        {
+            return new RayLine3(Reflect(line.StartPoint), -line.Direction);
+        }
+
+        public LineSegment3 Reflect(LineSegment3 segment)
+        {
+            return new LineSegment3(Reflect(segment.A), Reflect(segment.B));
+        }
+
+        public Plane Reflect(Plane plane)
+        {
+            return new Plane(Reflect(plane.BasicPoint), -plane.Normal);
+        }
+
+        public Triangle3 Reflect(Triangle3 triangle)
+        {
+            return new Triangle3(Reflect(triangle.A), Reflect(triangle.B), Reflect(triangle.C));
+        }
+
+        // ============================================================
 
         public Angle AngleWith(Vector3 vector)
         {

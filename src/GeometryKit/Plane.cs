@@ -52,6 +52,73 @@ namespace GeometryKit
             }
         }
 
+        // ================== Reflecting 3D entities ==================
+
+        public Vector3 Reflect(Vector3 point)
+        {
+            if (!this.valid)
+            {
+                return point;
+            }
+
+            return RelativelyReflect(point - BasicPoint) + BasicPoint;
+        }
+
+        public Vector3 RelativelyReflect(Vector3 vector)
+        {
+            if (!this.valid)
+            {
+                return vector;
+            }
+
+            return vector - (2.0 * normal.Scalar(vector)) * normal;
+        }
+
+        public StraightLine3 Reflect(StraightLine3 line)
+        {
+            if (!this.valid)
+            {
+                return line;
+            }
+
+            return new StraightLine3(Reflect(line.BasicPoint), RelativelyReflect(line.Direction));
+        }
+
+        public RayLine3 Reflect(RayLine3 line)
+        {
+            if (!this.valid)
+            {
+                return line;
+            }
+
+            return new RayLine3(Reflect(line.StartPoint), RelativelyReflect(line.Direction));
+        }
+
+        public LineSegment3 Reflect(LineSegment3 segment)
+        {
+            if (!this.valid)
+            {
+                return segment;
+            }
+
+            return new LineSegment3(Reflect(segment.A), Reflect(segment.B));
+        }
+
+        public Plane Reflect(Plane plane)
+        {
+            return new Plane(Reflect(plane.BasicPoint), RelativelyReflect(plane.Normal));
+        }
+
+        public Triangle3 Reflect(Triangle3 triangle)
+        {
+            if (!this.valid)
+            {
+                return triangle;
+            }
+
+            return new Triangle3(Reflect(triangle.A), Reflect(triangle.B), Reflect(triangle.C));
+        }
+
         // ============= Parallelism check methods: =============
 
         public bool IsParallelTo(Vector3 vector)

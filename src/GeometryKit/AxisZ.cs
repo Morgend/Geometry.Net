@@ -20,9 +20,9 @@ namespace GeometryKit
 
         // ================== Reflecting 3D entities ==================
 
-        public static Vector3 Reflect(Vector3 vector)
+        public static Vector3 Reflect(Vector3 point)
         {
-            return new Vector3(-vector.x, -vector.y, vector.z);
+            return new Vector3(-point.x, -point.y, point.z);
         }
 
         public static StraightLine3 Reflect(StraightLine3 line)
