@@ -51,6 +51,16 @@ namespace GeometryKit
             }
         }
 
+        public LineSegment3 Segment(double positionA, double positionB)
+        {
+            return new LineSegment3(StartPoint + positionA * direction, StartPoint + positionB * direction);
+        }
+
+        public StraightLine3 StraightLine()
+        {
+            return new StraightLine3(StartPoint, direction);
+        }
+
         // ============= Parallelism check methods: =============
 
         public bool IsParallelTo(Vector3 vector)

@@ -51,6 +51,16 @@ namespace GeometryKit
             }
         }
 
+        public LineSegment3 Segment(double positionA, double positionB)
+        {
+            return new LineSegment3(BasicPoint + positionA * direction, BasicPoint + positionB * direction);
+        }
+
+        public RayLine3 Ray()
+        {
+            return new RayLine3(BasicPoint, direction);
+        }
+
         // ================== Reflecting 3D entities ==================
 
         public Vector3 Reflect(Vector3 point)

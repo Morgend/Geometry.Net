@@ -47,6 +47,21 @@ namespace GeometryKit
             }
         }
 
+        public RayLine3 RayAB()
+        {
+            return new RayLine3(A, B - A);
+        }
+
+        public RayLine3 RayBA()
+        {
+            return new RayLine3(B, A - B);
+        }
+
+        public StraightLine3 StraightLine()
+        {
+            return new StraightLine3(A, B - A);
+        }
+
         // ============= Parallelism check methods: =============
 
         public bool IsParallelTo(Vector3 vector)

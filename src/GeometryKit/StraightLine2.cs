@@ -51,6 +51,16 @@ namespace GeometryKit
             }
         }
 
+        public LineSegment2 Segment(double positionA, double positionB)
+        {
+            return new LineSegment2(BasicPoint + positionA * direction, BasicPoint + positionB * direction);
+        }
+
+        public RayLine2 Ray()
+        {
+            return new RayLine2(BasicPoint, direction);
+        }
+
         // =============== Reflecting 2D entities ===============
 
         public Vector2 Reflect(Vector2 point)
