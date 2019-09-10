@@ -47,6 +47,11 @@ namespace GeometryKit
             }
         }
 
+        public Vector3 PointAt(double position)
+        {
+            return (1.0 - position) * A + position * B;
+        }
+
         public RayLine3 RayAB()
         {
             return new RayLine3(A, B - A);

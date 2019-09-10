@@ -51,6 +51,11 @@ namespace GeometryKit
             }
         }
 
+        public Vector3 PointAt(double position)
+        {
+            return StartPoint + direction * position;
+        }
+
         public LineSegment3 Segment(double positionA, double positionB)
         {
             return new LineSegment3(StartPoint + positionA * direction, StartPoint + positionB * direction);

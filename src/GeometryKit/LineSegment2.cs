@@ -47,6 +47,11 @@ namespace GeometryKit
             }
         }
 
+        public Vector2 PointAt(double position)
+        {
+            return (1.0 - position) * A + position * B;
+        }
+
         public RayLine2 RayAB()
         {
             return new RayLine2(A, B - A);
