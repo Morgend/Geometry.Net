@@ -132,29 +132,9 @@ namespace GeometryKit
             return new Vector2(-this.x, -this.y);
         }
 
-        public void ReflectAcrossX()
-        {
-            this.y = -this.y;
-        }
-
-        public Vector2 GetReflectedAcrossX()
-        {
-            return new Vector2(this.x, -this.y);
-        }
-
-        public void ReflectAcrossY()
-        {
-            this.x = -this.x;
-        }
-
-        public Vector2 GetReflectedAcrossY()
-        {
-            return new Vector2(-this.x, this.y);
-        }
-
         public Vector2 Reflect(Vector2 vectorToReflect)
         {
-            return (2.0 * this.Scalar(vectorToReflect)) * this - vectorToReflect;
+            return new Vector2(2.0 * x - vectorToReflect.x, 2.0 * y - vectorToReflect.y);
         }
 
         public Vector2 TurnedAt90Degrees()
