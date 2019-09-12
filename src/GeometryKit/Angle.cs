@@ -21,7 +21,8 @@ namespace GeometryKit
         public readonly static Angle AnglePId2 = new Angle(PId2);
 
         public const double DEGREES_IN_RADIAN = 57.2957795130823209;
-        public const double GRADS_IN_RADIAN = 63.6619772367581343;
+        public const double GRADIANS_IN_RADIAN = 63.6619772367581343;
+        public const double DEGREES_IN_GRADIAN = 0.9;
 
         public double Radians;
 
@@ -40,9 +41,9 @@ namespace GeometryKit
             return new Angle(Angle.DegreesToRadians(degrees));
         }
 
-        public static Angle FromGrads(double grads)
+        public static Angle FromGradians(double gradians)
         {
-            return new Angle(Angle.GradsToRadians(grads));
+            return new Angle(Angle.GradiansToRadians(gradians));
         }
 
         public static double DegreesToRadians(double degrees)
@@ -55,14 +56,24 @@ namespace GeometryKit
             return radians * DEGREES_IN_RADIAN;
         }
 
-        public static double GradsToRadians(double degrees)
+        public static double GradiansToRadians(double gradians)
         {
-            return degrees / GRADS_IN_RADIAN;
+            return gradians / GRADIANS_IN_RADIAN;
         }
 
-        public static double RadiansToGrads(double radians)
+        public static double RadiansToGradians(double radians)
         {
-            return radians * GRADS_IN_RADIAN;
+            return radians * GRADIANS_IN_RADIAN;
+        }
+
+        public static double GradiansToDegrees(double gradians)
+        {
+            return gradians * DEGREES_IN_GRADIAN;
+        }
+
+        public static double DegreesToGradians(double degrees)
+        {
+            return degrees / DEGREES_IN_GRADIAN;
         }
 
         public double Degrees
@@ -78,16 +89,16 @@ namespace GeometryKit
             }
         }
 
-        public double Grads
+        public double Gradians
         {
             get
             {
-                return GRADS_IN_RADIAN * this.Radians;
+                return GRADIANS_IN_RADIAN * this.Radians;
             }
 
             set
             {
-                this.Radians = value / GRADS_IN_RADIAN;
+                this.Radians = value / GRADIANS_IN_RADIAN;
             }
         }
 
@@ -202,7 +213,7 @@ namespace GeometryKit
 
         public static Angle Arсctg2(double x, double y)
         {
-            return new Angle(Angle.PId2 - Math.Atan2(x, y));
+            return new Angle(Angle.PId2 - Math.Atan2(y, x));
         }
 
         public double Sin()
@@ -240,9 +251,9 @@ namespace GeometryKit
             this.Radians += DegreesToRadians(degrees);
         }
 
-        public void AddGrads(double grads)
+        public void AddGradians(double gradians)
         {
-            this.Radians += GradsToRadians(grads);
+            this.Radians += GradiansToRadians(gradians);
         }
 
         public void Subtract(Angle angle)
@@ -260,9 +271,9 @@ namespace GeometryKit
             this.Radians -= DegreesToRadians(degrees);
         }
 
-        public void SubtractGrads(double grads)
+        public void SubtractGradians(double gradians)
         {
-            this.Radians -= GradsToRadians(grads);
+            this.Radians -= GradiansToRadians(gradians);
         }
 
         public void Mutiply(double value)

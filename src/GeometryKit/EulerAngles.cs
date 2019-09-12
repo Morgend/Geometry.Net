@@ -39,9 +39,9 @@ namespace GeometryKit
             return new EulerAngles(Angle.DegreesToRadians(heading), Angle.DegreesToRadians(elevation), Angle.DegreesToRadians(bank));
         }
 
-        public static EulerAngles FromGrads(double heading, double elevation, double bank)
+        public static EulerAngles FromGradians(double heading, double elevation, double bank)
         {
-            return new EulerAngles(Angle.GradsToRadians(heading), Angle.GradsToRadians(elevation), Angle.GradsToRadians(bank));
+            return new EulerAngles(Angle.GradiansToRadians(heading), Angle.GradiansToRadians(elevation), Angle.GradiansToRadians(bank));
         }
 
         public void SetRadians(double heading, double elevation, double bank)
@@ -58,11 +58,11 @@ namespace GeometryKit
             this.Bank.Degrees = bank;
         }
 
-        public void SetGrads(double heading, double elevation, double bank)
+        public void SetGradians(double heading, double elevation, double bank)
         {
-            this.Heading.Grads = heading;
-            this.Elevation.Grads = elevation;
-            this.Bank.Grads = bank;
+            this.Heading.Gradians = heading;
+            this.Elevation.Gradians = elevation;
+            this.Bank.Gradians = bank;
         }
 
         public void SetAngles(Angle heading, Angle elevation, Angle bank)
