@@ -40,6 +40,8 @@
     <Compile Include="AxisX.cs" />
     <Compile Include="CalculationResult.cs" />
     <Compile Include="EulerAngles.cs" />
+    <Compile Include="AngleException.cs" />
+    <Compile Include="GeometryException.cs" />
     <Compile Include="GeometryKitInfo.cs" />
     <Compile Include="LineSegment2.cs" />
     <Compile Include="LineSegment3.cs" />

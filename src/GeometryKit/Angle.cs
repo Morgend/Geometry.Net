@@ -145,6 +145,66 @@ namespace GeometryKit
             this.Radians = DEFAULT_VALUE;
         }
 
+        public static Angle Arcsin(double value)
+        {
+            if (value < -1.0 - MathConstant.EPSYLON || 1.0 + MathConstant.EPSYLON < value)
+            {
+                throw new AngleException(String.Format("Sinus value {0} is out of acceptable range [-1, 1]", value));
+            }
+
+            if (value >= 1.0)
+            {
+                return Angle.AnglePI;
+            }
+
+            if (value <= -1.0)
+            {
+                return Angle.AnglePI;
+            }
+
+            return new Angle(Math.Asin(value));
+        }
+
+        public static Angle Arccos(double value)
+        {
+            if (value < -1.0 - MathConstant.EPSYLON || 1.0 + MathConstant.EPSYLON < value)
+            {
+                throw new AngleException(String.Format("Cosinus value {0} is out of acceptable range [-1, 1]", value));
+            }
+
+            if (value >= 1.0)
+            {
+                return Angle.ZERO;
+            }
+
+            if (value <= -1.0)
+            {
+                return Angle.AnglePIx2;
+            }
+
+            return new Angle(Math.Acos(value));
+        }
+
+        public static Angle Arctg(double value)
+        {
+            return new Angle(Math.Atan(value));
+        }
+
+        public static Angle Arctg2(double y, double x)
+        {
+            return new Angle(Math.Atan2(y, x));
+        }
+
+        public static Angle Arсctg(double value)
+        {
+            return new Angle(Angle.PId2 - Math.Atan(value));
+        }
+
+        public static Angle Arсctg2(double x, double y)
+        {
+            return new Angle(Angle.PId2 - Math.Atan2(x, y));
+        }
+
         public double Sin()
         {
             return Math.Sin(this.Radians);
