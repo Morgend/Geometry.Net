@@ -102,6 +102,42 @@ namespace GeometryKit
             }
         }
 
+        public double GetRoundedDegrees()
+        {
+            return Math.Round(this.Radians * DEGREES_IN_RADIAN);
+        }
+
+        public double GetRoundedGradians()
+        {
+            return Math.Round(Radians * GRADIANS_IN_RADIAN);
+        }
+
+        public double GetStickyDegrees()
+        {
+            double degrees = DEGREES_IN_RADIAN * this.Radians;
+            double rounded = Math.Round(degrees);
+
+            if (Comparison.AreEqual(degrees, rounded))
+            {
+                return rounded;
+            }
+
+            return degrees;
+        }
+
+        public double GetStickyGradians()
+        {
+            double gradians = GRADIANS_IN_RADIAN * this.Radians;
+            double rounded = Math.Round(gradians);
+
+            if (Comparison.AreEqual(gradians, rounded))
+            {
+                return rounded;
+            }
+
+            return gradians;
+        }
+
         public void Normalize2Pi()
         {
             this.Radians -= PIx2 * Math.Floor(this.Radians / PIx2);
@@ -149,6 +185,16 @@ namespace GeometryKit
                     this.Radians += PIx2;
                 }
             }
+        }
+
+        public void RoundInDegrees()
+        {
+            this.Radians = Math.Round(this.Radians * DEGREES_IN_GRADIAN) / DEGREES_IN_GRADIAN;
+        }
+
+        public void RoundInGradians()
+        {
+            this.Radians = Math.Round(this.Radians * GRADIANS_IN_RADIAN) / GRADIANS_IN_RADIAN;
         }
 
         public void Zero()
