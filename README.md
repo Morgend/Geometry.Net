@@ -1,4 +1,4 @@
-# GeometryKit
+# Geometry.Net
 
 ## Version
 
@@ -12,7 +12,7 @@ The library is distributed under MIT license.
 
 ## What is it and why
 
-GeometryKit is a library which contains geometry tools for .NET
+Geometry.Net is a library which contains geometry tools for .NET
 
 This library was made because of a few reasons:
 - to get geometry tools for my own .NET projects
