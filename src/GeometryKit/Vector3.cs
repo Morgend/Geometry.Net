@@ -34,7 +34,7 @@ namespace GeometryKit
             this.z = v.z;
         }
 
-        public void Zero()
+        public void SetToZero()
         {
             this.x = DEFAULT_COORDINATE_VALUE;
             this.y = DEFAULT_COORDINATE_VALUE;
@@ -59,7 +59,7 @@ namespace GeometryKit
             this.z = z;
         }
 
-        public void SetValues(Vector3 v)
+        public void CopyValuesOf(Vector3 v)
         {
             this.x = v.x;
             this.y = v.y;
@@ -96,7 +96,7 @@ namespace GeometryKit
 
             if (squareModule < MathConstant.SQUARE_EPSYLON)
             {
-                this.Zero();
+                this.SetToZero();
                 return;
             }
 

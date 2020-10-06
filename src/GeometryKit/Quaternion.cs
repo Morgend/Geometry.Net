@@ -32,7 +32,7 @@ namespace GeometryKit
             this.z = z;
         }
 
-        public void SetValues(Quaternion q)
+        public void CopyValuesOf(Quaternion q)
         {
             this.x = q.x;
             this.y = q.y;
@@ -40,7 +40,7 @@ namespace GeometryKit
             this.w = q.w;
         }
 
-        public void Zero()
+        public void SetToZero()
         {
             this.x = DEFAULT_COORDINATE_VALUE;
             this.y = DEFAULT_COORDINATE_VALUE;
@@ -76,7 +76,7 @@ namespace GeometryKit
 
             if (module < MathConstant.EPSYLON)
             {
-                this.Zero();
+                this.SetToZero();
                 return;
             }
 
