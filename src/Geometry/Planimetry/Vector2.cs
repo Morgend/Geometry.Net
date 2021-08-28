@@ -46,6 +46,12 @@ namespace Geometry.Planimetry
             this.y = vector.y;
         }
 
+        public Vector2(Vector2F vector)
+        {
+            this.x = vector.x;
+            this.y = vector.y;
+        }
+
         public void SetToZero()
         {
             this.x = DEFAULT_COORDINATE_VALUE;
@@ -60,7 +66,7 @@ namespace Geometry.Planimetry
         public bool IsUnit()
         {
             double difference = x * x + y * y - 1.0;
-            return MathHelper.NEGATIVE_SQUARE_DOUBLE_EPSYLON <= difference && difference <= MathHelper.POSITIVE_SQUARE_DOUBLE_EPSYLON;
+            return MathHelper.NEGATIVE_DOUBLE_EPSYLON <= difference && difference <= MathHelper.POSITIVE_DOUBLE_EPSYLON;
         }
 
         public void SetValues(double x, double y)

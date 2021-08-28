@@ -46,6 +46,12 @@ namespace Geometry.Planimetry
             this.y = vector.y;
         }
 
+        public Vector2F(Vector2 vector)
+        {
+            this.x = (float)vector.x;
+            this.y = (float)vector.y;
+        }
+
         public void SetToZero()
         {
             this.x = DEFAULT_COORDINATE_VALUE;

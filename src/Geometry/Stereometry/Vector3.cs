@@ -43,11 +43,18 @@ namespace Geometry.Stereometry
             this.z = z;
         }
 
-        public Vector3(Vector3 v)
+        public Vector3(Vector3 vector)
         {
-            this.x = v.x;
-            this.y = v.y;
-            this.z = v.z;
+            this.x = vector.x;
+            this.y = vector.y;
+            this.z = vector.z;
+        }
+
+        public Vector3(Vector3F vector)
+        {
+            this.x = vector.x;
+            this.y = vector.y;
+            this.z = vector.z;
         }
 
         public void SetToZero()
@@ -59,13 +66,13 @@ namespace Geometry.Stereometry
 
         public bool IsZero()
         {
-            return x * x + y * y + z * z <= MathHelper.POSITIVE_DOUBLE_EPSYLON;
+            return x * x + y * y + z * z <= MathHelper.POSITIVE_SQUARE_DOUBLE_EPSYLON;
         }
 
         public bool IsUnit()
         {
             double squareModule = x * x + y * y + z * z - 1.0;
-            return MathHelper.NEGATIVE_SQUARE_DOUBLE_EPSYLON <= squareModule && squareModule <= MathHelper.POSITIVE_SQUARE_DOUBLE_EPSYLON;
+            return MathHelper.NEGATIVE_DOUBLE_EPSYLON <= squareModule && squareModule <= MathHelper.POSITIVE_DOUBLE_EPSYLON;
         }
 
         public void SetValues(double x, double y, double z)
