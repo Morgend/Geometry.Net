@@ -21,7 +21,7 @@ using System;
  * Date: 4 Sept 2019
  */
 
-namespace Geometry.Float64.Stereometry
+namespace Geometry.Stereometry
 {
     public struct LineSegment3
     {

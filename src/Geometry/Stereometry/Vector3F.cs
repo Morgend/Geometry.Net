@@ -21,29 +21,29 @@ using System;
  * Date: 1 Feb 2019
  */
 
-namespace Geometry.Float64.Stereometry
+namespace Geometry.Stereometry
 {
-    public struct Vector3
+    public struct Vector3F
     {
-        public const double DEFAULT_COORDINATE_VALUE = 0.0;
-        public static readonly Vector3 ZERO_VECTOR = new Vector3(0.0, 0.0, 0.0);
+        public const float DEFAULT_COORDINATE_VALUE = 0.0f;
+        public static readonly Vector3F ZERO_VECTOR = new Vector3F(0.0f, 0.0f, 0.0f);
 
-        public static readonly Vector3 UNIT_X_VECTOR = new Vector3(1.0, 0.0, 0.0);
-        public static readonly Vector3 UNIT_Y_VECTOR = new Vector3(0.0, 1.0, 0.0);
-        public static readonly Vector3 UNIT_Z_VECTOR = new Vector3(0.0, 0.0, 1.0);
+        public static readonly Vector3F UNIT_X_VECTOR = new Vector3F(1.0f, 0.0f, 0.0f);
+        public static readonly Vector3F UNIT_Y_VECTOR = new Vector3F(0.0f, 1.0f, 0.0f);
+        public static readonly Vector3F UNIT_Z_VECTOR = new Vector3F(0.0f, 0.0f, 1.0f);
 
-        public double x;
-        public double y;
-        public double z;
+        public float x;
+        public float y;
+        public float z;
 
-        public Vector3(double x, double y, double z)
+        public Vector3F(float x, float y, float z)
         {
             this.x = x;
             this.y = y;
             this.z = z;
         }
 
-        public Vector3(Vector3 v)
+        public Vector3F(Vector3F v)
         {
             this.x = v.x;
             this.y = v.y;
@@ -59,49 +59,49 @@ namespace Geometry.Float64.Stereometry
 
         public bool IsZero()
         {
-            return x * x + y * y + z * z <= MathHelper.POSITIVE_DOUBLE_EPSYLON;
+            return x * x + y * y + z * z <= MathHelper.POSITIVE_FLOAT_EPSYLON;
         }
 
         public bool IsUnit()
         {
-            double squareModule = x * x + y * y + z * z - 1.0;
-            return MathHelper.NEGATIVE_SQUARE_DOUBLE_EPSYLON <= squareModule && squareModule <= MathHelper.POSITIVE_SQUARE_DOUBLE_EPSYLON;
+            float difference = x * x + y * y + z * z - 1.0f;
+            return MathHelper.NEGATIVE_SQUARE_FLOAT_EPSYLON <= difference && difference <= MathHelper.POSITIVE_SQUARE_FLOAT_EPSYLON;
         }
 
-        public void SetValues(double x, double y, double z)
+        public void SetValues(float x, float y, float z)
         {
             this.x = x;
             this.y = y;
             this.z = z;
         }
 
+        public void CopyValuesFrom(Vector3F vector)
+        {
+            this.x = vector.x;
+            this.y = vector.y;
+            this.z = vector.z;
+        }
+
         public void CopyValuesFrom(Vector3 vector)
         {
-            this.x = vector.x;
-            this.y = vector.y;
-            this.z = vector.z;
+            this.x = (float)vector.x;
+            this.y = (float)vector.y;
+            this.z = (float)vector.z;
         }
 
-        public void CopyValuesFrom(Geometry.Float32.Stereometry.Vector3 vector)
-        {
-            this.x = vector.x;
-            this.y = vector.y;
-            this.z = vector.z;
-        }
-
-        public double Scalar(Vector3 vector)
+        public float Scalar(Vector3F vector)
         {
             return this.x * vector.x + this.y * vector.y + this.z * vector.z;
         }
 
-        public double Module()
+        public float Module()
         {
-            return Math.Sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
+            return MathF.Sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
         }
 
         public bool Normalize()
         {
-            double squareModule = this.x * this.x + this.y * this.y + this.z * this.z;
+            float squareModule = this.x * this.x + this.y * this.y + this.z * this.z;
 
             if (squareModule == 1.0)
             {
@@ -119,7 +119,7 @@ namespace Geometry.Float64.Stereometry
                 return false;
             }
 
-            double module = Math.Sqrt(squareModule);
+            float module = MathF.Sqrt(squareModule);
 
             this.x /= module;
             this.y /= module;
@@ -128,14 +128,15 @@ namespace Geometry.Float64.Stereometry
             return true;
         }
 
-        public Vector3 GetNormalized()
+        public Vector3F GetNormalized()
         {
-            Vector3 result = this;
+            Vector3F result = this;
             result.Normalize();
             return result;
         }
 
-        public Vector3 Add(Vector3 vector, bool assign = false)
+
+        public Vector3F Add(Vector3F vector, bool assign = false)
         {
             if (assign)
             {
@@ -145,10 +146,10 @@ namespace Geometry.Float64.Stereometry
                 return this;
             }
 
-            return new Vector3(this.x + vector.x, this.y + vector.y, this.z + vector.z);
+            return new Vector3F(this.x + vector.x, this.y + vector.y, this.z + vector.z);
         }
 
-        public Vector3 Subtract(Vector3 vector, bool assign = false)
+        public Vector3F Subtract(Vector3F vector, bool assign = false)
         {
             if (assign)
             {
@@ -158,10 +159,10 @@ namespace Geometry.Float64.Stereometry
                 return this;
             }
 
-            return new Vector3(this.x + vector.x, this.y + vector.y, this.z + vector.z);
+            return new Vector3F(this.x + vector.x, this.y + vector.y, this.z + vector.z);
         }
 
-        public Vector3 Multiply(double value, bool assign = false)
+        public Vector3F Multiply(float value, bool assign = false)
         {
             if (assign)
             {
@@ -171,14 +172,14 @@ namespace Geometry.Float64.Stereometry
                 return this;
             }
 
-            return new Vector3(this.x * value, this.y * value, this.z * value);
+            return new Vector3F(this.x * value, this.y * value, this.z * value);
         }
 
-        public Vector3 VectorMultiply(Vector3 vector, bool assign = false)
+        public Vector3F VectorMultiply(Vector3F vector, bool assign = false)
         {
-            double x = this.y * vector.z - this.z * vector.y;
-            double y = this.z * vector.x - this.x * vector.z;
-            double z = this.x * vector.y - this.y * vector.x;
+            float x = this.y * vector.z - this.z * vector.y;
+            float y = this.z * vector.x - this.x * vector.z;
+            float z = this.x * vector.y - this.y * vector.x;
 
             if (assign)
             {
@@ -186,10 +187,10 @@ namespace Geometry.Float64.Stereometry
                 return this;
             }
 
-            return new Vector3(x, y, z);
+            return new Vector3F(x, y, z);
         }
 
-        public Vector3 Divide(double value, bool assign = false)
+        public Vector3F Divide(float value, bool assign = false)
         {
             if (assign)
             {
@@ -199,7 +200,7 @@ namespace Geometry.Float64.Stereometry
                 return this;
             }
 
-            return new Vector3(this.x / value, this.y / value, this.z / value);
+            return new Vector3F(this.x / value, this.y / value, this.z / value);
         }
 
         public void Reverse()
@@ -209,56 +210,56 @@ namespace Geometry.Float64.Stereometry
             this.z = -this.z;
         }
 
-        public Vector3 GetReverted()
+        public Vector3F GetReverted()
         {
-            return new Vector3(-this.x, -this.y, -this.z);
+            return new Vector3F(-this.x, -this.y, -this.z);
         }
 
-        public Geometry.Float32.Stereometry.Vector3 ToFloat()
+        public Vector3 ToDouble()
         {
-            return new Geometry.Float32.Stereometry.Vector3((float)this.x, (float)this.y, (float)this.z);
+            return new Vector3(this.x, this.y, this.z);
         }
 
-        public bool IsEqualTo(Vector3 v)
+        public bool IsEqualTo(Vector3F v)
         {
             return MathHelper.AreEqual(this.x, v.x) && MathHelper.AreEqual(this.y, v.y) && MathHelper.AreEqual(this.z, v.z);
         }
 
-        public bool IsStrictlyEqualTo(Vector3 v)
+        public bool IsStrictlyEqualTo(Vector3F v)
         {
             return this.x == v.x && this.y == v.y && this.z == v.z;
         }
 
         // ========================================================
 
-        public static Vector3 operator +(Vector3 v1, Vector3 v2)
+        public static Vector3F operator +(Vector3F v1, Vector3F v2)
         {
-            return new Vector3(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z);
+            return new Vector3F(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z);
         }
 
-        public static Vector3 operator -(Vector3 v1, Vector3 v2)
+        public static Vector3F operator -(Vector3F v1, Vector3F v2)
         {
-            return new Vector3(v1.x - v2.x, v1.y - v2.y, v1.z - v2.z);
+            return new Vector3F(v1.x - v2.x, v1.y - v2.y, v1.z - v2.z);
         }
 
-        public static Vector3 operator *(Vector3 vector, double value)
+        public static Vector3F operator *(Vector3F vector, float value)
         {
-            return new Vector3(vector.x * value, vector.y * value, vector.z * value);
+            return new Vector3F(vector.x * value, vector.y * value, vector.z * value);
         }
 
-        public static Vector3 operator *(double value, Vector3 vector)
+        public static Vector3F operator *(float value, Vector3F vector)
         {
-            return new Vector3(vector.x * value, vector.y * value, vector.z * value);
+            return new Vector3F(vector.x * value, vector.y * value, vector.z * value);
         }
 
-        public static Vector3 operator /(Vector3 vector, double value)
+        public static Vector3F operator /(Vector3F vector, float value)
         {
-            return new Vector3(vector.x / value, vector.y / value, vector.z / value);
+            return new Vector3F(vector.x / value, vector.y / value, vector.z / value);
         }
 
-        public static Vector3 operator -(Vector3 v)
+        public static Vector3F operator -(Vector3F v)
         {
-            return new Vector3(-v.x, -v.y, -v.z);
+            return new Vector3F(-v.x, -v.y, -v.z);
         }
 
         public override string ToString()

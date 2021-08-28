@@ -21,85 +21,85 @@ using System;
  * Date: 23 Aug 2019
  */
 
-namespace Geometry.Float32.Stereometry
+namespace Geometry.Planimetry
 {
-    public struct Triangle3
+    public struct Triangle2
     {
-        public Vector3 A;
-        public Vector3 B;
-        public Vector3 C;
+        public Vector2 A;
+        public Vector2 B;
+        public Vector2 C;
 
-        public Triangle3(Vector3 A, Vector3 B, Vector3 C)
+        public Triangle2(Vector2 A, Vector2 B, Vector2 C)
         {
             this.A = A;
             this.B = B;
             this.C = C;
         }
 
-        public Triangle3(Triangle3 triangle)
+        public Triangle2(Triangle2 triangle)
         {
             this.A = triangle.A;
             this.B = triangle.B;
             this.C = triangle.C;
         }
 
-        public LineSegment3 GetSideAB()
+        public LineSegment2 GetSideAB()
         {
-            return new LineSegment3(this.A, this.B);
+            return new LineSegment2(this.A, this.B);
         }
 
-        public LineSegment3 GetSideBC()
+        public LineSegment2 GetSideBC()
         {
-            return new LineSegment3(this.B, this.C);
+            return new LineSegment2(this.B, this.C);
         }
 
-        public LineSegment3 GetSideCA()
+        public LineSegment2 GetSideCA()
         {
-            return new LineSegment3(this.C, this.A);
+            return new LineSegment2(this.C, this.A);
         }
 
-        public Vector3 GetVectorAB()
+        public Vector2 GetVectorAB()
         {
             return B - A;
         }
 
-        public Vector3 GetVectorBA()
+        public Vector2 GetVectorBA()
         {
             return A - B;
         }
 
-        public Vector3 GetVectorBC()
+        public Vector2 GetVectorBC()
         {
             return C - B;
         }
 
-        public Vector3 GetVectorCB()
+        public Vector2 GetVectorCB()
         {
             return B - C;
         }
 
-        public Vector3 GetVectorCA()
+        public Vector2 GetVectorCA()
         {
             return A - C;
         }
 
-        public Vector3 GetVectorAC()
+        public Vector2 GetVectorAC()
         {
             return C - A;
         }
 
 
-        public float Square()
+        public double Square()
         {
-            return 0.5f * ((B - A).VectorMultiply(C - A)).Module();
+            return 0.5 * Math.Abs((B.x - A.x) * (C.y - A.y) - (B.y - A.y) * (C.x - A.x));
         }
 
-        public Vector3 MedianCentre()
+        public Vector2 MedianCentre()
         {
-            return new Vector3((A.x + B.x + C.x) / 3.0f, (A.y + B.y + C.y) / 3.0f, (A.z + B.z + C.z) / 3.0f);
+            return new Vector2((A.x + B.x + C.x) / 3.0, (A.y + B.y + C.y) / 3.0);
         }
 
-        public void MoveAt(Vector3 vector)
+        public void MoveAt(Vector2 vector)
         {
             A.Add(vector, true);
             B.Add(vector, true);

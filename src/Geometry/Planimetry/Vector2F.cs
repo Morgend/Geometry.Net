@@ -21,26 +21,26 @@ using System;
  * Date: 1 Feb 2019
  */
 
-namespace Geometry.Float32.Planimetry
+namespace Geometry.Planimetry
 {
-    public struct Vector2
+    public struct Vector2F
     {
         public const float DEFAULT_COORDINATE_VALUE = 0.0f;
-        public static readonly Vector2 ZERO_VECTOR = new Vector2(0.0f, 0.0f);
+        public static readonly Vector2F ZERO_VECTOR = new Vector2F(0.0f, 0.0f);
 
-        public static readonly Vector2 UNIT_X_VECTOR = new Vector2(1.0f, 0.0f);
-        public static readonly Vector2 UNIT_Y_VECTOR = new Vector2(0.0f, 1.0f);
+        public static readonly Vector2F UNIT_X_VECTOR = new Vector2F(1.0f, 0.0f);
+        public static readonly Vector2F UNIT_Y_VECTOR = new Vector2F(0.0f, 1.0f);
 
         public float x;
         public float y;
 
-        public Vector2(float x, float y)
+        public Vector2F(float x, float y)
         {
             this.x = x;
             this.y = y;
         }
 
-        public Vector2(Vector2 vector)
+        public Vector2F(Vector2F vector)
         {
             this.x = vector.x;
             this.y = vector.y;
@@ -69,19 +69,19 @@ namespace Geometry.Float32.Planimetry
             this.y = y;
         }
 
-        public void CopyValuesFrom(Vector2 vector)
+        public void CopyValuesFrom(Vector2F vector)
         {
             this.x = vector.x;
             this.y = vector.y;
         }
 
-        public void CopyValuesFrom(Geometry.Float64.Planimetry.Vector2 vector)
+        public void CopyValuesFrom(Vector2 vector)
         {
             this.x = (float)vector.x;
             this.y = (float)vector.y;
         }
 
-        public float Scalar(Vector2 vector)
+        public float Scalar(Vector2F vector)
         {
             return this.x * vector.x + this.y * vector.y;
         }
@@ -119,14 +119,14 @@ namespace Geometry.Float32.Planimetry
             return true;
         }
 
-        public Vector2 GetNormalized()
+        public Vector2F GetNormalized()
         {
-            Vector2 result = this;
+            Vector2F result = this;
             result.Normalize();
             return result;
         }
 
-        public Vector2 Add(Vector2 vector, bool assign = false)
+        public Vector2F Add(Vector2F vector, bool assign = false)
         {
             if (assign)
             {
@@ -135,10 +135,10 @@ namespace Geometry.Float32.Planimetry
                 return this;
             }
 
-            return new Vector2(this.x + vector.x, this.y + vector.y);
+            return new Vector2F(this.x + vector.x, this.y + vector.y);
         }
 
-        public Vector2 Subtract(Vector2 vector, bool assign = false)
+        public Vector2F Subtract(Vector2F vector, bool assign = false)
         {
             if (assign)
             {
@@ -147,10 +147,10 @@ namespace Geometry.Float32.Planimetry
                 return this;
             }
 
-            return new Vector2(this.x - vector.x, this.y - vector.y);
+            return new Vector2F(this.x - vector.x, this.y - vector.y);
         }
 
-        public Vector2 Multiply(float value, bool assign = false)
+        public Vector2F Multiply(float value, bool assign = false)
         {
             if (assign)
             {
@@ -159,10 +159,10 @@ namespace Geometry.Float32.Planimetry
                 return this;
             }
 
-            return new Vector2(this.x * value, this.y * value);
+            return new Vector2F(this.x * value, this.y * value);
         }
 
-        public Vector2 Divide(float value, bool assign = false)
+        public Vector2F Divide(float value, bool assign = false)
         {
             if (assign)
             {
@@ -171,7 +171,7 @@ namespace Geometry.Float32.Planimetry
                 return this;
             }
 
-            return new Vector2(this.x / value, this.y / value);
+            return new Vector2F(this.x / value, this.y / value);
         }
 
         public void Reverse()
@@ -180,59 +180,59 @@ namespace Geometry.Float32.Planimetry
             this.y = -this.y;
         }
 
-        public Vector2 GetReverted()
+        public Vector2F GetReverted()
         {
-            return new Vector2(-this.x, -this.y);
+            return new Vector2F(-this.x, -this.y);
         }
 
-        public Geometry.Float32.Planimetry.Vector2 ToFloat()
+        public Vector2F ToFloat()
         {
-            return new Geometry.Float32.Planimetry.Vector2((float)this.x, (float)this.y);
+            return new Vector2F((float)this.x, (float)this.y);
         }
 
-        public bool IsEqualTo(Vector2 vector)
+        public bool IsEqualTo(Vector2F vector)
         {
             return MathHelper.AreEqual(this.x, vector.x) && MathHelper.AreEqual(this.y, vector.y);
         }
 
-        public bool IsStrictlyEqualTo(Vector2 vector)
+        public bool IsStrictlyEqualTo(Vector2F vector)
         {
             return this.x == vector.x && this.y == vector.y;
         }
 
-        public static Vector2 operator +(Vector2 v1, Vector2 v2)
+        public static Vector2F operator +(Vector2F v1, Vector2F v2)
         {
-            return new Vector2(v1.x + v2.x, v1.y + v2.y);
+            return new Vector2F(v1.x + v2.x, v1.y + v2.y);
         }
 
-        public static Vector2 operator -(Vector2 v1, Vector2 v2)
+        public static Vector2F operator -(Vector2F v1, Vector2F v2)
         {
-            return new Vector2(v1.x - v2.x, v1.y - v2.y);
+            return new Vector2F(v1.x - v2.x, v1.y - v2.y);
         }
 
-        public static float operator *(Vector2 v1, Vector2 v2)
+        public static float operator *(Vector2F v1, Vector2F v2)
         {
             return v1.Scalar(v2);
         }
 
-        public static Vector2 operator *(Vector2 vector, float value)
+        public static Vector2F operator *(Vector2F vector, float value)
         {
-            return new Vector2(vector.x * value, vector.y * value);
+            return new Vector2F(vector.x * value, vector.y * value);
         }
 
-        public static Vector2 operator *(float value, Vector2 vector)
+        public static Vector2F operator *(float value, Vector2F vector)
         {
-            return new Vector2(vector.x * value, vector.y * value);
+            return new Vector2F(vector.x * value, vector.y * value);
         }
 
-        public static Vector2 operator /(Vector2 vector, float value)
+        public static Vector2F operator /(Vector2F vector, float value)
         {
-            return new Vector2(vector.x / value, vector.y / value);
+            return new Vector2F(vector.x / value, vector.y / value);
         }
 
-        public static Vector2 operator -(Vector2 vector)
+        public static Vector2F operator -(Vector2F vector)
         {
-            return new Vector2(-vector.x, -vector.y);
+            return new Vector2F(-vector.x, -vector.y);
         }
 
         public override string ToString()

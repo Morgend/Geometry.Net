@@ -21,7 +21,7 @@ using System;
  * Date: 1 Feb 2019
  */
 
-namespace Geometry.Float64
+namespace Geometry
 {
     public struct Angle
     {
@@ -374,9 +374,9 @@ namespace Geometry.Float64
             return new Angle(-this.Radians);
         }
 
-        public Geometry.Float32.Angle ToFloat()
+        public AngleF ToFloat()
         {
-            return new Geometry.Float32.Angle((float)this.Radians);
+            return new AngleF((float)this.Radians);
         }
 
         public bool IsEqualTo(Angle angle)

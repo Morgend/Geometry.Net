@@ -21,7 +21,7 @@ using System;
  * Date: 1 Feb 2019
  */
 
-namespace Geometry.Float64.Planimetry
+namespace Geometry.Planimetry
 {
     public struct Vector2
     {
@@ -75,7 +75,7 @@ namespace Geometry.Float64.Planimetry
             this.y = vector.y;
         }
 
-        public void CopyValuesFrom(Geometry.Float32.Planimetry.Vector2 vector)
+        public void CopyValuesFrom(Vector2F vector)
         {
             this.x = vector.x;
             this.y = vector.y;
@@ -185,9 +185,9 @@ namespace Geometry.Float64.Planimetry
             return new Vector2(-this.x, -this.y);
         }
 
-        public Geometry.Float64.Planimetry.Vector2 ToDouble()
+        public Vector2 ToDouble()
         {
-            return new Geometry.Float64.Planimetry.Vector2(this.x, this.y);
+            return new Vector2(this.x, this.y);
         }
 
         public bool IsEqualTo(Vector2 vector)

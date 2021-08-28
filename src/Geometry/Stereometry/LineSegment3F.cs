@@ -21,20 +21,20 @@ using System;
  * Date: 4 Sept 2019
  */
 
-namespace Geometry.Float32.Planimetry
+namespace Geometry.Stereometry
 {
-    public struct LineSegment2
+    public struct LineSegment3F
     {
-        public Vector2 A;
-        public Vector2 B;
+        public Vector3F A;
+        public Vector3F B;
 
-        public LineSegment2(Vector2 A, Vector2 B)
+        public LineSegment3F(Vector3F A, Vector3F B)
         {
             this.A = A;
             this.B = B;
         }
 
-        public LineSegment2(LineSegment2 segment)
+        public LineSegment3F(LineSegment3F segment)
         {
             this.A = segment.A;
             this.B = segment.B;
@@ -45,23 +45,23 @@ namespace Geometry.Float32.Planimetry
             return (B - A).Module();
         }
 
-        public Vector2 GetVectorAB()
+        public Vector3F GetVectorAB()
         {
             return B - A;
         }
 
-        public Vector2 GetVectorBA()
+        public Vector3F GetVectorBA()
         {
             return A - B;
         }
 
-        public void MoveAt(Vector2 vector)
+        public void MoveAt(Vector3F vector)
         {
             A.Add(vector, true);
             B.Add(vector, true);
         }
 
-        public Vector2 PointAt(float position)
+        public Vector3F PointAt(float position)
         {
             return A * (1.0f - position) + B * position;
         }

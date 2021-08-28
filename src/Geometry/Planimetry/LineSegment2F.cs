@@ -21,20 +21,20 @@ using System;
  * Date: 4 Sept 2019
  */
 
-namespace Geometry.Float64.Planimetry
+namespace Geometry.Planimetry
 {
-    public struct LineSegment2
+    public struct LineSegment2F
     {
-        public Vector2 A;
-        public Vector2 B;
+        public Vector2F A;
+        public Vector2F B;
 
-        public LineSegment2(Vector2 A, Vector2 B)
+        public LineSegment2F(Vector2F A, Vector2F B)
         {
             this.A = A;
             this.B = B;
         }
 
-        public LineSegment2(LineSegment2 segment)
+        public LineSegment2F(LineSegment2F segment)
         {
             this.A = segment.A;
             this.B = segment.B;
@@ -45,25 +45,25 @@ namespace Geometry.Float64.Planimetry
             return (B - A).Module();
         }
 
-        public Vector2 GetVectorAB()
+        public Vector2F GetVectorAB()
         {
             return B - A;
         }
 
-        public Vector2 GetVectorBA()
+        public Vector2F GetVectorBA()
         {
             return A - B;
         }
 
-        public void MoveAt(Vector2 vector)
+        public void MoveAt(Vector2F vector)
         {
             A.Add(vector, true);
             B.Add(vector, true);
         }
 
-        public Vector2 PointAt(double position)
+        public Vector2F PointAt(float position)
         {
-            return A * (1.0 - position) + B * position;
+            return A * (1.0f - position) + B * position;
         }
     }
 }
