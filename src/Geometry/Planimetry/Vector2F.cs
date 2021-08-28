@@ -191,9 +191,9 @@ namespace Geometry.Planimetry
             return new Vector2F(-this.x, -this.y);
         }
 
-        public Vector2F ToFloat()
+        public Vector2 ToDouble()
         {
-            return new Vector2F((float)this.x, (float)this.y);
+            return new Vector2((float)this.x, (float)this.y);
         }
 
         public bool IsEqualTo(Vector2F vector)
