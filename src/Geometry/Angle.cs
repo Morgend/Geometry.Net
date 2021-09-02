@@ -539,6 +539,11 @@ namespace Geometry
             return new Angle(angle.Radians / value);
         }
 
+        public static double operator /(Angle angle1, Angle angle2)
+        {
+            return angle1.Radians / angle2.Radians;
+        }
+
         public static Angle operator -(Angle angle)
         {
             return new Angle(-angle.Radians);

@@ -539,6 +539,11 @@ namespace Geometry
             return new AngleF(angle.Radians / value);
         }
 
+        public static float operator /(AngleF angle1, AngleF angle2)
+        {
+            return angle1.Radians / angle2.Radians;
+        }
+
         public static AngleF operator -(AngleF angle)
         {
             return new AngleF(-angle.Radians);
