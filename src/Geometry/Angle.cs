@@ -409,9 +409,29 @@ namespace Geometry
             return angle1.Radians > angle2.Radians;
         }
 
+        public static bool operator >(Angle angle, double radians)
+        {
+            return angle.Radians > radians;
+        }
+
+        public static bool operator >(double radians, Angle angle)
+        {
+            return radians > angle.Radians;
+        }
+
         public static bool operator >=(Angle angle1, Angle angle2)
         {
             return angle1.Radians >= angle2.Radians;
+        }
+
+        public static bool operator >=(Angle angle, double radians)
+        {
+            return angle.Radians >= radians;
+        }
+
+        public static bool operator >=(double radians, Angle angle)
+        {
+            return radians >= angle.Radians;
         }
 
         public static bool operator <(Angle angle1, Angle angle2)
@@ -419,19 +439,59 @@ namespace Geometry
             return angle1.Radians < angle2.Radians;
         }
 
+        public static bool operator <(Angle angle, double radians)
+        {
+            return angle.Radians < radians;
+        }
+
+        public static bool operator <(double radians, Angle angle)
+        {
+            return radians < angle.Radians;
+        }
+
         public static bool operator <=(Angle angle1, Angle angle2)
         {
             return angle1.Radians <= angle2.Radians;
         }
 
+        public static bool operator <=(Angle angle, double radians)
+        {
+            return angle.Radians <= radians;
+        }
+
+        public static bool operator <=(double radians, Angle angle)
+        {
+            return radians <= angle.Radians;
+        }
+
         public static bool operator ==(Angle angle1, Angle angle2)
         {
-            return MathHelper.AreEqual(angle1.Radians, angle2.Radians);
+            return angle1.Radians == angle2.Radians;
+        }
+
+        public static bool operator ==(Angle angle, double radians)
+        {
+            return angle.Radians == radians;
+        }
+
+        public static bool operator ==(double radians, Angle angle)
+        {
+            return radians == angle.Radians;
         }
 
         public static bool operator !=(Angle angle1, Angle angle2)
         {
-            return !MathHelper.AreEqual(angle1.Radians, angle2.Radians);
+            return angle1.Radians != angle2.Radians;
+        }
+
+        public static bool operator !=(Angle angle, double radians)
+        {
+            return angle.Radians != radians;
+        }
+
+        public static bool operator !=(double radians, Angle angle)
+        {
+            return radians != angle.Radians;
         }
 
         public static Angle operator +(Angle a1, Angle a2)

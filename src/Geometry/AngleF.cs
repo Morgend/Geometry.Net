@@ -409,9 +409,29 @@ namespace Geometry
             return angle1.Radians > angle2.Radians;
         }
 
+        public static bool operator >(AngleF angle, float radians)
+        {
+            return angle.Radians > radians;
+        }
+
+        public static bool operator >(float radians, AngleF angle)
+        {
+            return radians > angle.Radians;
+        }
+
         public static bool operator >=(AngleF angle1, AngleF angle2)
         {
             return angle1.Radians >= angle2.Radians;
+        }
+
+        public static bool operator >=(AngleF angle, float radians)
+        {
+            return angle.Radians >= radians;
+        }
+
+        public static bool operator >=(float radians, AngleF angle)
+        {
+            return radians >= angle.Radians;
         }
 
         public static bool operator <(AngleF angle1, AngleF angle2)
@@ -419,19 +439,59 @@ namespace Geometry
             return angle1.Radians < angle2.Radians;
         }
 
+        public static bool operator <(AngleF angle, float radians)
+        {
+            return angle.Radians < radians;
+        }
+
+        public static bool operator <(float radians, AngleF angle)
+        {
+            return radians < angle.Radians;
+        }
+
         public static bool operator <=(AngleF angle1, AngleF angle2)
         {
             return angle1.Radians <= angle2.Radians;
         }
 
+        public static bool operator <=(AngleF angle, float radians)
+        {
+            return angle.Radians <= radians;
+        }
+
+        public static bool operator <=(float radians, AngleF angle)
+        {
+            return radians <= angle.Radians;
+        }
+
         public static bool operator ==(AngleF angle1, AngleF angle2)
         {
-            return MathHelper.AreEqual(angle1.Radians, angle2.Radians);
+            return angle1.Radians == angle2.Radians;
+        }
+
+        public static bool operator ==(AngleF angle, float radians)
+        {
+            return angle.Radians == radians;
+        }
+
+        public static bool operator ==(float radians, AngleF angle)
+        {
+            return radians == angle.Radians;
         }
 
         public static bool operator !=(AngleF angle1, AngleF angle2)
         {
-            return !MathHelper.AreEqual(angle1.Radians, angle2.Radians);
+            return angle1.Radians != angle2.Radians;
+        }
+
+        public static bool operator !=(AngleF angle, float radians)
+        {
+            return angle.Radians != radians;
+        }
+
+        public static bool operator !=(float radians, AngleF angle)
+        {
+            return radians != angle.Radians;
         }
 
         public static AngleF operator +(AngleF a1, AngleF a2)
