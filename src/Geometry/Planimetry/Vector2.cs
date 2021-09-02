@@ -69,6 +69,22 @@ namespace Geometry.Planimetry
             return MathHelper.NEGATIVE_DOUBLE_EPSYLON <= difference && difference <= MathHelper.POSITIVE_DOUBLE_EPSYLON;
         }
 
+        public bool IsCloseTo(Vector2 vector)
+        {
+            double dx = this.x - vector.x;
+            double dy = this.y - vector.y;
+
+            return dx * dx + dy * dy <= MathHelper.POSITIVE_SQUARE_DOUBLE_EPSYLON;
+        }
+
+        public bool IsCloseTo(double x, double y)
+        {
+            double dx = this.x - x;
+            double dy = this.y - y;
+
+            return dx * dx + dy * dy <= MathHelper.POSITIVE_SQUARE_DOUBLE_EPSYLON;
+        }
+
         public void SetValues(double x, double y)
         {
             this.x = x;

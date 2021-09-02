@@ -75,6 +75,24 @@ namespace Geometry.Stereometry
             return MathHelper.NEGATIVE_DOUBLE_EPSYLON <= squareModule && squareModule <= MathHelper.POSITIVE_DOUBLE_EPSYLON;
         }
 
+        public bool IsCloseTo(Vector3 vector)
+        {
+            double dx = this.x - vector.x;
+            double dy = this.y - vector.y;
+            double dz = this.z - vector.z;
+
+            return dx * dx + dy * dy + dz * dz <= MathHelper.POSITIVE_SQUARE_DOUBLE_EPSYLON;
+        }
+
+        public bool IsCloseTo(double x, double y, double z)
+        {
+            double dx = this.x - x;
+            double dy = this.y - y;
+            double dz = this.z - z;
+
+            return dx * dx + dy * dy + dz * dz <= MathHelper.POSITIVE_SQUARE_DOUBLE_EPSYLON;
+        }
+
         public void SetValues(double x, double y, double z)
         {
             this.x = x;

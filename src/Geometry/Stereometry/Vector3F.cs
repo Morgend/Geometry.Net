@@ -75,6 +75,24 @@ namespace Geometry.Stereometry
             return MathHelper.NEGATIVE_FLOAT_EPSYLON <= difference && difference <= MathHelper.POSITIVE_FLOAT_EPSYLON;
         }
 
+        public bool IsCloseTo(Vector3F vector)
+        {
+            float dx = this.x - vector.x;
+            float dy = this.y - vector.y;
+            float dz = this.z - vector.z;
+
+            return dx * dx + dy * dy + dz * dz <= MathHelper.POSITIVE_SQUARE_FLOAT_EPSYLON;
+        }
+
+        public bool IsCloseTo(float x, float y, float z)
+        {
+            float dx = this.x - x;
+            float dy = this.y - y;
+            float dz = this.z - z;
+
+            return dx * dx + dy * dy + dz * dz <= MathHelper.POSITIVE_SQUARE_FLOAT_EPSYLON;
+        }
+
         public void SetValues(float x, float y, float z)
         {
             this.x = x;

@@ -69,6 +69,32 @@ namespace Geometry
             return this.x * this.x + this.y * this.y + this.z * this.z + this.w * this.w <= MathHelper.POSITIVE_SQUARE_FLOAT_EPSYLON;
         }
 
+        public bool IsUnit()
+        {
+            float squareModule = this.x * this.x + this.y * this.y + this.z * this.z + this.w * this.w - 1.0f;
+            return MathHelper.NEGATIVE_FLOAT_EPSYLON <= squareModule && squareModule <= MathHelper.POSITIVE_FLOAT_EPSYLON;
+        }
+
+        public bool IsCloseTo(QuaternionF quaternion)
+        {
+            float dw = this.w - quaternion.w;
+            float dx = this.x - quaternion.x;
+            float dy = this.y - quaternion.y;
+            float dz = this.z - quaternion.z;
+
+            return dw * dw + dx * dx + dy * dy + dz * dz <= MathHelper.POSITIVE_SQUARE_FLOAT_EPSYLON;
+        }
+
+        public bool IsCloseTo(float w, float x, float y, float z)
+        {
+            float dw = this.w - w;
+            float dx = this.x - x;
+            float dy = this.y - y;
+            float dz = this.z - z;
+
+            return dw * dw + dx * dx + dy * dy + dz * dz <= MathHelper.POSITIVE_SQUARE_FLOAT_EPSYLON;
+        }
+
         public void Conjugate()
         {
             this.x = -this.x;
